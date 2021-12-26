@@ -1,6 +1,8 @@
 import Head from "next/head";
+
 import Layout from "../../components/Layout";
 import Date from "../../components/date";
+import GlobalStyle from "../../styles/GlobalStyle";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 
 export default function Post({ postData }) {
@@ -9,6 +11,7 @@ export default function Post({ postData }) {
       <Head>
         <title>All Posts | {postData.title}</title>
       </Head>
+      <GlobalStyle />
       <Date dateString={postData.date} />
       <Layout>
         {postData.title}
