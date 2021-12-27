@@ -4,7 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "vercel-deploy": "next build && next export"
+    "vercel-deploy": "next export"
   },
   "dependencies": {
     "date-fns": "^2.27.0",
