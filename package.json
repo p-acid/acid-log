@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "start": "next start",
     "export": "next export",
     "vercel-deploy": "next build && next export"
   },
