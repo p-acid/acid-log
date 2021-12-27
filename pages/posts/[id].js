@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import Layout from "../../components/Layout";
-import Date from "../../components/date";
+import Date from "../../components/Date";
 import GlobalStyle from "../../styles/GlobalStyle";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 
