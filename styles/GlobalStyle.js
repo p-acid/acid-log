@@ -5,7 +5,6 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
   * { 
     box-sizing: border-box;
-    text-decoration: none;
     color: #303030;
     font-family: Roboto,sans-serif;
   }

@@ -16,7 +16,7 @@ export default function Post({ postData }) {
   return (
     <>
       <Head>
-        <title>All posts | {title}</title>
+        <title>Logs | {title}</title>
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={Theme}>
@@ -123,7 +123,7 @@ const Contents = styled.div`
 `;
 
 export async function getStaticPaths() {
-  const paths = getAllPostIds("til");
+  const paths = getAllPostIds("log");
   return {
     paths,
     fallback: false,
@@ -131,7 +131,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id, "til");
+  const postData = await getPostData(params.id, "log");
   console.log(params);
   return {
     props: {

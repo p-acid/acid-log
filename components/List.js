@@ -4,13 +4,13 @@ import Link from "next/link";
 
 import Date from "./Date";
 
-const List = ({ list }) => {
+const List = ({ list, root }) => {
   return (
     <Wrapper>
       {list.map((post) => {
         const { id, title, description, date, tags } = post;
         return (
-          <Link href={`posts/${id}`}>
+          <Link href={`${root}/${id}`}>
             <Post>
               <Title date>{title}</Title>
               <Date dateString={date} />
@@ -33,7 +33,7 @@ export default List;
 const Wrapper = styled.ul``;
 
 const Post = styled.li`
-  padding-bottom: 3rem;
+  margin-bottom: 3rem;
   cursor: pointer;
 
   &:hover > h2 {
@@ -41,9 +41,8 @@ const Post = styled.li`
     background: linear-gradient(to bottom, white 45%, #5482cc 30%);
   }
 
-  time {
-    display: block;
-    font-size: 80%;
+  &:last-child {
+    padding-bottom: 0;
   }
 `;
 
