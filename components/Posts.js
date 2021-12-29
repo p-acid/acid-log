@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 import Layout from "./Layout";
 import Date from "./Date";
+import Tags from "./Tags";
 
 export default function Post({ postData }) {
-  const { title, date, contentHtml } = postData;
+  const { title, date, contentHtml, tags } = postData;
 
   return (
     <>
@@ -12,6 +13,7 @@ export default function Post({ postData }) {
         <Header>
           {title}
           <Date dateString={date} />
+          <Tags tags={tags} />
         </Header>
         <Contents dangerouslySetInnerHTML={{ __html: contentHtml }} />
       </Layout>
@@ -28,6 +30,15 @@ const Header = styled.header`
     padding-top: 0.4rem;
     font-size: 60%;
     font-weight: 400;
+  }
+
+  div {
+    padding-top: 0.2rem;
+
+    span {
+      font-size: 0.9rem;
+      font-weight: 100;
+    }
   }
 `;
 
@@ -52,6 +63,7 @@ const Contents = styled.div`
 
   p {
     padding-bottom: 1rem;
+    word-break: keep-all;
   }
 
   & > ul {
@@ -62,6 +74,11 @@ const Contents = styled.div`
       padding-left: 1rem;
       list-style: inside;
     }
+  }
+
+  a {
+    font-weight: bold;
+    color: ${({ theme }) => theme.navy};
   }
 
   strong {
