@@ -10,7 +10,7 @@ export default function Home({ allPostsData }) {
   return (
     <>
       <Head>
-        <title>Acidlog | All posts</title>
+        <title>Acidlog | Main</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
       <GlobalStyle />
