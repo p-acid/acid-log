@@ -61,6 +61,10 @@ const Contents = styled.div`
     font-weight: bold;
   }
 
+  hr {
+    margin: 0.75rem 0;
+  }
+
   p {
     padding-bottom: 1rem;
     word-break: keep-all;
@@ -78,7 +82,12 @@ const Contents = styled.div`
 
   a {
     font-weight: bold;
+    text-decoration: none;
     color: ${({ theme }) => theme.navy};
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   strong {
