@@ -1,6 +1,6 @@
 ---
 title: Gatsby에서 Next.js로 블로그 전환하기
-date: "2021-12-29T01:34:03.284Z"
+date: "2021-12-29"
 description: 나는 왜 갑자기 블로그를 Next.js로 전환했는가
 tags: ["Next.js", "Blog", "Review"]
 ---
