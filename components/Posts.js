@@ -1,22 +1,21 @@
 import styled from "styled-components";
 
-import Layout from "./Layout";
 import Date from "./Date";
 import Tags from "./Tags";
+import Bio from "./Bio";
 
 export default function Post({ postData }) {
   const { title, date, contentHtml, tags } = postData;
 
   return (
     <>
-      <Layout>
-        <Header>
-          {title}
-          <Date dateString={date} />
-          <Tags tags={tags} />
-        </Header>
-        <Contents dangerouslySetInnerHTML={{ __html: contentHtml }} />
-      </Layout>
+      <Header>
+        {title}
+        <Date dateString={date} />
+        <Tags tags={tags} />
+      </Header>
+      <Contents dangerouslySetInnerHTML={{ __html: contentHtml }} />
+      <Bio />
     </>
   );
 }
