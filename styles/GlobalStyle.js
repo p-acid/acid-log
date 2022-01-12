@@ -9,6 +9,10 @@ const GlobalStyle = createGlobalStyle`
     color: #303030;
     font-family: Roboto,sans-serif;
   }
+
+  body {
+    overflow: hidden;
+  }
   
   span, p, ul, li {
     line-height: 1.5rem;
