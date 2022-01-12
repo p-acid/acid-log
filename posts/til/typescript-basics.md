@@ -1,7 +1,7 @@
 ---
-title: 타입스크립트 기초 시작하기
+title: 타입스크립트란 무엇인가
 date: "2022-01-11"
-description: "앞으로 많이 사용할 타입스크립트의 기초 내용을 탄탄하게 다져봅시다."
+description: "앞으로 많이 사용할 타입스크립트에 대해서 간략하게 알아봅시다."
 tags: ["TypeScript", "TIL", "Basics"]
 ---
 

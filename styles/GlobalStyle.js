@@ -11,7 +11,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    overflow: hidden;
+    -ms-overflow-style: none; 
+  } 
+    
+  ::-webkit-scrollbar { 
+    display: none;
   }
   
   span, p, ul, li {
