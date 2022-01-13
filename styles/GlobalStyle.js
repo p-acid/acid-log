@@ -9,14 +9,6 @@ const GlobalStyle = createGlobalStyle`
     color: #303030;
     font-family: Roboto,sans-serif;
   }
-
-  body {
-    -ms-overflow-style: none; 
-  } 
-    
-  ::-webkit-scrollbar { 
-    display: none;
-  }
   
   span, p, ul, li {
     line-height: 1.5rem;
