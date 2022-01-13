@@ -106,16 +106,17 @@ const Contents = styled.div`
   }
 
   blockquote {
+    padding: 0.8rem 1.2rem;
     margin: 1rem 0;
     border-left: 0.2rem solid black;
     background-color: ${({ theme }) => theme.lightgrey};
 
-    * {
-      padding: 0.8rem 1.2rem 0.7rem;
+    p:first-child {
+      padding: 0;
+    }
 
-      strong {
-        color: #545454;
-      }
+    strong {
+      color: #545454;
     }
   }
 
