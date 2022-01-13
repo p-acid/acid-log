@@ -1,7 +1,7 @@
 ---
 title: Next.js 첫 걸음 떼어보기
 date: "2021-12-18"
-description: "입사 전에 Next.js에 대한 전반적인 내용을 톺아보며 기본기를 다져보자."
+description: "입사 전에 Next.js에 대한 전반적인 내용을 톺아보며 기본기를 다져봅시다."
 tags: ["Next.js", "TIL", "Basics"]
 ---
 

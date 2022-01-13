@@ -44,19 +44,19 @@ const Header = styled.header`
 const Contents = styled.div`
   h1 {
     padding-top: 3rem;
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: bold;
   }
 
   h2 {
     padding-top: 2rem;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: bold;
   }
 
   h3 {
     padding-top: 2rem;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: bold;
   }
 
