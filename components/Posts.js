@@ -110,7 +110,7 @@ const Contents = styled.div`
     border-left: 0.2rem solid black;
     background-color: ${({ theme }) => theme.lightgrey};
 
-    p {
+    * {
       padding: 0.8rem 1.2rem 0.7rem;
 
       strong {
