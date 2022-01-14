@@ -69,6 +69,11 @@ const Contents = styled.div`
     font-weight: bold;
   }
 
+  h4 {
+    padding-top: 2rem;
+    font-weight: bold;
+  }
+
   hr {
     margin: 0.75rem 0;
   }

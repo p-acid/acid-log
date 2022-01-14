@@ -7,7 +7,10 @@ const GlobalStyle = createGlobalStyle`
   * { 
     box-sizing: border-box;
     color: #303030;
-    font-family: Roboto,sans-serif;
+  }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
   }
   
   span, p, ul, li {
