@@ -5,7 +5,7 @@ import Tags from "./Tags";
 import Bio from "./Bio";
 
 export default function Post({ postData }) {
-  const { title, date, contentHtml, tags } = postData;
+  const { id, title, date, contentHtml, tags, thumbnail } = postData;
 
   return (
     <>
@@ -14,6 +14,10 @@ export default function Post({ postData }) {
         <Date dateString={date} />
         <Tags tags={tags} />
       </Header>
+      <Thumbnail
+        src={`/images/posts/${id}/${thumbnail}`}
+        alt={`${thumbnail}`}
+      />
       <Contents dangerouslySetInnerHTML={{ __html: contentHtml }} />
       <Bio />
     </>
@@ -39,6 +43,11 @@ const Header = styled.header`
       font-weight: 100;
     }
   }
+`;
+
+const Thumbnail = styled.img`
+  width: 100%;
+  margin: 2rem 0;
 `;
 
 const Contents = styled.div`

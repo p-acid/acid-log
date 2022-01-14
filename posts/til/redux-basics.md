@@ -1,8 +1,9 @@
 ---
 title: 리덕스 시작하기
-date: "2022-01-13"
+date: "2022-01-17"
 description: "바쁘디 바쁜 현대 사회에서 호다닥 리덕스 기초를 정리해봅시다."
 tags: ["Redux", "TIL", "Basics"]
+thumbnail: "redux_logo.png"
 ---
 
 > 본 포스팅은 [리덕스 공식문서](https://ko.redux.js.org/)의 [리덕스 튜토리얼](https://ko.redux.js.org/tutorials/essentials/part-1-overview-concepts)을 참고하여 작성하였습니다.
