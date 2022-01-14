@@ -70,11 +70,15 @@ const Title = styled.h2`
   font-weight: bold;
 `;
 
-const Text = styled.p``;
+const Text = styled.p`
+  margin: 0.1rem 0;
+`;
 
 const TagWrapper = styled.div`
   display: flex;
   gap: 0.5rem;
 `;
 
-const Tag = styled.span``;
+const Tag = styled.span`
+  font-size: 0.8rem;
+`;
