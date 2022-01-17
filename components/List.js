@@ -6,12 +6,12 @@ import Date from "./Date";
 
 const List = ({ list, root }) => {
   return (
-    <Wrapper>
+    <div>
       {list.map((post) => {
         const { id, title, description, date, tags, thumbnail } = post;
         return (
           <Link href={`${root}/${id}`}>
-            <SubWrapper>
+            <Wrapper>
               <Thumbnail
                 src={`/images/posts/${id}/${thumbnail}`}
                 alt={`${thumbnail}`}
@@ -28,19 +28,17 @@ const List = ({ list, root }) => {
                   </TagWrapper>
                 </Post>
               </div>
-            </SubWrapper>
+            </Wrapper>
           </Link>
         );
       })}
-    </Wrapper>
+    </div>
   );
 };
 
 export default List;
 
-const Wrapper = styled.ul``;
-
-const SubWrapper = styled.li`
+const Wrapper = styled.li`
   display: flex;
   gap: 3rem;
   margin-bottom: 5rem;
@@ -68,6 +66,7 @@ const Title = styled.h2`
   margin-bottom: 1.5rem;
   font-size: 2rem;
   font-weight: bold;
+  line-height: 2.5rem;
 `;
 
 const Text = styled.p`

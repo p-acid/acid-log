@@ -1,8 +1,9 @@
 ---
 title: Axios와 친해지며 기록하기
-date: "2022-01-11"
+date: "2022-01-14"
 description: "Fetch와 비슷하면서도 묘하게 다른 느낌의 Axios와 친해지려 노력해봅시다."
 tags: ["Axios", "Fetch", "HTTP", "async", "await"]
+thumbnail: "axios_logo.svg"
 ---
 
 # 개념 알아보기

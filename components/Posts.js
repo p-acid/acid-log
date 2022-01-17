@@ -52,25 +52,25 @@ const Thumbnail = styled.img`
 
 const Contents = styled.div`
   h1 {
-    padding-top: 3rem;
+    padding: 3rem 0 0.2rem;
     font-size: 2rem;
     font-weight: bold;
   }
 
   h2 {
-    padding-top: 2rem;
+    padding: 2rem 0 0.2rem;
     font-size: 1.6rem;
     font-weight: bold;
   }
 
   h3 {
-    padding-top: 2rem;
+    padding: 2rem 0 0.2rem;
     font-size: 1.4rem;
     font-weight: bold;
   }
 
   h4 {
-    padding-top: 2rem;
+    padding: 2rem 0 0.2rem;
     font-weight: bold;
   }
 
