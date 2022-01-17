@@ -60,4 +60,7 @@ const TagWrapper = styled.div`
   gap: 0.5rem;
 `;
 
-const Tag = styled.span``;
+const Tag = styled.span`
+  font-size: 0.85rem;
+  color: #454545;
+`;
