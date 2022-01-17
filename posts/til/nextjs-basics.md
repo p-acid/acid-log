@@ -1,8 +1,9 @@
 ---
 title: Next.js 첫 걸음 떼어보기
 date: "2021-12-18"
-description: "입사 전에 Next.js에 대한 전반적인 내용을 톺아보며 기본기를 다져보자."
-tags: ["Next.js", "TIL"]
+description: "입사 전에 Next.js에 대한 전반적인 내용을 톺아보며 기본기를 다져봅시다."
+tags: ["Next.js", "TIL", "Basics"]
+thumbnail: "nextjs_logo.png"
 ---
 
 # 개념 알아보기
@@ -47,7 +48,7 @@ code ./nextjs-blog
 npm run dev
 ```
 
-<img width="100%" alt="first-render" src="https://user-images.githubusercontent.com/87939521/146668038-1b119b34-2a61-4bdd-a7d0-1bec869cf681.png" />
+![](https://user-images.githubusercontent.com/87939521/146668038-1b119b34-2a61-4bdd-a7d0-1bec869cf681.png)
 
 </br>
 
@@ -82,7 +83,7 @@ export default firstPost;
 
 이후 해당 루트로 진입하면 다음과 같은 화면이 반영되며 라우팅이 정상적으로 작동하는 것을 확인할 수 있다.
 
-<img width="100%" alt="routing-test" src="https://user-images.githubusercontent.com/87939521/146669033-60541bf1-257a-4ace-8e68-aca0ef46cb01.png" />
+![](https://user-images.githubusercontent.com/87939521/146669033-60541bf1-257a-4ace-8e68-aca0ef46cb01.png)
 
 </br>
 
@@ -115,7 +116,7 @@ import Link from "next/link";
 
 그렇다면 다음과 같이 정상 작동하는 것을 확인할 수 있다.
 
-<img src="https://user-images.githubusercontent.com/87939521/146669980-e0762ce5-70e1-4ae4-af45-7fe56c873461.gif" />
+![](https://user-images.githubusercontent.com/87939521/146669980-e0762ce5-70e1-4ae4-af45-7fe56c873461.gif)
 
 </br>
 
@@ -231,16 +232,14 @@ Next.js는 모든 페이지를 <strong>사전 렌더링(pre-rendering)</strong>�
 
 우선 **사전 렌더링**은 각 **페이지들을 사전에 HTML 문서로 생성하여 저장해놓는 것**을 말한다. 이를 CSR과 비교하여 다음의 그림으로 설명할 수 있다.
 
-<img width="100%" src="https://nextjs.org/static/images/learn/data-fetching/no-pre-rendering.png" />
-<img width="100%" src="https://nextjs.org/static/images/learn/data-fetching/pre-rendering.png" />
-
+![](https://nextjs.org/static/images/learn/data-fetching/no-pre-rendering.png)
+![](https://nextjs.org/static/images/learn/data-fetching/pre-rendering.png)
 </br>
 
 기존 리액트의 CSR 방식은 번들링 된 자바스크립트를 클라이언트 단에서 렌더링을 담당하여 진행하기에 애플리케이션은 초기에 아무 것도 렌더링 하지 않는다. 하지만 Next.js의 경우 기존에 사전 렌더링을 진행하여 HTML을 미리 생성해놓고, 상호 작용을 위한 부분이 존재한다면 자바스크립트를 별도로 로드한다. 그리고 Next.js에는 **Static-Generation**과 **Server-Side Rendering**의 두 가지 사전 렌더링 형식이 있다.
 
-<img width="100%" src="https://nextjs.org/static/images/learn/data-fetching/static-generation.png" />
-
-<img width="100%" src="https://nextjs.org/static/images/learn/data-fetching/server-side-rendering.png" />
+![](https://nextjs.org/static/images/learn/data-fetching/static-generation.png)
+![](https://nextjs.org/static/images/learn/data-fetching/server-side-rendering.png)
 
 </br>
 
@@ -267,8 +266,8 @@ Next.js를 활용하면 각 페이지마다 <strong>렌더링 방식을 선택�
 
 ---
 
-<img width="100%" src="https://nextjs.org/static/images/learn/data-fetching/static-generation-without-data.png" />
-<img width="100%" src="https://nextjs.org/static/images/learn/data-fetching/static-generation-with-data.png" />
+![](https://nextjs.org/static/images/learn/data-fetching/static-generation-without-data.png)
+![](https://nextjs.org/static/images/learn/data-fetching/static-generation-with-data.png)
 
 </br>
 
@@ -407,7 +406,7 @@ export async function getStaticProps() {
 
 이후 해당 데이터를 `console.log()` 로 확인하면 다음과 같이 게시물에 대한 정보가 담긴 배열을 반환하는 것을 확인할 수 있다.
 
-<img width="100%" src="https://user-images.githubusercontent.com/87939521/147207056-6b4f562e-0383-46ec-acdd-3d8c4e1e1f0d.png" />
+![](https://user-images.githubusercontent.com/87939521/147207056-6b4f562e-0383-46ec-acdd-3d8c4e1e1f0d.png)
 
 </br>
 
@@ -421,7 +420,7 @@ export async function getStaticProps() {
 
 ---
 
-<img width="100%" src="https://nextjs.org/static/images/learn/data-fetching/server-side-rendering-with-data.png" />
+![](https://nextjs.org/static/images/learn/data-fetching/server-side-rendering-with-data.png)
 
 ```jsx
 export async function getServerSideProps(context) {
@@ -447,7 +446,7 @@ export async function getServerSideProps(context) {
 
 사전 렌더링이 필요 없는 경우, **클라이언트 측 렌더링**을 고려해 볼 수도 있다. 이때 정적 생성과 클라이언트 측 데이터 요청이 함께 사용된다.
 
-<img width="100%" src="https://nextjs.org/static/images/learn/data-fetching/client-side-rendering.png" />
+![](https://nextjs.org/static/images/learn/data-fetching/client-side-rendering.png)
 
 </br>
 
@@ -490,7 +489,7 @@ SWR Hook은 위와 같이 활용할 수 있다.
 
 이제 블로그 내 개별 페이지를 만들기 위한 **동적 라우팅**에 대한 내용을 알아보자. 페이지 URL을 통해 블로그 내 각 게시물들의 데이터를 불러올 것이다.
 
-<img width="100%" src="https://nextjs.org/static/images/learn/dynamic-routes/page-path-external-data.png" />
+![](https://nextjs.org/static/images/learn/dynamic-routes/page-path-external-data.png)
 
 </br>
 
@@ -583,7 +582,7 @@ export default function Post({ postData }) {
 
 이렇게 진행하면 동적 라우팅 성공적으로 생성될 것이다. 위 과정을 **다이어그램**으로 표현한 이미지를 보면서 다시 한 번 되짚자.
 
-<img width="100%" src="https://nextjs.org/static/images/learn/dynamic-routes/how-to-dynamic-routes.png" />
+![](https://nextjs.org/static/images/learn/dynamic-routes/how-to-dynamic-routes.png)
 
 </br>
 
@@ -741,9 +740,7 @@ export default function Post({ postData }) {
 
 그래서 아마 다음 포스팅은 새롭게 빌드한 Next.js 블로그를 통해 보여줄 것이고 구상 중인 추가적인 기능 또한 구현할 예정이다.
 
-</br>
+#### 🔖 참고 링크
 
-🔖 **참고 링크**
-
-- [Next.js 공식 문서 : 학습하기](https://nextjs.org/learn/basics/create-nextjs-app?utm_source=next-site&utm_medium=homepage-cta&utm_campaign=next-website)
-- [[FE] SSR(Server-Side-Rendering) 그리고 SSG(Static-Site-Generation) (feat. NEXT를 중심으로)](https://velog.io/@longroadhome/FE-SSRServer-Side-Rendering-%EA%B7%B8%EB%A6%AC%EA%B3%A0-SSGStatic-Site-Generation-feat.-NEXT%EB%A5%BC-%EC%A4%91%EC%8B%AC%EC%9C%BC%EB%A1%9C)
+> - [Next.js 공식 문서 : 학습하기](https://nextjs.org/learn/basics/create-nextjs-app?utm_source=next-site&utm_medium=homepage-cta&utm_campaign=next-website)
+> - [[FE] SSR(Server-Side-Rendering) 그리고 SSG(Static-Site-Generation) (feat. NEXT를 중심으로)](https://velog.io/@longroadhome/FE-SSRServer-Side-Rendering-%EA%B7%B8%EB%A6%AC%EA%B3%A0-SSGStatic-Site-Generation-feat.-NEXT%EB%A5%BC-%EC%A4%91%EC%8B%AC%EC%9C%BC%EB%A1%9C)

@@ -1,9 +1,9 @@
 import Head from "next/head";
-import Layout from "../components/Layout";
 import List from "../components/List";
 import Bio from "../components/Bio";
+import Info from "../components/Info";
 
-import GlobalStyle from "../styles/GlobalStyle";
+import { LIST_INFO } from "../public/const/constants";
 import { getSortedPostsData } from "../lib/posts";
 
 export default function Home({ allPostsData }) {
@@ -13,11 +13,9 @@ export default function Home({ allPostsData }) {
         <title>Acidlog | Logs</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <GlobalStyle />
-      <Layout>
-        <Bio />
-        <List list={allPostsData} root="log" />
-      </Layout>
+      <Info info={LIST_INFO.LOGS} />
+      <List list={allPostsData} root="log" />
+      <Bio />
     </>
   );
 }

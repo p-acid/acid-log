@@ -1,10 +1,10 @@
 import Head from "next/head";
-import Layout from "../components/Layout";
 import List from "../components/List";
 import Bio from "../components/Bio";
+import Info from "../components/Info";
 
-import GlobalStyle from "../styles/GlobalStyle";
 import { getSortedPostsData } from "../lib/posts";
+import { LIST_INFO } from "../public/const/constants";
 
 export default function Home({ allPostsData }) {
   return (
@@ -13,11 +13,9 @@ export default function Home({ allPostsData }) {
         <title>Acidlog | Main</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <GlobalStyle />
-      <Layout>
-        <Bio />
-        <List list={allPostsData} root="posts" />
-      </Layout>
+      <Info info={LIST_INFO.POSTS} />
+      <List list={allPostsData} root="posts" />
+      <Bio />
     </>
   );
 }

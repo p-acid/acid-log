@@ -18,7 +18,7 @@ const Bio = (props) => {
 export default Bio;
 
 const Wrapper = styled.div`
-  padding-bottom: 3rem;
+  padding-top: 2rem;
 `;
 
 const Text = styled.span`

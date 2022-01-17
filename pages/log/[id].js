@@ -1,8 +1,5 @@
 import Head from "next/head";
-import { ThemeProvider } from "styled-components";
 
-import GlobalStyle from "../../styles/GlobalStyle";
-import Theme from "../../styles/Theme";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 
 import Posts from "../../components/Posts";
@@ -13,10 +10,7 @@ export default function Post({ postData }) {
       <Head>
         <title>Logs | {postData.title}</title>
       </Head>
-      <GlobalStyle />
-      <ThemeProvider theme={Theme}>
-        <Posts postData={postData} />
-      </ThemeProvider>
+      <Posts postData={postData} />
     </>
   );
 }

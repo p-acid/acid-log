@@ -1,22 +1,25 @@
 import styled from "styled-components";
 
-import Layout from "./Layout";
 import Date from "./Date";
 import Tags from "./Tags";
+import Bio from "./Bio";
 
 export default function Post({ postData }) {
-  const { title, date, contentHtml, tags } = postData;
+  const { id, title, date, contentHtml, tags, thumbnail } = postData;
 
   return (
     <>
-      <Layout>
-        <Header>
-          {title}
-          <Date dateString={date} />
-          <Tags tags={tags} />
-        </Header>
-        <Contents dangerouslySetInnerHTML={{ __html: contentHtml }} />
-      </Layout>
+      <Header>
+        {title}
+        <Date dateString={date} />
+        <Tags tags={tags} />
+      </Header>
+      <Thumbnail
+        src={`/images/posts/${id}/${thumbnail}`}
+        alt={`${thumbnail}`}
+      />
+      <Contents dangerouslySetInnerHTML={{ __html: contentHtml }} />
+      <Bio />
     </>
   );
 }
@@ -42,22 +45,32 @@ const Header = styled.header`
   }
 `;
 
+const Thumbnail = styled.img`
+  width: 100%;
+  margin: 2rem 0;
+`;
+
 const Contents = styled.div`
   h1 {
     padding-top: 3rem;
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: bold;
   }
 
   h2 {
     padding-top: 2rem;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: bold;
   }
 
   h3 {
     padding-top: 2rem;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+
+  h4 {
+    padding-top: 2rem;
     font-weight: bold;
   }
 
@@ -107,16 +120,17 @@ const Contents = styled.div`
   }
 
   blockquote {
+    padding: 0.8rem 1.2rem;
     margin: 1rem 0;
     border-left: 0.2rem solid black;
     background-color: ${({ theme }) => theme.lightgrey};
 
-    p {
-      padding: 0.8rem 1.2rem 0.7rem;
+    p:first-child {
+      padding: 0;
+    }
 
-      strong {
-        color: #545454;
-      }
+    strong {
+      color: #545454;
     }
   }
 
