@@ -71,6 +71,7 @@ const Contents = styled.div`
 
   h4 {
     padding: 2rem 0 0.2rem;
+    font-size: 1.2rem;
     font-weight: bold;
   }
 
