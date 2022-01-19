@@ -340,3 +340,19 @@ export function isPlain(val: any) {
   );
 }
 ```
+
+## Reducers and Actions(리듀서와 액션)
+
+---
+
+**`reducer` 및 `action` 과 관련 있는 내용**으로 **`createReducer`, `createAction`, `createSlice`, `createAsyncThunk`, `createEntityAdapter`의 내용**을 포함합니다.
+
+### [`createReducer`](https://redux-toolkit.js.org/api/createReducer)
+
+---
+
+> **A utility that simplifies creating Redux reducer functions.** It uses **Immer** internally to drastically **simplify immutable update logic by writing "mutative" code** in your reducers, and supports directly mapping specific action types to case reducer functions that will update the state when that action is dispatched.
+
+**리듀서 함수를 만드는 것을 간단하게 해주는 유틸리티**입니다. 해당 함수는 내부에 **Immer 라이브러리**를 사용하여 리듀서에 **변화 가능한 코드를 작성하고**, 이를 통해 **변경 불가능한 로직 대폭 단순화 할 수 있습니다.** 또한 **특정 액션들을 상태 업데이트를 위한 리듀서 함수로 매핑**하여 `dispatch` 될 때 이를 실행할 수 있도록 합니다.
+
+대개 리듀서 함수는 다음과 같이 생성할 수 있습니다.
