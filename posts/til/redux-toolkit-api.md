@@ -356,3 +356,30 @@ export function isPlain(val: any) {
 **리듀서 함수를 만드는 것을 간단하게 해주는 유틸리티**입니다. 해당 함수는 내부에 **Immer 라이브러리**를 사용하여 리듀서에 **변화 가능한 코드를 작성하고**, 이를 통해 **변경 불가능한 로직 대폭 단순화 할 수 있습니다.** 또한 **특정 액션들을 상태 업데이트를 위한 리듀서 함수로 매핑**하여 `dispatch` 될 때 이를 실행할 수 있도록 합니다.
 
 대개 리듀서 함수는 다음과 같이 생성할 수 있습니다.
+
+```ts
+const initialState = { value: 0 };
+
+function counterReducer(state = initialState, action) {
+  switch (action.type) {
+    case "increment":
+      return { ...state, value: state.value + 1 };
+    case "decrement":
+      return { ...state, value: state.value - 1 };
+    case "incrementByAmount":
+      return { ...state, value: state.value + action.payload };
+    default:
+      return state;
+  }
+}
+```
+
+위 예시의 경우 `switch` 문을 활용하여 `counterReducer` 라는 리듀서를 작성하였습니다. 이러한 경우 다음과 같은 문제를 야기할 수 있다고 합니다.
+
+> This approach works well, but is a bit **boilerplate-y and error-prone.** For instance, it is easy to forget the `default` case or setting the initial state.
+
+리덕스 툴킷의 필요 이유와 문맥상, **보일러플레이트 코드 측면에서의 문제와 에러를 발생시키는 경향이 있다**고 이해할 수 있을 것 같습니다. 이에 대한 예시로 **`default` 구문이나 초기값을 명시를 잊는 것**을 말할 수 있습니다.
+
+이러한 문제를 `createReducer` 를 통해 해결할 수 있고, **두 가지(Builder callback notation, Object notation)의 리듀서 정의 방식**을 갖고 있습니다. 이 중 **Builder callback notation**이 선호됩니다.
+
+#### Builder Callback Notation
