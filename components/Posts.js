@@ -108,6 +108,10 @@ const Contents = styled.div`
     font-weight: bold;
   }
 
+  em {
+    font-style: italic;
+  }
+
   pre {
     display: grid;
     padding: 0.8rem 0px 1.1rem;

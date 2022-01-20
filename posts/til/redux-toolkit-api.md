@@ -378,8 +378,130 @@ function counterReducer(state = initialState, action) {
 
 > This approach works well, but is a bit **boilerplate-y and error-prone.** For instance, it is easy to forget the `default` case or setting the initial state.
 
-리덕스 툴킷의 필요 이유와 문맥상, **보일러플레이트 코드 측면에서의 문제와 에러를 발생시키는 경향이 있다**고 이해할 수 있을 것 같습니다. 이에 대한 예시로 **`default` 구문이나 초기값을 명시를 잊는 것**을 말할 수 있습니다.
+리덕스 툴킷의 필요 이유와 문맥상 **보일러플레이트 코드 측면에서의 문제와 에러를 발생시키는 경향이 있다**고 이해할 수 있을 것 같습니다. 이에 대한 예시로 **`default` 구문이나 초기값을 명시를 잊는 것**을 말할 수 있습니다.
 
 이러한 문제를 `createReducer` 를 통해 해결할 수 있고, **두 가지(Builder callback notation, Object notation)의 리듀서 정의 방식**을 갖고 있습니다. 이 중 **Builder callback notation**이 선호됩니다.
 
 #### Builder Callback Notation
+
+---
+
+해당 방식은 **`builder` 라는 객체**를 인자로 받아 사용하는데, `builder` 객체는 **리듀서가 처리할 액션의 유형을 정의하기 위한 `addCase` , `addMatcher` , `addDefault` 함수를 포함**합니다. 또한 타입스크립트나 대부분의 IDE에서 효과적인데, 이는 `builder callback` 방식을 지향하는 이유 중 하나입니다.
+
+`builder callback` 방식은 다음의 인자로 구성됩니다.
+
+- **initialState:** **초기값을 설정**할 수 있는 영역으로, **리듀서가 처음 호출될 때 사용되는 값**입니다. 해당 인자는 `State | (() => State)` 형태를 갖는데, 후자의 경우 **초기화 지연 함수**로 사용될 수 있습니다. 해당 방식은 주로 **초기값이 `undefined` 로 할당될 때** 사용되며, `localStorage` 등에서 초기값을 읽어올 때 유용합니다.
+
+> **lazy Initialization:** _which should **return an initial state value when called.**_
+>
+> - **= 초기화 지연:** 객체 생성, 값 계산, 또는 일부 기타 **비용이 많이 소모되는 과정을 필요 시점까지 지연시키는 방식**을 말합니다.
+
+- **builderCallback:** 리듀서를 정의할 메소드를 포함한 **`builder` 객체**를 받는 함수입니다.
+
+해당 메소드들은 다음과 같습니다.
+
+- `builder.addCase`: **단일 액션 유형을 다루기 위한 리듀서를 추가**합니다. 해당 함수는 `builder.addMatcher` 혹은 `builder.addDefaultCase` 보다 앞에 작성해야합니다. 다음의 인자를 갖습니다.
+  - **actionCreator:** 작업 유형을 결정하는 **문자열의 일반 액션 유형** 혹은 **`createAction` 에 의해 생성된 액션**이 할당됩니다.
+  - **reduce:** 실제 리듀서 함수
+- `builder.addMatcher`: `action.type` 이 일치하는 경우에 실행하는 것 외에 **콜백 함수의 반환 값으로** 리듀서 실행 여부를 결정할 수 있습니다. 여러 `match reducer` 가 일치하면, `case reducer` 가 이미 일치하더라도 **정의된 순서대로 실행됩니다.** `builder.addMatcher` 는 `addCase` 와 `addDefaultCase` 사이에 와야합니다. 또한, 다음의 인자를 갖습니다.
+  - **matcher**: 매칭시키는 함수입니다. 타입스크립트에선 [type predicate](https://www.typescriptlang.org/docs/handbook/advanced-types.html#using-type-predicates) function이어야 합니다.
+  - **reducer**: 실제 리듀서 함수
+- `builder.addDefaultCase`: 말그대로 `default case` 를 정의합니다. 이는 **`switch` 문의 `default`** 와 같이 **어떤 리듀서와도 매칭이 되지 않았을 때, 실행되는 액션을 포함합니다.** 다음의 인자를 갖습니다.
+  - **reducer**: `default case` 의 리듀서 함수입니다.
+
+#### Map Object Notation
+
+---
+
+`Map Object` 방식은 **`key` 가 `action.type` 이고 값이 해당 액션 타입을 다루는 리듀서 함수인 객체**를 활용합니다. 해당 방식이 보다 더 간략하지만 **타입스크립트가 아닌 자바스크립트에서만 쓸 수 있다는 점과, IDE와의 통합이 적은 이유**로 `builder callback` 방식을 지향합니다. 그리고 다음의 인자를 갖습니다.
+
+- **initialState:** `builder callback` 방식의 인자와 동일합니다.
+- **actionsMap: 액션 타입에서 리듀서 함수로 매핑되어 있는 객체** 형태의 인자입니다. 각 요소는 하나의 액션 타입을 다룹니다.
+- **actionMatchers: `{matcher, reducer}` 형태로 정의된 객체 배열** 형태의 인자입니다. 일치하는 모든 리듀서는 일치 여부에 관계없이 독립적으로 순서대로 실행됩니다.
+- **defaultCaseReducer: 앞의 두 유형의 리듀서가 실행되지 않은 경우 실행**되는 `default case` 리듀서입니다.
+
+`Map Object` 방식은 다음과 같이 사용 가능합니다.
+
+```ts
+const counterReducer = createReducer(0, {
+  increment: (state, action) => state + action.payload,
+  decrement: (state, action) => state - action.payload,
+});
+
+// Alternately, use a "lazy initializer" to provide the initial state
+// (works with either form of createReducer)
+const initialState = () => 0;
+const counterReducer = createReducer(initialState, {
+  increment: (state, action) => state + action.payload,
+  decrement: (state, action) => state - action.payload,
+});
+```
+
+`createAction` 을 통해 작성된 액션은 다음과 같은 방법으로 `key` 에 대입할 수 있습니다.
+
+```ts
+const increment = createAction("increment");
+const decrement = createAction("decrement");
+
+const counterReducer = createReducer(0, {
+  [increment]: (state, action) => state + action.payload,
+  [decrement.type]: (state, action) => state - action.payload,
+});
+```
+
+**actionMatchers와 defaultCaseReducer** 를 추가하여 사용하는 방식은 다음과 같습니다.
+
+```ts
+const isStringPayloadAction = (action) => typeof action.payload === "string";
+
+const lengthOfAllStringsReducer = createReducer(
+  // initial state
+  { strLen: 0, nonStringActions: 0 },
+  // normal reducers
+  {
+    /*...*/
+  },
+  //  array of matcher reducers
+  [
+    {
+      matcher: isStringPayloadAction,
+      reducer(state, action) {
+        state.strLen += action.payload.length;
+      },
+    },
+  ],
+  // default reducer
+  (state) => {
+    state.nonStringActions++;
+  }
+);
+```
+
+#### Direct State Mutation
+
+---
+
+리덕스는 **함수가 순수해야 하고 상태가 불변해야 한다는 점**이 있습니다. 이는 **보다 더 예측 가능하고 관찰 가능한 상태**를 만드는데 필수지만, 때로는 이러한 요소가 **업데이트 구문을 어색하게 만들기도 합니다.** 아래 예시를 보면서 확인해봅시다.
+
+```ts
+const todosReducer = createReducer([] as Todo[], (builder) => {
+  builder
+    .addCase(addTodo, (state, action) => {
+      const todo = action.payload;
+      return [...state, todo];
+    })
+    .addCase(toggleTodo, (state, action) => {
+      const index = action.payload;
+      const todo = state[index];
+      return [
+        ...state.slice(0, index),
+        { ...todo, completed: !todo.completed },
+        ...state.slice(index + 1),
+      ];
+    });
+});
+```
+
+자바스크립트 ES6 문법 중 [`spread syntax`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) 를 안다면 `addTodo` 리듀서는 해석하기 쉬울 것 입니다. 하지만 `toggleTodo` 의 경우엔 좀 더 복잡한 구조 때문에 이를 이해하기엔 좀 어려움이 있을 것 같습니다.
+
+이를 보다 편리하게 하기 위해 `createReducer` 는 내부에 [immer](https://github.com/immerjs/immer)라는 라이브러리를 통해 **상태를 직접 변경하는 방식으로 리듀서를 작성할 수 있도록 합니다.** 실제로 리듀서는 **동등한 복사 작업으로 변환하는 프록시 상태를 수신합니다.**
