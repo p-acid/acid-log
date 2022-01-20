@@ -41,8 +41,10 @@ export default List;
 const Wrapper = styled.li`
   display: flex;
   gap: 3rem;
-  margin-bottom: 5rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
   cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
 `;
 
 const Thumbnail = styled.img`
