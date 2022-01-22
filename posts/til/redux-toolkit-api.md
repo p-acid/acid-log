@@ -16,7 +16,7 @@ thumbnail: "redux_logo.png"
 - 리덕스에서 유용한 작업을 수행하기 위해 **여러 패키지를 추가해야 합니다.**
 - 리덕스는 **많은 [보일러플레이트 코드](https://en.wikipedia.org/wiki/Boilerplate_code)를 요구합니다.**
 
-이를 보면 Redux Toolkit은 **리덕스 사용에 있어 편의를 위해 만들어진 패키지라는 것**을 대략적으로 알 수 있습니다. 그렇기에 리덕스 툴킷은 앞으로의 프로젝트에 있어 유용히 사용할 예정에 있기 때문에 이를 학습할 필요성이 있습니다.
+이를 보면 Redux Toolkit은 **리덕스 사용에 있어 편의를 위해 만들어진 패키지라는 것**을 대략적으로 알 수 있습니다. 그렇기에 리덕스 툴킷은 앞으로의 프로젝트에 있어 유용히 사용할 예정에 있기 때문에 이를 학습할 필요성이 있습니다. 또한, 리덕스 툴킷 공식 문서를 볼 때, 자동 번역 시스템이 존재하고 별도의 번역본이 제공되지 않는 점도 이를 작성하는 이유가 될 수 있을 것 같습니다.
 
 그러한 연유로 [리덕스 툴킷 공식문서](https://redux-toolkit.js.org/introduction/getting-started)의 **API Reference**를 참고하여 **각 API의 사용 이유와 활용법**에 대해 간단히 숙지할 예정입니다.
 
@@ -505,3 +505,122 @@ const todosReducer = createReducer([] as Todo[], (builder) => {
 자바스크립트 ES6 문법 중 [`spread syntax`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) 를 안다면 `addTodo` 리듀서는 해석하기 쉬울 것 입니다. 하지만 `toggleTodo` 의 경우엔 좀 더 복잡한 구조 때문에 이를 이해하기엔 좀 어려움이 있을 것 같습니다.
 
 이를 보다 편리하게 하기 위해 `createReducer` 는 내부에 [immer](https://github.com/immerjs/immer)라는 라이브러리를 통해 **상태를 직접 변경하는 방식으로 리듀서를 작성할 수 있도록 합니다.** 실제로 리듀서는 **동등한 복사 작업으로 변환하는 프록시 상태를 수신합니다.**
+
+```ts
+import { createAction, createReducer } from "@reduxjs/toolkit";
+
+interface Todo {
+  text: string;
+  completed: boolean;
+}
+
+const addTodo = createAction<Todo>("todos/add");
+const toggleTodo = createAction<number>("todos/toggle");
+
+const todosReducer = createReducer([] as Todo[], (builder) => {
+  builder
+    .addCase(addTodo, (state, action) => {
+      // This push() operation gets translated into the same
+      // extended-array creation as in the previous example.
+      const todo = action.payload;
+      state.push(todo);
+    })
+    .addCase(toggleTodo, (state, action) => {
+      // The "mutating" version of this case reducer is much
+      //  more direct than the explicitly pure one.
+      const index = action.payload;
+      const todo = state[index];
+      todo.completed = !todo.completed;
+    });
+});
+```
+
+위 예시와 같이 **직접 상태값을 변경하는 것**으로 상태 변화를 유도할 수 있습니다. 하지만 Immer의 경우에도 간과하면 안되는 요소가 있습니다. 우리는 상태값을 변경시키거나 새 상태값을 반환 함으로서 변화를 유도할 수 있지만 **이를 동시에 진행하면 안됩니다.** 예를 들어 다음의 경우는 앞의 예외를 반영합니다.
+
+```ts
+import { createAction, createReducer } from "@reduxjs/toolkit";
+
+interface Todo {
+  text: string;
+  completed: boolean;
+}
+
+const toggleTodo = createAction<number>("todos/toggle");
+
+const todosReducer = createReducer([] as Todo[], (builder) => {
+  builder.addCase(toggleTodo, (state, action) => {
+    const index = action.payload;
+    const todo = state[index];
+
+    // This case reducer both mutates the passed-in state...
+    todo.completed = !todo.completed;
+
+    // ... and returns a new value. This will throw an
+    // exception. In this example, the easiest fix is
+    // to remove the `return` statement.
+    return [...state.slice(0, index), todo, ...state.slice(index + 1)];
+  });
+});
+```
+
+#### Multiple Case Reducer Execution
+
+---
+
+기본적으로 `createReducer` 는 **하나의 액션 타입과 단일 리듀서 케이스를 매칭시키고,** 하나의 리듀서당 하나의 액션만을 실행합니다. 하지만 **action matchers** 를 사용할 경우 **여러 matchers로 하나의 액션을 다룰 수 있습니다.**
+
+이러한 맥락에서 액션이 디스패치 되면 다음과 같이 행동합니다.
+
+- 액션 타입과 **정확히 일치하는게 있다면,** 대응하는 리듀서 케이스가 우선적으로 실행됩니다.
+- `true` 를 반환한 **모든 matcher는 정의된 순서대로 실행됩니다.**
+- `default` 리듀서 케이스가 우선적으로 제공되고, **여타 케이스 혹은 matcher 리듀서가 실행되지 않으면, 기본 리듀서가 실행됩니다.**
+- 케이스 혹은 matcher 리듀서가 실행되지 않으면 **원래 기존 상태 값을 반환합니다.**
+
+다음 예시를 보시면 이해가 더 편합니다.
+
+```ts
+import { createReducer } from "@reduxjs/toolkit";
+
+const reducer = createReducer(0, (builder) => {
+  builder
+    .addCase("increment", (state) => state + 1)
+    .addMatcher(
+      (action) => action.type.startsWith("i"),
+      (state) => state * 5
+    )
+    .addMatcher(
+      (action) => action.type.endsWith("t"),
+      (state) => state + 2
+    );
+});
+
+console.log(reducer(0, { type: "increment" }));
+// Returns 7, as the 'increment' case and both matchers all ran in sequence:
+// - case 'increment": 0 => 1
+// - matcher starts with 'i': 1 => 5
+// - matcher ends with 't': 5 => 7
+```
+
+#### Logging Draft State Values
+
+---
+
+개발 과정에서 개발자가 `console.log(state)` 를 작성하는 것은 흔한 일입니다. 그러나 브라우저는 **프록시를 어려운 형태로 보여주고,** 이는 **Immer에 기반한 상태를 콘솔을 통해 확인하는 것을 어렵게 합니다.**
+
+이러한 맥락에서 우리가 `createSlice` 혹은 `createReducer` 를 사용할 때, **Immer 라이브러리로부터 다시 내보내기 위해 `current` 를 사용할 수 있습니다.** `current` 는 **현재 Immer 상태 값에 대한 별도 사본을 생성**하고 이를 `console.log` 등을 통해 **기록할 수 있습니다.**
+
+```ts
+import { createSlice, current } from "@reduxjs/toolkit";
+
+const slice = createSlice({
+  name: "todos",
+  initialState: [{ id: 1, title: "Example todo" }],
+  reducers: {
+    addTodo: (state, action) => {
+      console.log("before", current(state));
+      state.push(action.payload);
+      console.log("after", current(state));
+    },
+  },
+});
+```
