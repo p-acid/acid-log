@@ -624,3 +624,149 @@ const slice = createSlice({
   },
 });
 ```
+
+### [`createAction`](https://redux-toolkit.js.org/api/createAction)
+
+---
+
+리덕스 **액션 타입과 생성자를 정의해주는 함수입니다.**
+
+```ts
+function createAction(type, prepareAction?);
+```
+
+보통 리덕스에서 액션 정의는 **액션 타입을 정의한 상수와 액션 생성자 함수를 별도로 선언하는 방식**을 갖습니다.
+
+```ts
+const INCREMENT = "counter/increment"; // 액션 타입 정의 상수
+
+// 액션 생성자 함수
+function increment(amount: number) {
+  return {
+    type: INCREMENT,
+    payload: amount,
+  };
+}
+
+const action = increment(3);
+// { type: 'counter/increment', payload: 3 }
+```
+
+`createAction` 함수는 이 두 선언을 결합했으며, **액션 타입을 인자로 받고 액션 생성자를 리턴합니다.** 해당 액션 생성자는 **인자 없이 호출되거나 `payload` 형태로 포함될 수 있습니다.** 또한, **문자열**로 변환될 경우(`toString()` 등에 의해) 이를 **오버라이드 할 수 있습니다.**
+
+```ts
+import { createAction } from "@reduxjs/toolkit";
+
+const increment = createAction<number | undefined>("counter/increment");
+
+let action = increment();
+// { type: 'counter/increment' }
+
+action = increment(3);
+// returns { type: 'counter/increment', payload: 3 }
+
+console.log(increment.toString());
+// 'counter/increment'
+
+console.log(`The action type is: ${increment}`);
+// 'The action type is: counter/increment'
+```
+
+#### Using Prepare Callbacks to Customize Action Contents
+
+---
+
+기본적으로, 생성된 **액션 생성자는 `action.payload` 형태의 단일 인자만을 허용합니다.** 이 경우 `payload` 값을 커스터마이징 하기 위해 **추가적인 로직을 작성할 수 있습니다.** 해당 로직은 `createAction` 의 **두 번째 인자로 `prepare callback` 을 받아** `payload` 값을 구성할 수 있습니다.
+
+```ts
+import { createAction, nanoid } from "@reduxjs/toolkit";
+
+const addTodo = createAction("todos/add", function prepare(text: string) {
+  return {
+    payload: {
+      text,
+      id: nanoid(),
+      createdAt: new Date().toISOString(),
+    },
+  };
+});
+
+console.log(addTodo("Write more docs"));
+/**
+ * {
+ *   type: 'todos/add',
+ *   payload: {
+ *     text: 'Write more docs',
+ *     id: '4AJvwMSWEHCchcWYga3dj',
+ *     createdAt: '2019-10-03T07:53:36.581Z'
+ *   }
+ * }
+ **/
+```
+
+두 번째 인자가 제공되는 경우, 해당 인자는 **`prepare callback` 으로 전달**되고, 해당 콜백은 **`payload` 필드의 객채 형태를 반환합니다.**(그렇지 않으면, `undefined` 로 정의됩니다.) 또한 해당 객체는 **`meta` 혹은/그리고 `error` 필드를 가질 수 있습니다.** `meta` 필드는 **액션에 대한 추가적인 정보**를
+`error` 의 경우엔 **액션 실패에 대한 세부 정보**를 포함할 수 있습니다. 위 세 가지 필드는 [Flux Standard Actions](https://github.com/redux-utilities/flux-standard-action#actions) 기준을 따른다고 합니다.
+
+#### Usage with createReducer()
+
+---
+
+위에서 말했듯이, 액션 생성자는 문자열 형태로 변환할 수 있기 때문에 **`createReducer` 에서 각 리듀서 케이스의 키 값으로 바로 사용할 수 있습니다.**
+
+```ts
+import { createAction, createReducer } from "@reduxjs/toolkit";
+
+const increment = createAction<number>("counter/increment");
+const decrement = createAction<number>("counter/decrement");
+
+const counterReducer = createReducer(0, (builder) => {
+  builder.addCase(increment, (state, action) => state + action.payload);
+  builder.addCase(decrement, (state, action) => state - action.payload);
+});
+```
+
+#### Non-String Action Types
+
+---
+
+원칙적으로 리덕스에선 모든 값 형태(`number` , `symbol` 등)를 액션 타입으로 사용할 수 있습니다.(하지만 최소한 직렬화 함을 권장합니다.)
+
+그러나 리덕스 툴킷의 경우, **문자열 형태의 액션 타입을 사용**한다고 가정합니다. 만약, 다른 형태의 액션 타입을 사용할 경우 다음과 같은 상황이 발생할 수 있습니다.
+
+```ts
+const INCREMENT = Symbol("increment");
+const increment = createAction(INCREMENT);
+
+increment.toString();
+// returns the string 'Symbol(increment)',
+// not the INCREMENT symbol itself
+
+increment.toString() === INCREMENT;
+// false
+```
+
+그렇기에 **문자열 형태가 아닌 액션 생성자**를 `createReducer` 의 리듀서 케이스 키로 사용할 수 없습니다. 그렇기에 리덕스 툴킷에서는 **문자열 액션 타입만 사용하는 것이 좋습니다.**
+
+```ts
+const INCREMENT = Symbol("increment");
+const increment = createAction(INCREMENT);
+
+const counterReducer = createReducer(0, {
+  // The following case reducer will NOT trigger for
+  // increment() actions because `increment` will be
+  // interpreted as a string, rather than being evaluated
+  // to the INCREMENT symbol.
+  [increment]: (state, action) => state + action.payload,
+
+  // You would need to use the action type explicitly instead.
+  [INCREMENT]: (state, action) => state + action.payload,
+});
+```
+
+#### actionCreator.match
+
+---
+
+`createAction` 에 의해 생성된 **모든 액션 생성자는 `.match(action)` 메소드를 갖습니다.** 해당 `.match` 메소드는 전달 받은 액션이 액션 생성자가 생성할 작업과 일치하는 타입인지 확인합니다.
+
+**As a TypeScript Type Guard**
