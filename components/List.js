@@ -69,6 +69,7 @@ const Title = styled.h2`
   font-size: 2rem;
   font-weight: bold;
   line-height: 2.5rem;
+  word-break: keep-all;
 `;
 
 const Text = styled.p`
