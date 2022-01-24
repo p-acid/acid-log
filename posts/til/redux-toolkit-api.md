@@ -770,3 +770,43 @@ const counterReducer = createReducer(0, {
 `createAction` 에 의해 생성된 **모든 액션 생성자는 `.match(action)` 메소드를 갖습니다.** 해당 `.match` 메소드는 전달 받은 액션이 액션 생성자가 생성할 작업과 일치하는 타입인지 확인합니다.
 
 **As a TypeScript Type Guard**
+
+---
+
+`match` 메소드는 [TypeScript type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards)이며 **액션의 `payload` 의 타입을 식별하는데 사용할 수 있습니다.** 해당 작업은 **미들웨어의 커스텀이 필요할 때** 유용하게 사용할 수 있습니다.
+
+```ts
+import { createAction, Action } from "@reduxjs/toolkit";
+
+const increment = createAction<number>("INCREMENT");
+
+function someFunction(action: Action) {
+  // accessing action.payload would result in an error here
+  if (increment.match(action)) {
+    // action.payload can be used as `number` here
+  }
+}
+```
+
+**With redux-observable​**
+
+---
+
+또한, `match` 메소드는 **`filter` 메소드로서도 사용될 수 있으며,** redux-observable과 함께 사용할 때 유용합니다.
+
+```ts
+import { createAction, Action } from "@reduxjs/toolkit";
+import { Observable } from "rxjs";
+import { map, filter } from "rxjs/operators";
+
+const increment = createAction<number>("INCREMENT");
+
+export const epic = (actions$: Observable<Action>) =>
+  actions$.pipe(
+    filter(increment.match),
+    map((action) => {
+      // action.payload can be safely used as number here (and will also be correctly inferred by TypeScript)
+      // ...
+    })
+  );
+```
