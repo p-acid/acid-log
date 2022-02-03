@@ -629,6 +629,8 @@ const slice = createSlice({
 
 ---
 
+> A helper function for **defining a Redux action type and creator.**
+
 리덕스 **액션 타입과 생성자를 정의해주는 함수입니다.**
 
 ```ts
@@ -788,7 +790,7 @@ function someFunction(action: Action) {
 }
 ```
 
-**With redux-observable​**
+**With redux-observable**
 
 ---
 
@@ -810,3 +812,97 @@ export const epic = (actions$: Observable<Action>) =>
     })
   );
 ```
+
+### [`createSlice`](https://redux-toolkit.js.org/api/createSlice)
+
+---
+
+`createSlice` 는 인자로 **초기값과 리듀서 함수 객체, 슬라이스 명**을 받아 **액션 생성자와 액션 타입에 대응하는 리듀서와 상태값**들을 자동으로 생성합니다.
+
+해당 API는 리덕스 로직 작성에서 가장 **기본적인 접근 방식**이며, 내부적으로 **`createAction` 과 `createReducer`** 를 사용하고 있기에 Immer 라이브러리 또한 활용할 수 있습니다.
+
+```ts
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+interface CounterState {
+  value: number;
+}
+
+const initialState = { value: 0 } as CounterState;
+
+const counterSlice = createSlice({
+  name: "counter",
+  initialState,
+  reducers: {
+    increment(state) {
+      state.value++;
+    },
+    decrement(state) {
+      state.value--;
+    },
+    incrementByAmount(state, action: PayloadAction<number>) {
+      state.value += action.payload;
+    },
+  },
+});
+
+export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export default counterSlice.reducer;
+```
+
+#### Parameters
+
+---
+
+`createSlice` 는 다음의 필드를 포함하는 **단일 객체 형태**의 매개변수를 받습니다.
+
+```ts
+function createSlice({
+    // A name, used in action types
+    name: string,
+    // The initial state for the reducer
+    initialState: any,
+    // An object of "case reducers". Key names will be used to generate actions.
+    reducers: Object<string, ReducerFunction | ReducerAndPrepareObject>
+    // A "builder callback" function used to add more reducers, or
+    // an additional object of "case reducers", where the keys should be other
+    // action types
+    extraReducers?:
+    | Object<string, ReducerFunction>
+    | ((builder: ActionReducerMapBuilder<State>) => void)
+})
+```
+
+- `initialState`: 슬라이스의 **초기값**에 해당합니다. **초기화 지연 함수 형태**로도 할당이 가능합니다.
+- `name`: 슬라이스의 이름입니다. 해당 이름은 **액션 타입의 접두사**로 활용됩니다.
+- `reducers`: 리덕스 케이스 **리듀서 함수들을 포함하는 하나의 객체**입니다. 키는 앞의 `name` 과 합쳐 액션 타입 이름을 정의하는데 사용되고, 해당 타입명과 일치하는 액션이 디스패치 되면 해당하는 리듀서가 실행됩니다.
+  - **Customizing Generated Action Creators:** `payload` 값 형태를 변경하고 싶다면 `prepare callback` 을 사용할 수 있습니다. 그렇게 되면 키에 해당하는 값은 객체 형태로 바뀌고 `reducer` 와 `prepare` 필드를 추가해야 합니다. 각 필드 중, `reducer` 필드에는 실행시킬 리듀서 함수를 추가하고, `prepare` 필드에는 변경될 `payload` 의 형식을 반환하는 함수를 할당합니다.
+
+```ts
+import { createSlice, PayloadAction, nanoid } from "@reduxjs/toolkit";
+
+interface Item {
+  id: string;
+  text: string;
+}
+
+const todosSlice = createSlice({
+  name: "todos",
+  initialState: [] as Item[],
+  reducers: {
+    addTodo: {
+      reducer: (state, action: PayloadAction<Item>) => {
+        state.push(action.payload);
+      },
+      prepare: (text: string) => {
+        const id = nanoid();
+        return { payload: { id, text } };
+      },
+    },
+  },
+});
+```
+
+- `extraReducers`: 리덕스의 핵심 개념 중 하나는 각 슬라이스 리듀서가 상태 슬라이스를 **소유**하고 많은 슬라이스 리듀서가 동일한 작업 유형에 독립적으로 응답할 수 있다는 것입니다. `extraReducers` 는 **생성된 타입만이 아닌 다른 액션 타입들에 응답할 수 있도록** 합니다.
+  - 해당 필드에 지정된 리듀서들은 **외부 액션의 참조**를 의미하므로, `slice.action` 에 **액션을 생성하지 않습니다.**
+  - `extraReducers` 또한 `createReducer` 로 전달되기 때문에 **안전한 상태 변경이 가능합니다.**
