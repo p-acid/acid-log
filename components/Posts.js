@@ -47,6 +47,8 @@ const Header = styled.header`
 
 const Thumbnail = styled.img`
   width: 100%;
+  max-height: 30rem;
+  object-fit: contain;
   margin: 2rem 0;
 `;
 

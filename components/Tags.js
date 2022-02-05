@@ -5,7 +5,7 @@ const Tags = ({ tags }) => {
   return (
     <Wrapper>
       {tags?.map((tag) => (
-        <Tag>#{tag}</Tag>
+        <Tag key={tag}>#{tag}</Tag>
       ))}
     </Wrapper>
   );
