@@ -906,3 +906,44 @@ const todosSlice = createSlice({
 - `extraReducers`: 리덕스의 핵심 개념 중 하나는 각 슬라이스 리듀서가 상태 슬라이스를 **소유**하고 많은 슬라이스 리듀서가 동일한 작업 유형에 독립적으로 응답할 수 있다는 것입니다. `extraReducers` 는 **생성된 타입만이 아닌 다른 액션 타입들에 응답할 수 있도록** 합니다.
   - 해당 필드에 지정된 리듀서들은 **외부 액션의 참조**를 의미하므로, `slice.action` 에 **액션을 생성하지 않습니다.**
   - `extraReducers` 또한 `createReducer` 로 전달되기 때문에 **안전한 상태 변경이 가능합니다.**
+  - 만약 `reducers` 와 `extraReducers` 필드에 같은 액션 유형이 존재하는 경우, `reducers` 필드의 함수가 이를 다룹니다.
+
+`extraReducers` 역시 `createReducer` 에서와 마찬가지로 **Builder callback notation과 Map object notation을 활용합니다.**
+
+#### The `extraReducers` "builder callback" notation
+
+---
+
+`extraReducers` 를 사용하는데 있어 권장되는 방식은 **`ActionReducerMapBuilder` 인스턴스를 받는 콜백을 사용하는 것**입니다. 또한 해당 builder notation은 **matcher 와 default case 리듀서를 추가할 수 있는 유일한 방법**입니다.
+
+리덕스 툴킷에서는 **타입스크립트 지원이 더 우수하다**는 측면에서 해당 API 사용을 권장하고 있습니다. 특히, `createAction` 혹은 `createAsyncThunk` 에 의해 생성된 액션들과 함께 사용할 때 유용합니다.
+
+#### The `extraReducers` "map object" notation
+
+---
+
+마찬가지로 `reducers` 와 `extraReducers` 는 리덕스 리듀서 케이스 함수를 포함하는 객체를 할당할 수 있습니다. 하지만 키는 반드시 리덕스 문자열 액션 타입이어야 하고 `createSlice` 는 해당 파라미터를 포함하는 리듀서를 위한 액션 타입이나 액션 생성자를 자동 생성하지 않습니다.
+
+`createAction` 에 의해 생성된 액션 생성자는 **computed property syntax**를 통해 바로 키로 사용할 수 있습니다.
+
+#### Return Value
+
+---
+
+`createSlice` 는 다음 **객체 형태의 값을 반환합니다.**
+
+```ts
+{
+    name : string,
+    reducer : ReducerFunction,
+    actions : Record<string, ActionCreator>,
+    caseReducers: Record<string, CaseReducer>.
+    getInitialState: () => State
+}
+```
+
+`reducers` 인자에 정의된 각 함수엔 **해당하는 액션 생성자**가 있는데, 해당 액션 생성자는 `createAction` 에 의해 생성되고 동일한 기능(맥락상 `createAction` 을 의미하는 것 같습니다.)을 사용하여 반환 값의 `actions` 필드에 포함됩니다.
+
+생성된 `reducer` 함수는 슬라이스 리듀서로서 리덕스의 `combineReducers` 에 전달되기에 적합합니다.
+
+더 큰 코드 베이스에서 참조 검색을 쉽게 하기 위해 액션 생성자를 구조 분해 할당하는 것을 고려할 수 있습니다.
