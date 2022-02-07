@@ -947,3 +947,154 @@ const todosSlice = createSlice({
 생성된 `reducer` 함수는 슬라이스 리듀서로서 리덕스의 `combineReducers` 에 전달되기에 적합합니다.
 
 더 큰 코드 베이스에서 참조 검색을 쉽게 하기 위해 액션 생성자를 구조 분해 할당하는 것을 고려할 수 있습니다.
+
+#### Exmaples
+
+```ts
+import { createSlice, createAction, PayloadAction } from "@reduxjs/toolkit";
+import { createStore, combineReducers } from "redux";
+
+const incrementBy = createAction<number>("incrementBy");
+const decrementBy = createAction<number>("decrementBy");
+
+const counter = createSlice({
+  name: "counter",
+  initialState: 0 as number,
+  reducers: {
+    increment: (state) => state + 1,
+    decrement: (state) => state - 1,
+    multiply: {
+      reducer: (state, action: PayloadAction<number>) => state * action.payload,
+      prepare: (value?: number) => ({ payload: value || 2 }), // fallback if the payload is a falsy value
+    },
+  },
+  // "builder callback API", recommended for TypeScript users
+  extraReducers: (builder) => {
+    builder.addCase(incrementBy, (state, action) => {
+      return state + action.payload;
+    });
+    builder.addCase(decrementBy, (state, action) => {
+      return state - action.payload;
+    });
+  },
+});
+
+const user = createSlice({
+  name: "user",
+  initialState: { name: "", age: 20 },
+  reducers: {
+    setUserName: (state, action) => {
+      state.name = action.payload; // mutate the state all you want with immer
+    },
+  },
+  // "map object API"
+  extraReducers: {
+    // @ts-expect-error in TypeScript, this would need to be [counter.actions.increment.type]
+    [counter.actions.increment]: (
+      state,
+      action /* action will be inferred as "any", as the map notation does not contain type information */
+    ) => {
+      state.age += 1;
+    },
+  },
+});
+
+const reducer = combineReducers({
+  counter: counter.reducer,
+  user: user.reducer,
+});
+
+const store = createStore(reducer);
+
+store.dispatch(counter.actions.increment());
+// -> { counter: 1, user: {name : '', age: 21} }
+store.dispatch(counter.actions.increment());
+// -> { counter: 2, user: {name: '', age: 22} }
+store.dispatch(counter.actions.multiply(3));
+// -> { counter: 6, user: {name: '', age: 22} }
+store.dispatch(counter.actions.multiply());
+// -> { counter: 12, user: {name: '', age: 22} }
+console.log(`${counter.actions.decrement}`);
+// -> "counter/decrement"
+store.dispatch(user.actions.setUserName("eric"));
+// -> { counter: 12, user: { name: 'eric', age: 22} }
+```
+
+### [`createAsyncThunk`](https://redux-toolkit.js.org/api/createAsyncThunk)
+
+---
+
+해당 함수는 **문자열 형태의 액션 타입과 프로미스를 반환하는 콜백 함수**를 받아서 할당한 **액션 타입 접두사를 기반**으로 **프로미스 라이프 사이클 액션 타입을 생성**하고 **프로미스 콜백을 실행시키고 반환된 프로미스에 기반한 라이프 사이클 액션을 디스패치 할 썽크(thunk) 액션 생성자**를 반환합니다.
+
+> 이렇게 표현하니 너무 어렵네요... 😅 세 줄로 구분지어 봅시다.
+
+- 인자로 **액션 타입(`string`)과 콜백 함수(`promise` 반환)를** 받음
+- 앞의 액션 타입을 접두사로 삼아 **프로미스 라이프 사이클(`Pending`, `Fulfilled`, `Rejected`) 액션 타입 생성**
+- 이후 **썽크 액션 생성자(프로미스 콜백 실행 및 프로미스 기반 라이프 사이클 액션 반환) 반환**
+
+해당 요약은 비동기 요청 라이프 사이클을 다루는데 권장되는 표준입니다.
+
+어떤 데이터를 가져오는지, 로딩 상태를 추적하는 방법 혹은 반환 데이터의 처리 방식을 모르기 때문에 **리듀서 함수를 생성하지 않습니다.** 당신은 로딩 상태 및 진행 로직이 당신의 앱에 적절함과 동시에 해당 액션들을 다루는 **자체적인 리듀서 로직을 작성해야 합니다.**
+
+```ts
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { userAPI } from "./userAPI";
+
+// First, create the thunk
+const fetchUserById = createAsyncThunk(
+  "users/fetchByIdStatus",
+  async (userId, thunkAPI) => {
+    const response = await userAPI.fetchById(userId);
+    return response.data;
+  }
+);
+
+// Then, handle actions in your reducers:
+const usersSlice = createSlice({
+  name: "users",
+  initialState: { entities: [], loading: "idle" },
+  reducers: {
+    // standard reducer logic, with auto-generated action types per reducer
+  },
+  extraReducers: (builder) => {
+    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(fetchUserById.fulfilled, (state, action) => {
+      // Add user to the state array
+      state.entities.push(action.payload);
+    });
+  },
+});
+
+// Later, dispatch the thunk as needed in the app
+dispatch(fetchUserById(123));
+```
+
+> 💡 **TIP**
+>
+> 리덕스 툴킷의 [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)는 리덕스 앱을 위한 데이터 요청과 캐싱 솔루션이며, 데이터 요청을 위해 **어떤 썽크나 리듀서를 작성하지 않아도 됩니다.** 리덕스 툴킷은 이것을 사용해볼 것을 권장하며, RTK Query는 당신의 앱에 있는 데이터 요청 관련 코드를 간략하게 만들 것입니다.
+
+#### Parameters
+
+---
+
+`createAsyncThunk` 는 세 가지 인자를 받습니다.
+
+- **`type`(string):** 추가적인 리덕스 액션 타입 상수(비동기 요청의 라이프 사이클을 나타내는)를 만들기 위한 문자열입니다.
+  - 예를 들어, `type` 이 `users/requestStatus` 일 경우 액션 타입은 다음과 같이 생성됩니다.
+    - `pending`: `users/requestStatus/pending`
+    - `fulfilled`: `users/requestStatus/fulfilled`
+    - `rejected`: `users/requestStatus/rejected`
+- **`payloadCreator`(callback):** 프로미스(비동기 로직의 결과 포함)를 반환하는 콜백입니다.
+  - 오류가 있는 경우, `Error` 인스턴스 혹은 오류 메시지와 같은 일반 값을 포함하는 **rejected promise**를 반환하거나 `thunkAPI.rejectWithValue` 함수에서 반환된 `RejectWithValue` 인수를 사용하여 **resolved promise**를 반환합니다.
+  - `payloadCreator` 함수엔 적절한 결과 계산을 위해 필요한 모든 로직(표준 AJAX 데이터 요청, 결과가 최종 값으로 결합된 다수의 AJAX 요청, React Native의 `AsyncStroage` 와의 상호 작용)을 포함할 수 있습니다.
+  - `payloadCreator` 함수는 다음의 두 가지 인자와 함께 호출됩니다.
+    - `arg`: 디스패치 될 때, **썽크 액션 생성자에 처음으로 전달되는 단일 값**입니다. 해당 인자는 **요청 일부로 필요한 아이템 ID와 같은 값**을 전달할 때 유용합니다. 다수의 값을 전달해야 하는 경우, **썽크를 디스패치 할 때 객체 형태(`dispatch(fetchUsers({status: 'active', sortBy: 'name'}))`)로 함께 전달**합니다.
+    - `thunkAPI`: 객체 형태의 값으로, 리덕스 함수로 전달되는 모든 일반적인 파라미터를 포함합니다. 파라미터는 다음과 같습니다.
+      - `dispatch`: 리덕스 스토어의 `dispatch` 메서드
+      - `getState`: 리덕스 스토어의 `getState` 메서드
+      - `extra`: 가능하면 설정 시 썽크 미들웨어에 제공되는 추가 인자
+      - `requestId`: 요청 시퀀스를 식별하기 위해 자동으로 생성된 고유한 문자열 ID 값
+      - `signal`: 앱 로직 내 다른 부분이 해당 비동기 요청을 취소하길 원하는 지에 사용하는 [`AbortController.signal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController/signal) 객체입니다.
+      - `rejectWithValue(value, [meta])`: `rejectWithValue` 는 기존에 정의된 페이로드 및 메타와 함께 **거절(rejected)된 응답을 반환하기 위해 `return`(또는 `throw`) 할 수 있는 유틸리티 함수**입니다. 당신이 할당하는 어떤 값이라도 전달하여 거절된 액션의 페이로드로 해당 값을 돌려줍니다. 만약 `meta` 도 전달되면, 기존의 `rejectedAction.meta` 와 병합됩니다.
+      - `fulfillWithValue(value, meta)`: `fulfillWithValue` 는 `fulfilledAction.meta` 에 추가할 수 있는 기능을 갖는 값과 함께 `fulfill` 을 `return` 할 수 있는 함수입니다.
+- **Options(object):**

@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: Noto Sans KR, sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
   
   span, p, ul, li {

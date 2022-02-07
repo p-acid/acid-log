@@ -6,6 +6,7 @@ export const Info = ({ info }) => {
   return (
     <Wrapper>
       <Title>{title}</Title>
+      <Discription>{discription}</Discription>
     </Wrapper>
   );
 };
@@ -17,7 +18,19 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   font-size: 3rem;
   font-weight: bold;
+`;
+
+const Discription = styled.p`
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-left: 5px solid ${({ theme }) => theme.navy};
+  color: ${({ theme }) => theme.lightgray};
+
+  strong {
+    font-weight: bold;
+    color: ${({ theme }) => theme.navy};
+  }
 `;

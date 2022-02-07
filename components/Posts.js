@@ -90,9 +90,30 @@ const Contents = styled.div`
     padding-bottom: 1rem;
     list-style: inside;
 
+    & li::marker {
+      content: "🏷️ ";
+      display: list-item;
+      font-size: 0.8rem;
+      color: ${({ theme }) => theme.darkgrey};
+    }
+
+    & > li::marker {
+      content: "📖 ";
+      vertical-align: middle;
+      font-size: 1.2rem;
+    }
+
     ul {
       padding-left: 1rem;
       list-style: inside;
+    }
+
+    li {
+      padding-bottom: 0.35rem;
+
+      ul {
+        padding-top: 0.5rem;
+      }
     }
   }
 
@@ -132,7 +153,7 @@ const Contents = styled.div`
     border-left: 0.2rem solid black;
     background-color: ${({ theme }) => theme.lightgrey};
 
-    p:first-child {
+    p:last-child {
       padding: 0;
     }
 
