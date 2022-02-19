@@ -27,6 +27,7 @@ const Discription = styled.p`
   margin-bottom: 0.5rem;
   padding: 0.5rem 1rem;
   border-left: 5px solid ${({ theme }) => theme.navy};
+  background-color: #fcfcfc;
   color: ${({ theme }) => theme.lightgray};
 
   strong {
