@@ -1097,4 +1097,237 @@ dispatch(fetchUserById(123));
       - `signal`: 앱 로직 내 다른 부분이 해당 비동기 요청을 취소하길 원하는 지에 사용하는 [`AbortController.signal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController/signal) 객체입니다.
       - `rejectWithValue(value, [meta])`: `rejectWithValue` 는 기존에 정의된 페이로드 및 메타와 함께 **거절(rejected)된 응답을 반환하기 위해 `return`(또는 `throw`) 할 수 있는 유틸리티 함수**입니다. 당신이 할당하는 어떤 값이라도 전달하여 거절된 액션의 페이로드로 해당 값을 돌려줍니다. 만약 `meta` 도 전달되면, 기존의 `rejectedAction.meta` 와 병합됩니다.
       - `fulfillWithValue(value, meta)`: `fulfillWithValue` 는 `fulfilledAction.meta` 에 추가할 수 있는 기능을 갖는 값과 함께 `fulfill` 을 `return` 할 수 있는 함수입니다.
-- **Options(object):**
+- **Options(object):** 추가적인 필드를 포함하는 객체 형식의 인자입니다.
+  - `condition(arg, { getState, extra } ): boolean | Promise<boolean>`: 원한다면 페이로드 생성기와 모든 액션 디스패치의 실행을 스킵할 수 있는 콜백입니다. [`condition` 필드에 대한 자세한 내용](https://redux-toolkit.js.org/api/createAsyncThunk#canceling-before-execution)
+  - `dispatchConditionRejection`: 만약 `condition()` 함수가 `false` 를 반환하면 기본값은 아무런 액션도 디스패치 되지 않는 것입니다. 해당 필드를 `true` 로 하면 썽크가 취소되었을 때 거부된 작업을 지속적으로 전달되게 할 수 있습니다.
+  - `idGenerator(arg): string`: 요청 시퀀스를 위한 `requestId` 를 생성할 때 사용하는 함수입니다. 기본값은 [nanoid](https://redux-toolkit.js.org/api/other-exports/#nanoid)를 사용하는 것이지만, 별도의 아이디 생성 로직을 설정할 수도 있습니다.
+  - `serializeError(error: unknown) => any`: 내부의 `miniSerializeError` 로직을 별도의 직렬화 로직으로 변경합니다.
+  - `getPendingMeta({ arg, requestId }, { getState, extra }): any`: `pendingAction.meta` 필드로 병합되는 객체를 생성하는 함수입니다.
+
+#### Return Value
+
+---
+
+`CreateAsyncThunk` 리덕스 썽크 액션 생성자의 표준을 반환합니다. 썽크 액션 생성자 함수는 중첩 필드로 포함된 `pending`, `fulfilled` 그리고 `rejected` 케이스를 위한 일반 액션 생성자가 있습니다.
+
+위 예시인 `fetchUserById` 를 사용하면 `CreateAsyncThunk` 는 4가지 함수를 반환합니다.
+
+- `fetchUserById` 작성한 비동기 페이로드 콜백을 시작하는 썽크 액션 생성자
+  - `fetchUserById.pending`: `users/fetchByIdStatus/pending` 액션을 디스패치 하는 액션 생성자
+  - `fetchUserById.fulfilled`: `users/fetchByIdStatus/fulfilled` 액션을 디스패치 하는 액션 생성자
+  - `fetchUserById.rejected`: `users/fetchByIdStatus/rejected` 액션을 디스패치 하는 액션 생성자
+
+디스패치 되면 해당 썽크는:
+
+- `pending` 액션이 디스패치 됩니다.
+- 그리고 `payloadCreator` 콜백을 호출하고 반환된 프로미스가 완료될 때 까지 기다립니다.
+- 프로미스가 완료되었을 때:
+  - **프로미스가 성공적으로 해결되면,** `fulfilled` 액션을 프로미스 값인 `action.payload` 와 함께 디스패치 합니다.
+  - **프로미스가 `rejectWithValue(value)` 반환값과 함께 해결되면,** `rejected` 액션을 `action.payload` 로 전달된 값과 거부됨으로 `action.error.message` 를 함께 전달합니다.
+  - **프로미스가 실패했고 `rejectWithValue` 로 처리되지 않은 경우,** `rejected` 액션을 `action.error` 로서의 에러 값의 직렬화 된 버전과 함께 반환됩니다.
+
+#### Promise Lifecycle Actions
+
+---
+
+`createAsyncThunk` 은 **세 가지 리덕스 액션 생성자(`pending`, `fulfilled` 그리고 `rejected`)와 함께 생성**되고, 해당 생성자들은 `createAction` 을 사용합니다. 각 라이프 사이클 액션 생성자는 반환된 썽크 액션 생성자에 연결되므로, 리듀서 로직이 액션 타입을 참조하고 디스패치 될 때 해당하는 액션에 응답할 수 있습니다. 각 액션 객체는 `action.meta` 에 있는 현재 고유한 `requestId` 와 `arg` 값을 포함합니다.
+
+해당 액션 생성자는 다음의 시그니처들을 포함합니다.
+
+```ts
+interface SerializedError {
+  name?: string;
+  message?: string;
+  code?: string;
+  stack?: string;
+}
+
+interface PendingAction<ThunkArg> {
+  type: string;
+  payload: undefined;
+  meta: {
+    requestId: string;
+    arg: ThunkArg;
+  };
+}
+
+interface FulfilledAction<ThunkArg, PromiseResult> {
+  type: string;
+  payload: PromiseResult;
+  meta: {
+    requestId: string;
+    arg: ThunkArg;
+  };
+}
+
+interface RejectedAction<ThunkArg> {
+  type: string;
+  payload: undefined;
+  error: SerializedError | any;
+  meta: {
+    requestId: string;
+    arg: ThunkArg;
+    aborted: boolean;
+    condition: boolean;
+  };
+}
+
+interface RejectedWithValueAction<ThunkArg, RejectedValue> {
+  type: string;
+  payload: RejectedValue;
+  error: { message: "Rejected" };
+  meta: {
+    requestId: string;
+    arg: ThunkArg;
+    aborted: boolean;
+  };
+}
+
+type Pending = <ThunkArg>(
+  requestId: string,
+  arg: ThunkArg
+) => PendingAction<ThunkArg>;
+
+type Fulfilled = <ThunkArg, PromiseResult>(
+  payload: PromiseResult,
+  requestId: string,
+  arg: ThunkArg
+) => FulfilledAction<ThunkArg, PromiseResult>;
+
+type Rejected = <ThunkArg>(
+  requestId: string,
+  arg: ThunkArg
+) => RejectedAction<ThunkArg>;
+
+type RejectedWithValue = <ThunkArg, RejectedValue>(
+  requestId: string,
+  arg: ThunkArg
+) => RejectedWithValueAction<ThunkArg, RejectedValue>;
+```
+
+해당 액션들을 리듀서에서 처리하기 위해 객체 키 표기법 혹은 빌더 콜백 표기법을 사용하는 `createReducer` 나 `createSlice` 에서 액션 생성자를 참조하세요. 만약 **타입스크립트를** 사용한다면, 타입 추론을 더욱 명확히 하기 위해 **빌더 콜백 표기법**을 사용해야합니다.
+
+```ts
+const reducer1 = createReducer(initialState, {
+  [fetchUserById.fulfilled]: (state, action) => {},
+});
+
+const reducer2 = createReducer(initialState, (builder) => {
+  builder.addCase(fetchUserById.fulfilled, (state, action) => {});
+});
+
+const reducer3 = createSlice({
+  name: "users",
+  initialState,
+  reducers: {},
+  extraReducers: {
+    [fetchUserById.fulfilled]: (state, action) => {},
+  },
+});
+
+const reducer4 = createSlice({
+  name: "users",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchUserById.fulfilled, (state, action) => {});
+  },
+});
+```
+
+#### Handling Thunk Results
+
+---
+
+**Unwrapping Result Actions**
+
+썽크는 디스패치 되면 값을 반환할 수 있습니다. 보편적인 사용 방식은 다음과 같습니다.
+
+- 썽크로부터 프로미스 반환
+- 썽크를 컴포넌트로부터 디스패치
+- 다음 추가 작업을 수행하기 이전에 프로미스가 완료되는 것을 기다리는 것
+
+```ts
+const onClick = () => {
+  dispatch(fetchUserById(userId)).then(() => {
+    // do additional work
+  });
+};
+```
+
+`createAsyncThunk` 에 의해 생성된 썽크는 항상 적절하게 처리된 `fulfilled` 액션 객체 혹은 `rejected` 액션 객체를 포함한 완료된 프로미스를 반환합니다.
+
+요청 로직은 해당 프로미스를 기존의 프로미스인 것처럼 처리할 수 있습니다. 디스패치 된 썽크에 의해 반환된 프로미스는 `unwrap` 속성을 갖습니다. `unwrap` 속성은 `fulfilled` 액션의 `payload` 룰 추출하거나, `error` 혹은 가능하다면 `rejected` 액션의 `rejectWithValue` 를 통해 생성된 `payload` 를 throw 하기 위해 호출할 수 있습니다.
+
+```ts
+// in the component
+
+const onClick = () => {
+  dispatch(fetchUserById(userId))
+    .unwrap()
+    .then((originalPromiseResult) => {
+      // handle result here
+    })
+    .catch((rejectedValueOrSerializedError) => {
+      // handle error here
+    });
+};
+```
+
+혹은 `async`/`await` 구문과 함께
+
+```ts
+// in the component
+
+const onClick = async () => {
+  try {
+    const originalPromiseResult = await dispatch(
+      fetchUserById(userId)
+    ).unwrap();
+    // handle result here
+  } catch (rejectedValueOrSerializedError) {
+    // handle error here
+  }
+};
+```
+
+연결되어 있는 `.unwrap()` 을 선호하지만, 리덕스 툴킷은 비슷한 목적으로 사용할 수 있는 `unwrapResult` 함수도 내보냅니다.
+
+```ts
+import { unwrapResult } from "@reduxjs/toolkit";
+
+// in the component
+const onClick = () => {
+  dispatch(fetchUserById(userId))
+    .then(unwrapResult)
+    .then((originalPromiseResult) => {
+      // handle result here
+    })
+    .catch((rejectedValueOrSerializedError) => {
+      // handle result here
+    });
+};
+```
+
+`async`/`await` 구문과 함께 사용하면 다음과 같습니다.
+
+```ts
+import { unwrapResult } from "@reduxjs/toolkit";
+
+// in the component
+const onClick = async () => {
+  try {
+    const resultAction = await dispatch(fetchUserById(userId));
+    const originalPromiseResult = unwrapResult(resultAction);
+    // handle result here
+  } catch (rejectedValueOrSerializedError) {
+    // handle error here
+  }
+};
+```
+
+---
+
+**Checking Errors After Dispatching**
+
+이것은 **실패한 요청 혹은 썽크 내 에러가 거부된 프로미스를 반환하지 않는다는 것**을 의미합니다.
