@@ -6,8 +6,6 @@ tags: ["Storybook", "Tool", "UI", "Basics"]
 thumbnail: "storybook_logo.jpeg"
 ---
 
-> 해당 포스팅은 [스토리북 공식 홈페이지의 튜토리얼 단계](https://storybook.js.org/tutorials/)를 따르며 진행합니다.
-
 # 들어가며 🏃
 
 ---
@@ -66,4 +64,56 @@ yarn start
   - 스토리
   - 스토리
 
-예를 들어, **`Task.js` 라는 컴포넌트**가 존재한다면 해당 컴포넌트의 **스토리들을 작성한 `Task.stories.js` 가 존재**할 것입니다.
+예를 들어, **`Task.js` 라는 컴포넌트**가 존재한다면 해당 컴포넌트의 **스토리들을 작성한 `Task.stories.js` 가 존재**할 것입니다. 그렇다면 예시와 함께 **스토리 기본 구조**에 대해 알아봅시다.
+
+```js
+// src/components/Task.stories.js
+
+import React from "react";
+
+import Task from "./Task";
+
+// default 구문
+export default {
+  component: Task,
+  title: "Task",
+};
+
+// Template 구문
+const Template = (args) => <Task {...args} />;
+
+// 스토리 구문
+export const Default = Template.bind({});
+Default.args = {
+  task: {
+    id: "1",
+    title: "Test Task",
+    state: "TASK_INBOX",
+    updatedAt: new Date(2018, 0, 1, 9, 0),
+  },
+};
+
+export const Pinned = Template.bind({});
+Pinned.args = {
+  task: {
+    ...Default.args.task,
+    state: "TASK_PINNED",
+  },
+};
+
+export const Archived = Template.bind({});
+Archived.args = {
+  task: {
+    ...Default.args.task,
+    state: "TASK_ARCHIVED",
+  },
+};
+```
+
+위 예시는 `Task.js` 컴포넌트의 스토리가 담긴 `Task.stories.js` 의 예시입니다. 스토리는 **Default exports, Template, Named story exports**으로 구성됩니다.
+
+## Default exports
+
+---
+
+**Default exports**는 `component` 에 대한 **메타데이터**를 정의합니다.
