@@ -1330,4 +1330,104 @@ const onClick = async () => {
 
 **Checking Errors After Dispatching**
 
-이것은 **실패한 요청 혹은 썽크 내 에러가 거부된 프로미스를 반환하지 않는다는 것**을 의미합니다.
+이것은 **실패한 요청 혹은 썽크 내 에러가 거부된 프로미스를 반환하지 않는다는 것**을 의미합니다. 이 시점에서 모든 실패는 처리되지 않은 오류보다 **처리된 오류**라고 판단됩니다. 이는 디스패치의 결과를 사용하지 않는 사람들을 위해 **처리되지 않은 프로미스 rejections**를 방지하고자 함입니다.
+
+만약 당신의 컴포넌트가 요청 실패를 알게 하고 싶다면, **\*`.unwrap` 혹은 `unwrapResult` 를 사용**하고 **다시 throw 된 오류를 적절하게 처리하세요.**
+
+#### Handling Thunk Errors
+
+---
+
+당신의 `payloadCreator` 가 reject 된 프로미스(`async` 함수에서 반환된 오류 등)를 반환할 때, 썽크는 `action.error` 로 에러의 자동으로 직렬화 된 버전을 포함하는 `rejected` 액션을 전달합니다. 하지만 직렬성을 보장하기 위해 `SerializedError` 인터페이스와 일치하지 않는 모든 항목이 인터페이스에서 제거됩니다.
+
+```ts
+export interface SerializedError {
+  name?: string;
+  message?: string;
+  stack?: string;
+  code?: string;
+}
+```
+
+만약 당신이 `rejected` 액션의 내용을 커스터마이징 하고 싶다면, 스스로 에러를 잡아야하고, `thunkAPI.rejectWithValue` 를 사용하는 새로운 값을 반환해야 합니다.
+
+`rejectWithValue` 접근 방식은 **API 응답이 "succeeds" 이지만, 리듀서가 알아야 하는 추가 오류 세부 정보가 포함된 경우**에도 사용됩니다. 이는 특히 필드 수준의 유효성 검사를 예상할 때 일반적입니다.
+
+```ts
+const updateUser = createAsyncThunk(
+  "users/update",
+  async (userData, { rejectWithValue }) => {
+    const { id, ...fields } = userData;
+    try {
+      const response = await userAPI.updateById(id, fields);
+      return response.data.user;
+    } catch (err) {
+      // Use `err.response.data` as `action.payload` for a `rejected` action,
+      // by explicitly returning it using the `rejectWithValue()` utility
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+```
+
+#### Cancellation
+
+---
+
+**Canceling Before Execution**
+
+만약 당신이 페이로드 생성자가 호출되기 전에 썽크를 취소하고 싶다면, 옵션으로서 **페이로드 생성자 뒤에 `condition` 콜백을 제공할 수 있습니다.** 해당 콜백은 매개변수로 **썽크 인자와 `{getState, extra}` 를 포함한 객체**를 받습니다. 그리고 이를 계속 지속할 것인지 아닌 지에 대한 결정에 사용합니다.
+
+만약 **실행이 취소되어야 한다면,** `condition` 콜백은 **리터럴 `false` 값** 혹은 **`false` 으로 resolve 되는 프로미스**를 반환해야 합니다. 만약 **프로미스가 반환된다면,** 썽크는 **`pending` 액션이 디스패치 되기 전에 `fulfilled` 될 때까지 프로미스를 기다립니다.** 그렇지 않으면 동기식으로 디스패치가 진행됩니다.
+
+```ts
+const fetchUserById = createAsyncThunk(
+  "users/fetchByIdStatus",
+  async (userId, thunkAPI) => {
+    const response = await userAPI.fetchById(userId);
+    return response.data;
+  },
+  {
+    condition: (userId, { getState, extra }) => {
+      const { users } = getState();
+      const fetchStatus = users.requests[userId];
+      if (fetchStatus === "fulfilled" || fetchStatus === "loading") {
+        // Already fetched or in progress, don't need to re-fetch
+        return false;
+      }
+    },
+  }
+);
+```
+
+만약 `condition()` 이 `false` 를 반환하면, 기본 동작은 **액션이 전혀 전달되지 않는 것**입니다. 만약 썽크가 취소되었을 때 "rejected" 인 액션이 여전히 디스패치 되게 하고 싶다면, `{condition, dispatchConditionRejection: true}` 를 전달하세요.
+
+**Canceling While Running**
+
+만약 당신의 실행 중인 썽크가 마무리되기 전에 취소하고 싶다면, `dispatch(fetchUserById(userId))` 에 의해 반환되는 프로미스의 `abort` 메소드를 사용할 수 있습니다.
+
+실제 예제는 다음과 같습니다.
+
+```ts
+import { fetchUserById } from "./slice";
+import { useAppDispatch } from "./store";
+import React from "react";
+
+function MyComponent(props: { userId: string }) {
+  const dispatch = useAppDispatch();
+  React.useEffect(() => {
+    // Dispatching the thunk returns a promise
+    const promise = dispatch(fetchUserById(props.userId));
+    return () => {
+      // `createAsyncThunk` attaches an `abort()` method to the promise
+      promise.abort();
+    };
+  }, [props.userId]);
+}
+```
+
+이 방식으로 썽크가 취소된 뒤에, `error` 속성에 대한 `AbortError` 와 함께 `"thunkName/rejected"` 액션을 디스패치(그리고 반환)합니다. 썽크는 어떠한 추가 액션도 디스패치 않습니다.
+
+추가적으로 `payloadCreator` 는 `thunkAPI.signal` 을 통해 전달된 `AbortSignal` 을 사용하여 비용이 많이 드는 작업을 해당 시점에서 취소할 수 있습니다.
+
+현대 브라우저의 `fetch` API는 이미 `AbortSignal` 를 지원합니다.
