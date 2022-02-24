@@ -1426,8 +1426,274 @@ function MyComponent(props: { userId: string }) {
 }
 ```
 
-이 방식으로 썽크가 취소된 뒤에, `error` 속성에 대한 `AbortError` 와 함께 `"thunkName/rejected"` 액션을 디스패치(그리고 반환)합니다. 썽크는 어떠한 추가 액션도 디스패치 않습니다.
+이 방식으로 썽크가 취소된 뒤에, `error` 속성에 대한 `AbortError` 와 함께 `"thunkName/rejected"` 액션을 디스패치(그리고 반환)합니다. **썽크는 어떠한 추가 액션도 디스패치 않습니다.**
 
-추가적으로 `payloadCreator` 는 `thunkAPI.signal` 을 통해 전달된 `AbortSignal` 을 사용하여 비용이 많이 드는 작업을 해당 시점에서 취소할 수 있습니다.
+추가적으로 `payloadCreator` 는 `thunkAPI.signal` 을 통해 전달된 `AbortSignal` 을 사용하여 **비용이 많이 드는 작업을 해당 시점에서 취소할 수 있습니다.**
 
-현대 브라우저의 `fetch` API는 이미 `AbortSignal` 를 지원합니다.
+현대 브라우저의 `fetch` API는 **이미 `AbortSignal` 를 지원합니다.**
+
+```ts
+import { createAsyncThunk } from "@reduxjs/toolkit";
+
+const fetchUserById = createAsyncThunk(
+  "users/fetchById",
+  async (userId: string, thunkAPI) => {
+    const response = await fetch(`https://reqres.in/api/users/${userId}`, {
+      signal: thunkAPI.signal,
+    });
+    return await response.json();
+  }
+);
+```
+
+**Checking Cancellation Status**
+
+**Reading the Signal Value**
+
+`signal.aborted` 를 사용하여 **썽크가 중단되었는지 정기적으로 확인**하고 **높은 비용의 작업을 중단**할 수 있습니다.
+
+```ts
+import { createAsyncThunk } from "@reduxjs/toolkit";
+
+const readStream = createAsyncThunk(
+  "readStream",
+  async (stream: ReadableStream, { signal }) => {
+    const reader = stream.getReader();
+
+    let done = false;
+    let result = "";
+
+    while (!done) {
+      if (signal.aborted) {
+        throw new Error("stop the work, this has been aborted!");
+      }
+      const read = await reader.read();
+      result += read.value;
+      done = read.done;
+    }
+    return result;
+  }
+);
+```
+
+**Listening for Abort Events**
+
+또한 `signal.addEventListener('abort', callback)` 를 호출하여 `promise.abort()` 가 호출될 때 썽크 내부 로직이 알림을 받을 수 있도록 할 수 있습니다. 예를 들어, axios의 `CancelToken` 과 함께 결합하여 사용될 수 있습니다.
+
+```ts
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+const fetchUserById = createAsyncThunk(
+  "users/fetchById",
+  async (userId, { signal }) => {
+    const source = axios.CancelToken.source();
+    signal.addEventListener("abort", () => {
+      source.cancel();
+    });
+    const response = await axios.get(`https://reqres.in/api/users/${userId}`, {
+      cancelToken: source.token,
+    });
+    return response.data;
+  }
+);
+```
+
+#### Examples
+
+- 한 번에 하나의 요청으로, ID를 통한 유저와 로딩 상태를 함께 요청합니다.
+
+```ts
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { userAPI } from "./userAPI";
+
+const fetchUserById = createAsyncThunk(
+  "users/fetchByIdStatus",
+  async (userId, { getState, requestId }) => {
+    const { currentRequestId, loading } = getState().users;
+    if (loading !== "pending" || requestId !== currentRequestId) {
+      return;
+    }
+    const response = await userAPI.fetchById(userId);
+    return response.data;
+  }
+);
+
+const usersSlice = createSlice({
+  name: "users",
+  initialState: {
+    entities: [],
+    loading: "idle",
+    currentRequestId: undefined,
+    error: null,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUserById.pending, (state, action) => {
+        if (state.loading === "idle") {
+          state.loading = "pending";
+          state.currentRequestId = action.meta.requestId;
+        }
+      })
+      .addCase(fetchUserById.fulfilled, (state, action) => {
+        const { requestId } = action.meta;
+        if (
+          state.loading === "pending" &&
+          state.currentRequestId === requestId
+        ) {
+          state.loading = "idle";
+          state.entities.push(action.payload);
+          state.currentRequestId = undefined;
+        }
+      })
+      .addCase(fetchUserById.rejected, (state, action) => {
+        const { requestId } = action.meta;
+        if (
+          state.loading === "pending" &&
+          state.currentRequestId === requestId
+        ) {
+          state.loading = "idle";
+          state.error = action.error;
+          state.currentRequestId = undefined;
+        }
+      });
+  },
+});
+
+const UsersComponent = () => {
+  const { entities, loading, error } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+
+  const fetchOneUser = async (userId) => {
+    try {
+      const user = await dispatch(fetchUserById(userId)).unwrap();
+      showToast("success", `Fetched ${user.name}`);
+    } catch (err) {
+      showToast("error", `Fetch failed: ${err.message}`);
+    }
+  };
+
+  // render UI here
+};
+```
+
+- `rejectWithValue` 를 사용하여 컴포넌트 내에서 커스텀한 `rejected payload` 접근
+  - 이것은 `userAPI` 가 오직 에러만을 반환한다는 극단적인 예시입니다.
+
+```ts
+// file: user/slice.ts
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { userAPI } from "./userAPI";
+import { AxiosError } from "axios";
+
+// Sample types that will be used
+export interface User {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+}
+
+interface ValidationErrors {
+  errorMessage: string;
+  field_errors: Record<string, string>;
+}
+
+interface UpdateUserResponse {
+  user: User;
+  success: boolean;
+}
+
+export const updateUser = createAsyncThunk<
+  User,
+  { id: string } & Partial<User>,
+  {
+    rejectValue: ValidationErrors;
+  }
+>("users/update", async (userData, { rejectWithValue }) => {
+  try {
+    const { id, ...fields } = userData;
+    const response = await userAPI.updateById<UpdateUserResponse>(id, fields);
+    return response.data.user;
+  } catch (err) {
+    let error: AxiosError<ValidationErrors> = err; // cast the error for access
+    if (!error.response) {
+      throw err;
+    }
+    // We got validation errors, let's return those so we can reference in our component and set form errors
+    return rejectWithValue(error.response.data);
+  }
+});
+
+interface UsersState {
+  error: string | null | undefined;
+  entities: Record<string, User>;
+}
+
+const initialState = {
+  entities: {},
+  error: null,
+} as UsersState;
+
+const usersSlice = createSlice({
+  name: "users",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    // The `builder` callback form is used here because it provides correctly typed reducers from the action creators
+    builder.addCase(updateUser.fulfilled, (state, { payload }) => {
+      state.entities[payload.id] = payload;
+    });
+    builder.addCase(updateUser.rejected, (state, action) => {
+      if (action.payload) {
+        // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, the payload will be available here.
+        state.error = action.payload.errorMessage;
+      } else {
+        state.error = action.error.message;
+      }
+    });
+  },
+});
+
+export default usersSlice.reducer;
+
+// file: user/UsersComponent.ts
+import React from "react";
+import { useAppDispatch, RootState } from "../store";
+import { useSelector } from "react-redux";
+import { User, updateUser } from "./slice";
+import { FormikHelpers } from "formik";
+import { showToast } from "some-toast-library";
+
+interface FormValues extends Omit<User, "id"> {}
+
+const UsersComponent = (props: { id: string }) => {
+  const { entities, error } = useSelector((state: RootState) => state.users);
+  const dispatch = useAppDispatch();
+
+  // This is an example of an onSubmit handler using Formik meant to demonstrate accessing the payload of the rejected action
+  const handleUpdateUser = async (
+    values: FormValues,
+    formikHelpers: FormikHelpers<FormValues>
+  ) => {
+    const resultAction = await dispatch(
+      updateUser({ id: props.id, ...values })
+    );
+    if (updateUser.fulfilled.match(resultAction)) {
+      // user will have a type signature of User as we passed that as the Returned parameter in createAsyncThunk
+      const user = resultAction.payload;
+      showToast("success", `Updated ${user.first_name} ${user.last_name}`);
+    } else {
+      if (resultAction.payload) {
+        // Being that we passed in ValidationErrors to rejectType in `createAsyncThunk`, those types will be available here.
+        formikHelpers.setErrors(resultAction.payload.field_errors);
+      } else {
+        showToast("error", `Update failed: ${resultAction.error}`);
+      }
+    }
+  };
+
+  // render UI here
+};
+```
