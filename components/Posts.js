@@ -54,31 +54,31 @@ const Thumbnail = styled.img`
 
 const Contents = styled.div`
   h1 {
-    padding: 3rem 0 0.2rem;
+    padding: 3rem 0 0;
     font-size: 2rem;
     font-weight: bold;
   }
 
   h2 {
-    padding: 2rem 0 0.2rem;
+    padding: 2rem 0 0;
     font-size: 1.6rem;
     font-weight: bold;
   }
 
   h3 {
-    padding: 2rem 0 0.2rem;
+    padding: 2rem 0 0;
     font-size: 1.4rem;
     font-weight: bold;
   }
 
   h4 {
-    padding: 2rem 0 0.2rem;
+    padding: 2rem 0 0;
     font-size: 1.2rem;
     font-weight: bold;
   }
 
   hr {
-    margin: 0.75rem 0;
+    margin: 1.3rem 0;
   }
 
   p {
@@ -87,19 +87,10 @@ const Contents = styled.div`
   }
 
   & > ul {
-    padding-bottom: 1rem;
+    padding: 0.3rem 0 1rem;
     list-style: inside;
 
     & li::marker {
-      content: "🏷️ ";
-      display: list-item;
-      font-size: 0.8rem;
-      color: ${({ theme }) => theme.darkgrey};
-    }
-
-    & > li::marker {
-      content: "📖 ";
-      vertical-align: middle;
       font-size: 1.2rem;
     }
 
@@ -111,8 +102,20 @@ const Contents = styled.div`
     li {
       padding-bottom: 0.35rem;
 
+      &::marker {
+        content: "📁 ";
+      }
+
       ul {
         padding-top: 0.5rem;
+
+        & li::marker {
+          content: "📑 ";
+        }
+
+        ul li::marker {
+          content: "📄 ";
+        }
       }
     }
   }

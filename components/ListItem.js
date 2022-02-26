@@ -41,7 +41,8 @@ const Wrapper = styled.li`
 
 const Thumbnail = styled.img`
   width: 12rem;
-  object-fit: cover;
+  height: 9rem;
+  object-fit: scale-down;
 `;
 
 const Post = styled.div`
