@@ -25,7 +25,7 @@ thumbnail: "svelte_logo.png"
 
 ---
 
-> But there's a crucial difference: Svelte converts your app into ideal JavaScript **at *build time***
+> But there's a crucial difference: Svelte converts your app into ideal JavaScript **at build time\***
 > , rather than interpreting your application code **at run time**.
 
 - 스벨트는 앱을 **런타임 단계에서 해석하지 않고**, **빌드 시에 자바스크립트로 변환합니다.**
@@ -70,8 +70,8 @@ thumbnail: "svelte_logo.png"
 </style>
 ```
 
-- `**<script>` 태그 내** 자바스크립트 코드를 작성하고, **중괄호(`{}`)를** 통해 **컴포넌트 내 추가\*\* 가능합니다.
-- `**<style>**` **태그 내** CSS 정보를 추가할 수 있습니다.
+- **`<script>` 태그 내** 자바스크립트 코드를 작성하고, **중괄호(`{}`)를** 통해 컴포넌트 내 추가 가능합니다.
+- **`<style>` 태그 내** CSS 정보를 추가할 수 있습니다.
   - 해당 CSS 내용의 범위는 **컴포넌트**이기에, 다른 컴포넌트의 스타일을 변경하지 않습니다.
 
 ## Dynamic Attributes
@@ -125,7 +125,7 @@ A11y: <img> element should have an alt attribute
 <p>{@html string}</p>
 ```
 
-> But sometimes you need t**o render HTML directly** into a component.
+> But sometimes you need **to render HTML directly** into a component.
 
 - HTML 요소로 바로 렌더링 하고 싶을 땐, `@html` 을 사용할 수 있습니다.
 
@@ -228,7 +228,7 @@ A11y: <img> element should have an alt attribute
 </button>
 ```
 
-- 스벨트의 반응성은 할당에 의해 트리거되기 때문에, 배열에서 `**push` 혹은 `splice` 와 같은 메소드를 사용하면 자동으로 업데이트를 발생시키지 않습니다.\*\*
+- 스벨트의 반응성은 할당에 의해 트리거되기 때문에, 배열에서 **`push` 혹은 `splice` 와 같은 메소드를 사용하면 자동으로 업데이트를 발생시키지 않습니다.**
   - 위 예시에서 버튼을 클릭했을 때, 아무런 변화가 없을 것입니다.
 
 ```tsx
