@@ -5,7 +5,7 @@ export const LIST_INFO = {
       "학습과 관련된 포스팅 목록입니다.",
       <br />,
       "최근에 관심 있는 내용들은 ",
-      <strong>Redux, Redux Toolkit, Typescript</strong>,
+      <strong>Redux, Redux Toolkit, Typescript, Svelte</strong>,
       " 등이 있습니다.",
     ],
   },
