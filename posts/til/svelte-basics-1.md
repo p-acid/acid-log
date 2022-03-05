@@ -1,5 +1,5 @@
 ---
-title: 스벨트 기초 학습
+title: "스벨트 기초 학습 : Introduction ~ Props"
 date: "2022-02-26"
 description: "핫하디 핫한 스벨트에 대해 간단히 학습해봅니다."
 tags: ["Svelte", "Tech", "Basics"]
