@@ -191,7 +191,7 @@ thumbnail: "svelte_logo.png"
 
 > You can use any object as the key, as Svelte uses a `Map` internally — in other words you could do `(thing)` instead of `(thing.id)`. Using a string or number is generally safer, however, since it means identity persists without referential equality, for example when updating with fresh data from an API server.
 
-- 스벨트는 `**Map` 을 내부적으로 사용**하기 때문에, 모든 객체를 키로 사용할 수 있습니다. 이 말은 `**(thing.id)`대신에`thing` 을 사용할 수 있다는 것\*\*을 의미합니다.
+- 스벨트는 **`Map` 을 내부적으로 사용**하기 때문에, 모든 객체를 키로 사용할 수 있습니다. 이 말은 **`(thing.id)`대신에`thing` 을 사용할 수 있다는 것**을 의미합니다.
 - 그러나, **문자열이나 숫자**를 사용하는 것이 일반적으로 안전합니다.
   - 예를 들어, API 서버에서 최신 데이터로 업데이트 할 때, **참조 동등성 없이 ID가 유지된다는 의미**이기 때문입니다.
 
