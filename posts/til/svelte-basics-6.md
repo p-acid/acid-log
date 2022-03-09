@@ -1,6 +1,6 @@
 ---
 title: "스벨트 기초 학습 : Motion ~ Transitions"
-date: "2022-03-08"
+date: "2022-03-09"
 description: "핫하디 핫한 스벨트에 대해 간단히 학습해봅니다."
 tags: ["Svelte", "Tech", "Basics"]
 thumbnail: "svelte_logo.png"
