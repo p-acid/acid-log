@@ -24,7 +24,7 @@ thumbnail: "svelte_logo.png"
 <input bind:value={name}>
 ```
 
-- `bind:value` 의 의미는 `**name` 의 값이 변경될 때 `input` 의 값이 변하는 것 뿐만 아니라, `input` 의 값이 변할 때 `name` 의 값 또한 변함을 의미합니다.\*\*
+- `bind:value` 의 의미는 **`name` 의 값이 변경될 때 `input` 의 값이 변하는 것 뿐만 아니라, `input` 의 값이 변할 때 `name` 의 값 또한 변함을 의미합니다.**
 
 ## Numeric inputs
 
@@ -64,7 +64,7 @@ thumbnail: "svelte_logo.png"
 ```
 
 - **각각의 `input` 에 `bind:group` 을 추가하는 것**으로 이를 가능하게 합니다.
-  - 모든 요소에 `bind:group` 을 추가하는 것이기 때문에, `**each` 블록을 통해 코드를 더 간략화 할 수도 있습니다.\*\*
+  - 모든 요소에 `bind:group` 을 추가하는 것이기 때문에, **`each` 블록을 통해 코드를 더 간략화 할 수도 있습니다.**
 
 ## Textarea inputs
 
