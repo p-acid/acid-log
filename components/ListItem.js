@@ -76,5 +76,6 @@ const TagWrapper = styled.div`
 
 const Tag = styled.span`
   font-size: 0.85rem;
+  font-weight: 100;
   color: #454545;
 `;

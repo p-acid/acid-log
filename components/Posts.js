@@ -132,6 +132,10 @@ const Contents = styled.div`
 
   strong {
     font-weight: bold;
+
+    code {
+      padding: 0.1rem 0.4rem 0.3rem;
+    }
   }
 
   em {
@@ -166,7 +170,7 @@ const Contents = styled.div`
   }
 
   code {
-    padding: 0.1rem 0.3rem 0.2rem;
+    padding: 0.05rem 0.3rem 0.3rem;
     border-radius: 0.2rem;
     font-family: monospace;
     color: white;
