@@ -57,18 +57,30 @@ const Contents = styled.div`
     padding: 3rem 0 0;
     font-size: 2rem;
     font-weight: bold;
+
+    code {
+      font-size: inherit;
+    }
   }
 
   h2 {
     padding: 2rem 0 0;
     font-size: 1.6rem;
     font-weight: bold;
+
+    code {
+      font-size: inherit;
+    }
   }
 
   h3 {
     padding: 2rem 0 0;
     font-size: 1.4rem;
     font-weight: bold;
+
+    code {
+      font-size: inherit;
+    }
   }
 
   h4 {
@@ -170,9 +182,11 @@ const Contents = styled.div`
   }
 
   code {
-    padding: 0.05rem 0.3rem 0.3rem;
+    padding: 0.2rem 0.3rem;
     border-radius: 0.2rem;
-    font-family: monospace;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    font-weight: 100;
     color: white;
     background-color: ${({ theme }) => theme.navy};
     opacity: 0.95;

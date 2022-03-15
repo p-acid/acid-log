@@ -59,6 +59,7 @@ const Post = styled.div`
 const Title = styled.h2`
   display: inline-block;
   margin-bottom: 1.5rem;
+  width: 30rem;
   font-size: 2rem;
   font-weight: bold;
   line-height: 2.5rem;
