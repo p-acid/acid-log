@@ -147,6 +147,7 @@ const Contents = styled.div`
 
     code {
       padding: 0.1rem 0.4rem 0.3rem;
+      font-weight: 600;
     }
   }
 
