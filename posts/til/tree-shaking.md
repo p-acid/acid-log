@@ -141,6 +141,8 @@ import { simpleSort } from "../../utils/utils";
 
 ### 잘 되지 않을 때
 
+---
+
 - 항상 **예외는 있습니다.** 다음의 [Lodash](https://lodash.com/) 예시와 같이 트리 쉐이킹이 잘 동작하지 않는 경우도 있습니다.
 
 ```ts
