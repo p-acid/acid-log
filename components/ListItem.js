@@ -37,20 +37,28 @@ const Wrapper = styled.li`
   padding-bottom: 2.5rem;
   cursor: pointer;
   border-bottom: 1px solid #f0f0f0;
+
+  &:hover > img {
+    transition: 0.3s;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 5px #d9d9d9;
+  }
+
+  &:hover > div > div > h2 {
+    transition: 0.3s;
+    color: ${({ theme }) => theme.navy};
+  }
 `;
 
 const Thumbnail = styled.img`
-  width: 12rem;
-  height: 9rem;
+  padding: 0.7rem 0;
+  width: 10rem;
+  height: 10rem;
   object-fit: scale-down;
+  border-radius: 5px;
 `;
 
 const Post = styled.div`
-  &:hover > h2 {
-    transition: 0.3s;
-    background: linear-gradient(to bottom, white 45%, #5482cc 30%);
-  }
-
   &:last-child {
     padding-bottom: 0;
   }

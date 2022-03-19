@@ -146,7 +146,6 @@ const Contents = styled.div`
     font-weight: bold;
 
     code {
-      padding: 0.1rem 0.4rem 0.3rem;
       font-weight: 600;
     }
   }
@@ -160,8 +159,9 @@ const Contents = styled.div`
     padding: 0.8rem 0px 1.1rem;
 
     code {
-      padding: 0.8rem 0.9rem 0.9rem;
+      padding: 1.2rem 1.3rem 1.3rem;
       line-height: 1rem;
+      border-radius: 0.8rem;
       background-color: ${({ theme }) => theme.darkgrey};
       overflow: scroll;
     }
@@ -184,7 +184,7 @@ const Contents = styled.div`
 
   code {
     padding: 0.2rem 0.3rem;
-    border-radius: 0.2rem;
+    border-radius: 0.3rem;
     font-family: "IBM Plex Mono", monospace;
     font-size: 0.7rem;
     font-weight: 100;

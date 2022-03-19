@@ -8,7 +8,7 @@ export default function Post({ postData }) {
   return (
     <>
       <Head>
-        <title>All posts | {postData.title}</title>
+        <title>TIL | {postData.title}</title>
       </Head>
       <Posts postData={postData} />
     </>
