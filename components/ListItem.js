@@ -40,7 +40,7 @@ const Wrapper = styled.li`
 
   &:hover > img {
     transition: 0.3s;
-    transform: translateY(-2px);
+    transform: translateY(-4px);
     box-shadow: 0 5px 5px #d9d9d9;
   }
 
@@ -54,7 +54,7 @@ const Thumbnail = styled.img`
   width: 10rem;
   height: 10rem;
   object-fit: cover;
-  border-radius: 1.1px;
+  border-radius: 1.1rem;
 `;
 
 const Post = styled.div`
