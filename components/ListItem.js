@@ -51,11 +51,11 @@ const Wrapper = styled.li`
 `;
 
 const Thumbnail = styled.img`
-  padding: 0.7rem 0;
+  padding: 1.2rem 0;
   width: 10rem;
   height: 10rem;
   object-fit: scale-down;
-  border-radius: 5px;
+  border-radius: 1.1px;
 `;
 
 const Post = styled.div`
