@@ -23,8 +23,5 @@ export default Layout;
 const Wrapper = styled.div`
   margin: 0 auto;
   padding: 5.5rem 1.5rem;
-  width: ${({ path }) => (path === "/" || path === "/log") && "fit-content"};
-  min-width: ${({ path }) => (path === "/" || path === "/log") && "40rem"};
-  max-width: ${({ path }) =>
-    (path.includes("posts") || path === "/log/[id]") && "50rem"};
+  width: 50rem;
 `;

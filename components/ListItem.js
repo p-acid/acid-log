@@ -20,7 +20,7 @@ export const ListItem = ({ post, root }) => {
             <Text>{description}</Text>
             <TagWrapper>
               {tags.map((tag) => (
-                <Tag>{`#${tag}`}</Tag>
+                <Tag key={`${id}_${tag}`}>{`#${tag}`}</Tag>
               ))}
             </TagWrapper>
           </Post>

@@ -14,7 +14,7 @@ export const Info = ({ info }) => {
 export default Info;
 
 const Wrapper = styled.div`
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
 `;
 
 const Title = styled.h1`
@@ -24,14 +24,21 @@ const Title = styled.h1`
 `;
 
 const Discription = styled.p`
-  margin-bottom: 0.5rem;
   padding: 0.5rem 1rem;
   border-left: 5px solid ${({ theme }) => theme.navy};
   background-color: #fcfcfc;
   color: ${({ theme }) => theme.lightgray};
 
+  a {
+    font-weight: 700;
+  }
+
   strong {
     font-weight: bold;
+  }
+
+  a:hover {
     color: ${({ theme }) => theme.navy};
+    transition: 0.3s;
   }
 `;
