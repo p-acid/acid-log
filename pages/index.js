@@ -31,7 +31,10 @@ export default function Home({ allPostsData }) {
         list={useTag(allPostsData)}
         selectedTag={selectedTag}
         handlePostList={handlePostList}
-        setAllPost={() => setPostList(allPostsData)}
+        setAllPost={() => {
+          setPostList(allPostsData);
+          setSelectedTag("");
+        }}
       />
       <List list={postList} root="posts" />
       <Bio />
