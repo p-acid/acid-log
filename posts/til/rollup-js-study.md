@@ -89,6 +89,28 @@ thumbnail: "rollup-js-logo.png"
 
 이렇게 정리하니 **모듈 번들러**라는 것은 **모듈 단위의 개발을 진행하고, 이를 브라우저에서 잘 실행되도록 도와주는 도구**라고 정의할 수 있을 것 같습니다.
 
+# 그렇다면 왜 rollup.js인가 📜
+
+---
+
+**앱은 웹팩으로, 라이브러리는 rollup.js**로 라는 말이 있지만 왜 그런지 명확히 이해되지 않아 어려웠던 부분이었습니다. 이에 대해 가장 이해하기 쉬웠던 대답은 **rollup.js는 ES6 모듈 형태로 변화시킨다는 점**이었던 것 같습니다.
+
+[구글의 Tooling.Report](https://bundlers.tooling.report/output-module-formats/es-modules/)에서 **ECMAScript 모듈 번들이 생성되는지에 대한 여부를 테스트한 결과**가 있는데, 내용을 훑으면 rollup.js의 경우 이에 대해 통과한 결과를 보여줍니다. ES6 모듈 시스템의 대표적인 특징은 **부분적으로 `import` 할 수 있다는 점**인데요, 그렇게 되면 **트리 쉐이킹** 기법을 활용할 수 있다는 장점이 있습니다. 아마 이런 부분 때문에 rollup.js를 사용한다고 생각할 수 있겠네요.
+
+추가적으로 [rollup.js의 공식 홈페이지의 소개](https://rollupjs.org/guide/en/#the-why)를 참고하면, 왜 rollup.js를 사용하는 가에 대한 내용이 기재되어 있습니다.
+
+> This finally changed with the ES6 revision of JavaScript, which includes a syntax for importing and exporting functions and data so they can be shared between separate scripts. The specification is now fixed, but it is only implemented in modern browsers and not finalised in Node.js. **Rollup allows you to write your code using the new module system, and will then compile it back down to existing supported formats such as CommonJS modules, AMD modules, and IIFE-style scripts.** This means that you get to write future-proof code, and you also get the tremendous benefits of…
+
+간단하게 요약하자면, ES6 개정판으로 변경 됨에 따라 사양은 수정되었지만, 이는(ES6 Module system) 최신 브라우저에서만 구현되며 Node.js에서 마무리되지 않기 때문에, rollup을 통해 **최신 모듈 시스템으로 코드를 작성한 뒤 구버전인 기존 지원 형식에 따라 다시 컴파일 할 수 있다고 합니다.**
+
+이어지는 소개글에는 [트리 쉐이킹](https://rollupjs.org/guide/en/#tree-shaking)에 대한 내용도 간단히 소개되고 있으니 필요하신 분들은 참고하시길 바랍니다.
+
+# 그렇다면 적용해보자! 👨‍💻
+
+---
+
+> 적용 파트부터는 [해당 블로그](https://wormwlrm.github.io/2021/11/07/Rollup-React-TypeScript.html)를 많이 참고하여 요약했습니다. 블로그와 마찬가지로 `yarn` 을 활용했으며 **적용을 위한 개인적인 이해의 선에서 요약을 진행합니다.**
+
 ### 참고
 
 ---
@@ -96,3 +118,6 @@ thumbnail: "rollup-js-logo.png"
 - [TOAST UI : 의존성 관리](https://ui.toast.com/fe-guide/ko_DEPENDENCY-MANAGE)
 - [TOAST UI : 번들러](https://ui.toast.com/fe-guide/ko_BUNDLER)
 - [Medium : Rollup vs. Parcel vs. webpack: Which Is the Best Bundler?](https://betterprogramming.pub/the-battle-of-bundlers-6333a4e3eda9)
+- [rollup.js : Introduction - The why](https://rollupjs.org/guide/en/#the-why)
+- [Tooling.Report : ECMAScript Modules](https://bundlers.tooling.report/output-module-formats/es-modules/)
+- [wormwlrm's blog : Rollup 기반 라이브러리 개발 환경 구성하기](https://wormwlrm.github.io/2021/11/07/Rollup-React-TypeScript.html)
