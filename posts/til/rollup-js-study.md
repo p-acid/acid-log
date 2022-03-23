@@ -111,6 +111,50 @@ thumbnail: "rollup-js-logo.png"
 
 > 적용 파트부터는 [해당 블로그](https://wormwlrm.github.io/2021/11/07/Rollup-React-TypeScript.html)를 많이 참고하여 요약했습니다. 블로그와 마찬가지로 `yarn` 을 활용했으며 **적용을 위한 개인적인 이해의 선에서 요약을 진행합니다.**
 
+우선 설치부터 진행해봅시다.
+
+```sh
+# 전역 설치
+yarn global add rollup
+
+# 프로젝트 의존성으로 설치
+yarn add -D rollup
+```
+
+그리고 `package.json` 파일로 넘어가면 다음의 두 가지 명령어를 수정하여 작성합니다.
+
+```json
+// package.json
+
+{
+  // ...
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -cw"
+  }
+}
+```
+
+- **`c`(config):** 프로젝트 루트 디렉토리에 **별도 설정 파일(`rollup-config.js`)을 사용**하겠다는 뜻입니다.
+- **`w`(watch):** **변경 사항을 감지**하여 **자동 빌드를 수행**합니다.
+
+부끄럽지만 개발 단계에서 활용할 수 있는 `watch` 개념을 이제 알게되었습니다. 앞으로 잘 활용해야겠습니다.
+
+이어서 루트 디렉토리에 `rollup.config.js` 파일을 생성하고 해당 파일에서 **rollup과 관련된 설정**을 관리합니다.
+
+```js
+// rollup.config.js
+
+export default {
+  input: "./src/index.js", // 진입 경로
+  output: {
+    file: "./dist/bundle.js", // 출력 경로
+    format: "es", // 출력 형식
+    sourcemap: true, // 소스 맵을 켜놔서 디버깅을 쉽게 만들자
+  },
+};
+```
+
 ### 참고
 
 ---

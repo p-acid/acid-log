@@ -26,21 +26,26 @@ export default function Post({ postData }) {
 
 const Header = styled.header`
   padding-bottom: 1.5rem;
-  font-size: 2.2rem;
+  font-size: 3rem;
   font-weight: bold;
+  letter-spacing: -2.7px;
+  word-spacing: -2px;
+  word-break: keep-all;
 
   time {
-    padding-top: 0.4rem;
-    font-size: 60%;
-    font-weight: 400;
+    padding-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
   }
 
   div {
-    padding-top: 0.2rem;
+    padding-top: 0.3rem;
 
     span {
       font-size: 0.9rem;
       font-weight: 100;
+      letter-spacing: 0;
     }
   }
 `;
@@ -55,7 +60,7 @@ const Thumbnail = styled.img`
 const Contents = styled.div`
   h1 {
     padding: 3rem 0 0;
-    font-size: 2rem;
+    font-size: 2.4rem;
     font-weight: bold;
 
     code {
@@ -65,7 +70,7 @@ const Contents = styled.div`
 
   h2 {
     padding: 2rem 0 0;
-    font-size: 1.6rem;
+    font-size: 2rem;
     font-weight: bold;
 
     code {
@@ -75,7 +80,7 @@ const Contents = styled.div`
 
   h3 {
     padding: 2rem 0 0;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: bold;
 
     code {
@@ -85,7 +90,7 @@ const Contents = styled.div`
 
   h4 {
     padding: 2rem 0 0;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     font-weight: bold;
   }
 
@@ -94,12 +99,11 @@ const Contents = styled.div`
   }
 
   p {
-    padding-bottom: 1rem;
     word-break: keep-all;
   }
 
   & > ul {
-    padding: 0.3rem 0 1rem;
+    padding: 0 0 1rem;
     list-style: inside;
 
     & li::marker {
@@ -156,12 +160,13 @@ const Contents = styled.div`
 
   pre {
     display: grid;
-    padding: 0.8rem 0px 1.1rem;
+    margin: 1.5rem 0;
 
     code {
-      padding: 1.2rem 1.3rem 1.3rem;
-      line-height: 1rem;
+      padding: 1.6rem 1.7rem 1.6rem;
+      line-height: 1.4rem;
       border-radius: 0.8rem;
+      font-size: 0.8rem;
       background-color: ${({ theme }) => theme.darkgrey};
       overflow: scroll;
     }
@@ -169,7 +174,7 @@ const Contents = styled.div`
 
   blockquote {
     padding: 0.8rem 1.2rem;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
     border-left: 0.2rem solid black;
     background-color: ${({ theme }) => theme.lightgrey};
 
@@ -194,6 +199,7 @@ const Contents = styled.div`
   }
 
   img {
+    margin: 0.5rem 0 0;
     width: 100%;
   }
 `;

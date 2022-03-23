@@ -11,10 +11,11 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Roboto', sans-serif;
+    font-size: 1.05rem;
   }
   
   span, p, ul, li {
-    line-height: 1.5rem;
+    line-height: 1.7rem;
   }
 
   input,

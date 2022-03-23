@@ -26,7 +26,7 @@ const Wrapper = styled.nav`
   justify-content: space-between;
   position: fixed;
   top: 0;
-  padding: 0.8rem 1.4rem;
+  padding: 1.5rem 1.7rem;
   width: 100%;
   z-index: 1000;
   background-color: rgba(255, 255, 255, 0.92);
@@ -38,7 +38,9 @@ const SubWrapper = styled.div`
 `;
 
 const NavItem = styled.span`
-  font-size: 1.4rem;
+  font-size: 2.5rem;
+  letter-spacing: -2px;
+  font-weight: 700;
   transition: 0.5s;
   cursor: pointer;
 

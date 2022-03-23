@@ -25,21 +25,25 @@ const TagFilter = ({ list, selectedTag, handlePostList, setAllPost }) => {
 export default TagFilter;
 
 const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
   margin: 3rem 0 4rem;
 `;
 
 const Title = styled.h2`
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  font-size: 1.8rem;
+  margin-right: 1rem;
+  font-size: 2.5rem;
   font-weight: 700;
+  letter-spacing: -2.5px;
 `;
 
 const TagWrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 0.5rem;
-  padding-left: 0.5rem;
-  border-left: 5px solid #2d3c54;
+  height: 3rem;
+  padding-left: 1rem;
+  border-left: 5px solid ${({ theme }) => theme.navy};
   white-space: nowrap;
   overflow-x: scroll;
 `;
@@ -47,8 +51,8 @@ const TagWrapper = styled.div`
 const Button = styled.button`
   display: flex;
   gap: 0.5rem;
-  padding: 0.1rem 0.8rem;
-  border-radius: 1.2rem;
+  padding: 0 0.8rem;
+  border-radius: 3rem;
   background-color: ${({ theme, selectedTag }) =>
     selectedTag ? "#2d3c54" : theme.navy};
   cursor: pointer;

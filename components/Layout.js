@@ -23,5 +23,5 @@ export default Layout;
 const Wrapper = styled.div`
   margin: 0 auto;
   padding: 5.5rem 1.5rem;
-  width: 50rem;
+  width: 55rem;
 `;

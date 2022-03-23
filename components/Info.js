@@ -19,8 +19,9 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
   margin-bottom: 2rem;
-  font-size: 3rem;
+  font-size: 4.5rem;
   font-weight: bold;
+  letter-spacing: -3px;
 `;
 
 const Discription = styled.p`
