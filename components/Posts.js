@@ -103,7 +103,7 @@ const Contents = styled.div`
   }
 
   & > ul {
-    padding: 0 0 1rem;
+    padding: 1rem 0;
     list-style: inside;
 
     & li::marker {
@@ -160,7 +160,7 @@ const Contents = styled.div`
 
   pre {
     display: grid;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
 
     code {
       padding: 1.6rem 1.7rem 1.6rem;

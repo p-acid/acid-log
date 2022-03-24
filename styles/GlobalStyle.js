@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   span, p, ul, li {
-    line-height: 1.7rem;
+    line-height: 2rem;
   }
 
   input,

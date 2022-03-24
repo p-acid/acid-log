@@ -113,6 +113,10 @@ thumbnail: "rollup-js-logo.png"
 
 우선 설치부터 진행해봅시다.
 
+## Rollup.js 설치 및 테스트
+
+---
+
 ```sh
 # 전역 설치
 yarn global add rollup
@@ -155,6 +159,167 @@ export default {
 };
 ```
 
+- 위 설정은 **`./src/index.js` 에서 파일을 읽어서 `./dist/bundle.js` 경로에 빌드를 할 것**이라는 의미입니다.
+
+마지막으로 `package.json` 파일을 수정하여 **프로젝트 진입점**도 수정해줍니다.
+
+```ts
+// package.json
+
+{
+  // ...
+  "main": "./dist/bundle.js"
+}
+```
+
+그리고 다음 **`yarn build` 혹은 `rollup -c` 명령어**를 입력하여 **빌드 테스트를 진행해보면,**
+
+실제 빌드 결과물을 **아웃풋 경로인 `dist/bundle.js` 에서 확인할 수 있습니다.**
+
+정상적으로 빌드가 되는 것을 확인했다면, **`yarn watch` 명령어를 통해 빌드합시다.**
+
+- **CJS(CommonJS) 형식으로 빌드**하면 번들 파일은 다음과 같은 형식으로 구성됩니다.
+
+```ts
+// dist/bundle.js
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+var log = function log() {
+  console.log("hello");
+};
+
+exports.log = log;
+//# sourceMappingURL=bundle.js.map
+```
+
+## 리액트 설치가 필요한 경우
+
+---
+
+리액트를 설치하려면 **피어 디펜던시(`peerDependencies`)로 설치해야 합니다.**
+
+- 내가 만드는 **라이브러리의 리액트**와 라이브러리를 사용하는 **호스트의 리액트**가 충돌할 수 있기 때문입니다.
+
+피어 디펜던시는 다음과 같이 **`P` 플래그**를 추가하여 설치할 수 있습니다.
+
+```sh
+# 피어 디펜던시로 설치
+yarn add -P react react-dom
+```
+
+> **피어 디펜던시에 대한 추가적인 내용** 📎
+>
+> `peerDependencies` 는 해당 패키지가 직접 `require` 되는 것은 아니지만 **해당 호스트 패키지와 호환성을 갖는다**는 의미라고 합니다.
+> 예를 들어, `peerDependencies` 에 `"tea": "2.x"` 가 있다면 **호스트 패키지 `tea` 의 `2.x` 버전대와 함께 설치되는 것이 보장된다는 뜻**입니다.
+
+리액트를 설치하고 나서는 `.jsx` 혹은 `.tsx` 파일을 해석할 **바벨(Babel) 또한 설치해야 합니다.**
+
+```sh
+# 바벨 설치
+yarn add -D @babel/core @babel/preset-env @babel/preset-react
+
+# 롤업에서 바벨을 사용하게 해주는 플러그인도 설치
+yarn add -D @rollup/plugin-babel
+```
+
+이후 `rollup.config.js` 에서 바벨 관련 설정을 추가합니다.
+
+```js
+// rollup.config.js
+
+import babel from "@rollup/plugin-babel";
+
+export default {
+  input: "./src/index.js",
+  output: {
+    file: "./dist/bundle.js",
+    format: "es",
+    sourcemap: true,
+  },
+  plugins: [
+    // 바벨 트랜스파일러 설정
+    babel({
+      babelHelpers: "bundled",
+      presets: ["@babel/preset-env", "@babel/preset-react"],
+    }),
+  ],
+};
+```
+
+## 타입스크립트 적용하기
+
+---
+
+타입스크립트 적용을 위해 **공식 타입스크립트 플러그인을 포함한 타입 관련 패키지들을 설치합니다.**
+
+```sh
+# 롤업 타입스크립트 플러그인 설치
+yarn add -D @rollup/plugin-typescript
+
+# 롤업 타입스크립트 플러그인의 피어 디펜던시 설치
+yarn add -D typescript tslib
+
+# 바벨에서도 이를 해석하게 추가
+yarn add -D @babel/preset-typescript
+
+# 리액트, 리액트 DOM 타입 패키지 추가
+yarn add -D @types/react @types/react-dom
+```
+
+이후 마이그레이션 단계라면 `.js`, `.jsx` 에서 `.ts`, `.tsx` 로 확장자 파일을 변경하고
+
+`rollup.config.js` 파일에 **플러그인을 추가합니다.**
+
+이때, **바벨에도 확장자 추가가 있으니** 이를 유의합니다.
+
+```ts
+// rollup.config.js
+
+import babel from "@rollup/plugin-babel";
+import typescript from "@rollup/plugin-typescript";
+
+export default {
+  input: "./src/index.ts",
+  output: {
+    file: "./dist/bundle.js",
+    format: "es",
+    sourcemap: true,
+  },
+  plugins: [
+    // 바벨 트랜스파일러 설정
+    babel({
+      babelHelpers: "bundled",
+      presets: [
+        "@babel/preset-env",
+        "@babel/preset-react",
+        "@babel/preset-typescript",
+      ],
+      extensions: [".js", ".jsx", ".ts", ".tsx"],
+    }),
+
+    // 타입스크립트
+    typescript(),
+  ],
+};
+```
+
+# 마무리
+
+---
+
+![why_it_does_work](/images/posts/rollup-js-study/why_it_does_work.jpeg)
+
+이번 내용을 학습하면서 동시에 옆에서 `rollup.js` 로 마이그레이션을 진행하는 동료의 모습을 보자니 눈물이 앞을 가렸습니다.
+
+인생이 호락호락하지 않은 건 알고 있었지만, 트리 쉐이킹 하나가 이렇게 우리를 괴롭힐 줄은 상상도 못했거든요. 다행히도 위에 정리한 포스팅에서 해답을 찾으셨다고는 하시는데, 오늘 다시 와서 해보니 되지 않았다는 슬픈 이야기를 전해들었습니다. 사실은 잘 돌아가는 줄 알았던 프로그램이 위 비둘기였나 싶기도 하구요.
+
+> **정말 어젠 왜 된거고 오늘은 외않되...? 양심이 있으면 둘 다 되지 말아라 이 악마야...**
+
+그리고 최근에 **스토리북에서 실제 인터랙션을 테스트 하기 위한 방법**에 대해 필요성을 많이 느끼고 있는데요, 실제로 디자인 시스템 개발을 진행하면서 스토리북에서 멀쩡했던 내용들이 배포된 이후 **구현 단계에서의 오류와 같은** 문제가 많이 발생하여 이를 해결하고 싶다는 생각이 많이 들었습니다. 그래서 이를 위한 방법론들을 찾아볼 계획입니다. 그럼 저희 프로젝트의 성공적인 트리 쉐이킹 동작을 기도하며 이번 포스팅을 마치겠습니다.
+
 ### 참고
 
 ---
@@ -165,3 +330,4 @@ export default {
 - [rollup.js : Introduction - The why](https://rollupjs.org/guide/en/#the-why)
 - [Tooling.Report : ECMAScript Modules](https://bundlers.tooling.report/output-module-formats/es-modules/)
 - [wormwlrm's blog : Rollup 기반 라이브러리 개발 환경 구성하기](https://wormwlrm.github.io/2021/11/07/Rollup-React-TypeScript.html)
+- [감성 프로그래밍 : [NodeJS] 모두 알지만 모두 모르는 package.json](https://programmingsummaries.tistory.com/385)
