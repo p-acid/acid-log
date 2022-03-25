@@ -39,7 +39,6 @@ const Wrapper = styled.li`
   border-bottom: 1px solid #f0f0f0;
 
   &:hover > img {
-    transition: 0.3s;
     transform: translateY(-4px);
     box-shadow: 0 5px 5px #d9d9d9;
   }
@@ -55,6 +54,7 @@ const Thumbnail = styled.img`
   height: 10rem;
   object-fit: cover;
   border-radius: 1.1rem;
+  transition: 0.3s;
 `;
 
 const Post = styled.div`

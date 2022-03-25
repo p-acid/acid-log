@@ -100,6 +100,10 @@ const Contents = styled.div`
 
   p {
     word-break: keep-all;
+
+    & + p {
+      padding-top: 1.5rem;
+    }
   }
 
   & > ul {
