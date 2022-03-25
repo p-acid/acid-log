@@ -10,7 +10,7 @@ thumbnail: "reboot-blog-thumbnail.png"
 
 ---
 
-> 작년에 왔던 [블로그 권태기](http://localhost:3000/log/nextjs-blog-review) 죽지도 않고 또 왔네 🙋‍♂️
+> 작년에 왔던 [블로그 권태기](http://acid-log.vercel.app/log/nextjs-blog-review) 죽지도 않고 또 왔네 🙋‍♂️
 
 제목을 이렇게 정했으니 우선 **왜 블로그를 리부트하려고 생각했는지**에 대해서 정리해보겠습니다.
 
