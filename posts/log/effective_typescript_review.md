@@ -3,7 +3,7 @@ title: "개발 서적 후기 : 이펙티브 타입스크립트"
 date: "2022-03-13"
 description: "이펙티브 타입스크립트를 마무리 짓고, 이에 대한 후기를 남깁니다."
 tags: ["Review", "Book", "Group-Study", "Effective-Typescript"]
-thumbnail: "effective_typescript.jpeg"
+thumbnail: "effective_typescript.png"
 ---
 
 # 들어가며
