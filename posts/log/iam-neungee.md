@@ -3,7 +3,7 @@ title: 재밌는 일 벌이기를 해보자
 date: "2022-02-18"
 description: "나는 천재 개발자다. 나는 능히 할 수 있다."
 tags: ["Review", "Diary", "Essay"]
-thumbnail: "i_am_genius.jpeg"
+thumbnail: "check-list.png"
 ---
 
 # 나는 천재 개발자다 👨‍💻

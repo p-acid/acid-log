@@ -3,7 +3,7 @@ title: 생각의 방향 바로잡기
 date: "2022-01-08"
 description: "정신없는 일주일간의 생각들을 정리하여 바로잡아 봅니다."
 tags: ["Review", "Weekly", "Insight", "Essay"]
-thumbnail: "dont_touch_me.jpg"
+thumbnail: "weekly-logo.png"
 ---
 
 > 식물의 성장을 돕기 위한 **식물 지지대**는 식물이 좀 더 보기 좋게 자리잡을 수 있도록 도와주는 역할을 한다. 때로는 태풍이 몰아칠 때도 다 자라기 전 의지할 수 있는 역할을 해주며, **그렇게 지지대를 타고 오른 식물은 단단하게 서있을 수 있다**.

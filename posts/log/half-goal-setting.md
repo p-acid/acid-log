@@ -3,7 +3,7 @@ title: 어김없이 돌아온 반기 목표 설정
 date: "2022-02-03"
 description: "아 아무튼 갓생 살거니깐 그런줄 아세요."
 tags: ["Goal-Setting", "Summary", "Planning"]
-thumbnail: "god_life.jpeg"
+thumbnail: "god_life.png"
 ---
 
 # Hello, God-life

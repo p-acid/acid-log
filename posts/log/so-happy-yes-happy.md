@@ -3,7 +3,7 @@ title: 마참내 해냈다, 즐겁다 회사 생활!
 date: "2022-02-24"
 description: "이 남자는 도대체 무엇을 해낸 것일까."
 tags: ["Diary", "Weekly", "Opinion", "Review"]
-thumbnail: "think_boy.jpeg"
+thumbnail: "think-head.png"
 ---
 
 # 개발이 즐겁다! 👍

@@ -3,7 +3,7 @@ title: 스토리북 문서화 맛집이 되는 길
 date: "2022-03-17"
 description: "나는 문서화를 잘하기 위해 무슨 노력을 했고, 무엇을 해야 하는 가"
 tags: ["Storybook", "Tool", "Docs", "MDX"]
-thumbnail: "very_good.gif"
+thumbnail: "docs-top.png"
 ---
 
 # 들어가며 🏃

@@ -3,7 +3,7 @@ title: "트리 쉐이킹(Tree shaking) 알아보기"
 date: "2022-03-16"
 description: "트리 쉐이킹 학습하고 라이브러리에 적용하여 해결책 찾아보기!"
 tags: ["Tree-shaking", "Library", "Performance"]
-thumbnail: "shake-tree.gif"
+thumbnail: "tree-shaking.png"
 ---
 
 # 들어가며 🏃

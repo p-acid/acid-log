@@ -3,7 +3,7 @@ title: 타입스크립트란 무엇인가
 date: "2022-01-11"
 description: "앞으로 많이 사용할 타입스크립트에 대해서 간략하게 알아봅시다."
 tags: ["TypeScript", "TIL", "Basics"]
-thumbnail: "typeScript_logo.png"
+thumbnail: "typescript-logo.png"
 ---
 
 > 해당 포스팅은 [타입스크립트 핸드북](https://typescript-kr.github.io/)을 참고하여 정리한 내용입니다.

@@ -3,8 +3,10 @@ title: 3개월 여정의 매듭, 그리고 남긴 것들
 date: "2021-12-17"
 description: "때가 된 것 같으니 3개월 여정의 매듭을 지어보자."
 tags: ["Review", "Bootcamp", "Wecode"]
-thumbnail: "incomplete_life.jpg"
+thumbnail: "bootcamp.png"
 ---
+
+![incomplete_life.jpg](/images/posts/bootcamp-review/incomplete_life.jpg)
 
 > **"우유 다 익었다."**
 
