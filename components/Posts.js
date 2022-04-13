@@ -158,10 +158,6 @@ const Contents = styled.div`
     }
   }
 
-  em {
-    font-style: italic;
-  }
-
   pre {
     display: grid;
     margin: 1rem 0;
@@ -204,5 +200,9 @@ const Contents = styled.div`
   img {
     margin: 0.5rem 0 0;
     width: 100%;
+  }
+
+  em {
+    background-color: #dce6f7;
   }
 `;
