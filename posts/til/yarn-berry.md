@@ -44,3 +44,5 @@ Yarn Berry를 사용하기 위해선 **Yarn Berry가 무엇인지, 왜 등장했
 [yarn berry 적용법 : zigae](https://www.zigae.com/yarn2/)
 
 [yarn berry yml : yarn dev team github](https://github.com/yarnpkg/berry/blob/master/.yarnrc.yml)
+
+[Typescript + PnP](https://yarnpkg.com/getting-started/recipes#typescript--pnp-quick-start)
