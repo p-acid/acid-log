@@ -63,6 +63,73 @@ Yarn은 이미 의존성 트리에 대한 모든 것을 알고 있고, 심지어
 - 생성된 `.pnp.cjs` 파일은 **Zero-installs**을 통해 작은 노력으로 레포지토리에 커밋이 가능하여 **`yarn install` 을 실행할 필요가 없습니다.**
 - 노드 확인은 이전만큼 파일 시스템 반복을 할 필요가 없습니다!
 
-[yarn berry 적용법 : zigae](https://www.zigae.com/yarn2/)
+두 번째 포스팅은 그 상태로 요약이 잘 되어있다고 판단되어 생략하겠습니다.
 
-[yarn berry yml : yarn dev team github](https://github.com/yarnpkg/berry/blob/master/.yarnrc.yml)
+# Yarn Berry 적용하기! ⚙️
+
+---
+
+앞에서 말씀드렸다시피 사내 프로젝트에 적용하게 될 기회가 생겨서 **마이그레이션** 위주의 과정으로 진행하도록 하겠습니다.
+
+우선 프로젝트에 `yarn berry` 버전의 셋팅을 시작합니다.
+
+```sh
+yarn set version berry
+```
+
+이후 기존 `node_modules` 파일을 제거하고, `.pnp.js` 파일이 생성된 것을 확인할 수 있습니다.
+
+> 놀랍게도 이렇게 하면 끝입니다
+
+라고 말하고 싶지만 `yarn berry` 로 버전을 변경하면 발생하는 이슈들이 몇 가지 존재합니다.
+
+# 설치 관련 이슈 ❕
+
+---
+
+제가 경험했던 몇 가지 **설치 도중 발생한 이슈**를 정리해보려고 합니다.
+
+## Editor SDKs
+
+---
+
+분명히 `prettier` 관련 파일이 존재하고 패키지 설치도 정상적으로 되어 있는데, 적용하고 난 이후 혹은 해당 레포지토리를 클론 받으면 **`prettier` 나 타입스크립트가 작동하지 않는 오류**가 생기면서 다음의 오류를 보여줍니다.
+
+![error](/images/posts/yarn-berry/sdks-error.png)
+
+해당 이슈는 현재 사용하는 **에디터와 관련된 이슈**로서 `yarn berry` 로 변경하고 나면 **에디터에 대한 셋팅을 별도로 해줘야 합니다.** 다음의 명령어를 입력하여 이를 해결할 수 있습니다.
+
+```sh
+yarn dlx @yarnpkg/sdks
+```
+
+자세한 내용은 [해당 링크](https://yarnpkg.com/getting-started/editor-sdks)를 참고해주세요.
+
+## 타입스크립트 플러그인
+
+---
+
+타입스크립트 셋팅을 위한 하나의 과정이 더 있는데요, **플러그인을 설치하는 것**이 그렇습니다.
+
+해당 플러그인의 역할은 자체 타입을 포함하지 않는 패키지를 추가할 때, **`@types/` 패키지들을 `package.json` 폴더에 의존성으로 자동으로 추가해준다**고 합니다.
+
+다음의 명령어를 통해 타입스크립트 플러그인 설치가 가능합니다.
+
+```sh
+yarn plugin import typescript
+```
+
+## 경우에 따른 `yml` 파일 수정
+
+---
+
+모든 패키지가 정상적으로 `yarn berry` 를 통해 실행된다면 좋겠지만, 경우에 따라 경로를 잘못 찾는 경우가 발생합니다. 이런 경우 **별도로 경로를 설정해주어야 합니다.**
+
+제 경우엔 `lodash` 라이브러리를 별도로 설정해주었습니다.
+
+```yml
+packageExtensions:
+  lodash@*:
+    dependencies:
+      lodash/debounce: "*"
+```
