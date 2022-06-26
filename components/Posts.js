@@ -184,6 +184,10 @@ const Contents = styled.div`
     p:last-child {
       padding: 0;
     }
+
+    a {
+      color: ${({ theme }) => theme.navy};
+    }
   }
 
   code {
@@ -198,8 +202,10 @@ const Contents = styled.div`
   }
 
   img {
-    margin: 0.5rem 0 0;
     width: 100%;
+    max-height: 25rem;
+    object-fit: contain;
+    margin: 2rem 0;
   }
 
   em {
