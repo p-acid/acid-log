@@ -1,10 +1,10 @@
 import Head from "next/head";
 import { ThemeProvider } from "@emotion/react";
 
-import Theme from "../styles/Theme";
+import theme from "../styles/theme";
 import globalStyle from "../styles/GlobalStyle";
 
-import Layout from "../components/Layout";
+import Layout from "../container/layout/LayoutMain/LayoutMain";
 
 const myApp = ({ Component, pageProps }) => {
   return (
@@ -12,13 +12,17 @@ const myApp = ({ Component, pageProps }) => {
       <Head>
         <link rel="shortcut icon" href="/images/favicon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;700&family=Arimo:wght@400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap"
           rel="stylesheet"
         />
       </Head>
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme}>
         {globalStyle}
         <Layout>
           <Component {...pageProps} />

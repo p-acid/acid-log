@@ -7,6 +7,8 @@
     "vercel-deploy": "next build && next export"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
     "babel-plugin-styled-components": "^2.0.2",
     "date-fns": "^2.27.0",
     "gray-matter": "^4.0.3",
@@ -17,6 +19,10 @@
     "remark-html": "^15.0.1",
     "remark-normalize-headings": "^3.0.1",
     "styled-components": "^5.3.3",
-    "styled-reset": "^4.3.4"
+    "styled-reset": "^4.3.4",
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.1"
   }
 }
