@@ -1,24 +1,31 @@
 import { Post } from "../../../interface/CommonTypes";
+
 import { URL } from "../../../lib/config/urlConfig";
 
 import {
+  PostDate,
   PostDescription,
   PostInfo,
   PostItemWrapper,
   PostThumbnail,
   PostTitle,
 } from "./PostItemStyle";
+import usePostItem from "./usePostItem";
 
 const PostItem = ({ id, title, description, date, tags, thumbnail }: Post) => {
+  const { goPost, combinedDate } = usePostItem(new Date(date));
+
   return (
-    <PostItemWrapper>
+    <PostItemWrapper onClick={() => goPost(id)}>
       <PostThumbnail
         src={`${URL.IMAGE}/${id}/${thumbnail}`}
         alt={`thumbnail-image-${title}`}
       />
       <PostInfo>
+        {tags}
         <PostTitle>{title}</PostTitle>
         <PostDescription>{description}</PostDescription>
+        <PostDate>{combinedDate}</PostDate>
       </PostInfo>
     </PostItemWrapper>
   );

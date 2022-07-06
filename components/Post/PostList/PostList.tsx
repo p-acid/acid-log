@@ -6,13 +6,13 @@ import { Post } from "../../../interface/CommonTypes";
 
 interface PostListProps {
   posts: Post[];
-  title: string;
+  title?: string;
 }
 
-const PostList = ({ posts, title }: PostListProps) => {
+const PostList = ({ posts, title, ...restProps }: PostListProps) => {
   return (
-    <PostListWrapper>
-      <PostListTitle>{title}</PostListTitle>
+    <PostListWrapper {...restProps}>
+      {title && <PostListTitle>{title}</PostListTitle>}
       <PostListBox>
         {posts.map((post) => (
           <PostItem key={post.id} {...post} />

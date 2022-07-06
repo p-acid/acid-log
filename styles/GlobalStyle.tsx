@@ -140,10 +140,6 @@ const globalStyle = (
         border: 0;
         outline: none;
       }
-      #__next {
-        padding: 8px;
-        height: 100%;
-      }
     `}
   />
 );

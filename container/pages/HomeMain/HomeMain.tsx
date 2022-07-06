@@ -6,7 +6,7 @@ interface HomeMainProps {
 }
 
 const HomeMain = ({ posts }: HomeMainProps) => {
-  return <PostList posts={posts} title="게시물 목록" />;
+  return <PostList posts={posts} />;
 };
 
 export default HomeMain;
