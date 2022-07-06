@@ -1,16 +1,19 @@
-import Link from "next/link";
-
-import Anchor from "../../../components/common/Link/Anchor";
-
 import { ROUTES } from "../../../lib/config/routeConfig";
-import { NavigationSubWrapper, NavigationWrapper } from "./NavigationStyle";
+import {
+  NavigationSubWrapper,
+  NavigationWrapper,
+  NavigationAnchor,
+  NavigationLogo,
+} from "./NavigationStyle";
 
 const Navigation = () => (
   <NavigationWrapper>
-    <Anchor href={ROUTES.MAIN}>Acidlog</Anchor>
+    <NavigationLogo href={ROUTES.MAIN}>
+      <em>🌊 애시드.</em>로그
+    </NavigationLogo>
     <NavigationSubWrapper>
-      <Anchor href={ROUTES.LOG}>Log</Anchor>
-      <Anchor href={ROUTES.ABOUT}>About</Anchor>
+      <NavigationAnchor href={ROUTES.LOG}>짧은 기록</NavigationAnchor>
+      <NavigationAnchor href={ROUTES.ABOUT}>소개</NavigationAnchor>
     </NavigationSubWrapper>
   </NavigationWrapper>
 );

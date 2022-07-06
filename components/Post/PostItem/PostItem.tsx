@@ -22,7 +22,6 @@ const PostItem = ({ id, title, description, date, tags, thumbnail }: Post) => {
         alt={`thumbnail-image-${title}`}
       />
       <PostInfo>
-        {tags}
         <PostTitle>{title}</PostTitle>
         <PostDescription>{description}</PostDescription>
         <PostDate>{combinedDate}</PostDate>
