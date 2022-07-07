@@ -2,7 +2,7 @@
 title: "스벨트 기초 학습 : Module context ~ Debugging + Short Review"
 date: "2022-03-15"
 description: "핫하디 핫한 스벨트에 대해 간단히 학습해봅니다."
-tags: ["Svelte", "Tech", "Basics", "Review"]
+tags: ["svelte", "Tech", "Basics", "Review"]
 thumbnail: "svelte_logo.png"
 ---
 

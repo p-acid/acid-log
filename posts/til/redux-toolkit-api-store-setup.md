@@ -2,7 +2,7 @@
 title: "Redux Toolkit API 정리하기 : Store Setup"
 date: "2022-01-18"
 description: "리덕스 툴킷을 사용하는데 있어 공식문서의 API Reference를 정독하고 정리합니다."
-tags: ["Redux", "Redux-toolkit", "API", "Reference"]
+tags: ["Redux", "redux-toolkit", "API", "Reference"]
 thumbnail: "redux_logo.png"
 ---
 

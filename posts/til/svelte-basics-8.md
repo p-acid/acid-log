@@ -2,7 +2,7 @@
 title: "스벨트 기초 학습 : Component composition ~ Context API"
 date: "2022-03-13"
 description: "핫하디 핫한 스벨트에 대해 간단히 학습해봅니다."
-tags: ["Svelte", "Tech", "Basics"]
+tags: ["svelte", "Tech", "Basics"]
 thumbnail: "svelte_logo.png"
 ---
 

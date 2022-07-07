@@ -5,17 +5,17 @@ export const RECOMMEND_POST_LIST = [
   "storybook-docs",
 ];
 
-export const CATEGORY_LIST = [
-  {
-    tag: "Svelte",
+export const CATEGORY_LIST = {
+  svelte: {
+    tag: "svelte",
     title: "스벨트 시리즈",
     thumbnail: "svelte_logo.png",
     infoBackground: "orange",
   },
-  {
-    tag: "Redux-toolkit",
+  "redux-toolkit": {
+    tag: "redux-toolkit",
     title: "리덕스 툴킷 시리즈",
     thumbnail: "redux_logo.png",
     infoBackground: "purple",
   },
-];
+};

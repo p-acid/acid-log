@@ -8,6 +8,7 @@ export interface Post {
 }
 
 export interface Category {
+  tag: string;
   title: string;
   thumbnail: string;
   postIdList: string[];
