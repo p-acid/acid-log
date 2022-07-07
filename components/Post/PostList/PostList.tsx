@@ -1,10 +1,12 @@
+import { HTMLAttributes } from "react";
+
 import PostItem from "../PostItem/PostItem";
 
 import { PostListBox, PostListTitle, PostListWrapper } from "./PostListStyle";
 
 import { Post } from "../../../interface/CommonTypes";
 
-interface PostListProps {
+interface PostListProps extends HTMLAttributes<HTMLDivElement> {
   posts: Post[];
   title?: string;
 }

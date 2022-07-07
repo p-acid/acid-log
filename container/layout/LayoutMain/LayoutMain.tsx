@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Navigation from "../Navigation/Navigation";
 import Footer from "../../../components/Footer";
 
-import { LayoutMainWrapper } from "./LayoutMainStyle";
+import { MainContent } from "./LayoutMainStyle";
 
 import { LayoutMainProps } from "../../containerType";
 
@@ -14,10 +14,8 @@ const LayoutMain: FC<LayoutMainProps> = ({ children }) => {
   return (
     <>
       <Navigation />
-      <LayoutMainWrapper path={router.pathname}>
-        {children}
-        <Footer />
-      </LayoutMainWrapper>
+      <MainContent path={router.pathname}>{children}</MainContent>
+      <Footer />
     </>
   );
 };

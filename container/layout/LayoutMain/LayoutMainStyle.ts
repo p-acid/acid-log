@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 
-export const LayoutMainWrapper = styled.div<{ path: string }>`
+export const MainContent = styled.div<{ path: string }>`
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding-top: ${({ theme }) => theme.figure * 20}px;
+  justify-content: center;
+  gap: ${({ theme }) => theme.figure * 10}px;
 `;
