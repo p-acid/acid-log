@@ -18,7 +18,7 @@ const PostItem = ({ id, title, description, date, tags, thumbnail }: Post) => {
   return (
     <PostItemWrapper onClick={() => goPost(id)}>
       <PostThumbnail
-        src={`${URL.IMAGE}/${id}/${thumbnail}`}
+        src={`${URL.IMAGE.POSTS}/${id}/${thumbnail}`}
         alt={`thumbnail-image-${title}`}
       />
       <PostInfo>

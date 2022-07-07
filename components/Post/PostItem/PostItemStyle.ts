@@ -9,15 +9,10 @@ export const PostItemWrapper = styled.li`
     transform: translateY(-4px);
     box-shadow: 0 10px 8px ${({ theme }) => theme.colors.black_10};
   }
-
-  &:last-of-type {
-    padding-bottom: 0;
-    border-bottom: none;
-  }
 `;
 
 export const PostThumbnail = styled.img`
-  border-radius: ${({ theme }) => theme.figure}px;
+  border-radius: ${({ theme }) => theme.figure * 3}px;
   aspect-ratio: 1/1;
   transition: 0.3s;
 `;
@@ -48,7 +43,7 @@ export const PostDescription = styled.p`
 `;
 
 export const PostDate = styled.p`
-  color: ${({ theme }) => theme.colors.black_50};
+  color: ${({ theme }) => theme.colors.black_40};
   font-weight: 300;
 
   ${({ theme }) => theme.typography.text_sm}

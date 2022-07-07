@@ -2,7 +2,7 @@ import { HTMLAttributes } from "react";
 
 import PostItem from "../PostItem/PostItem";
 
-import { PostListBox, PostListTitle, PostListWrapper } from "./PostListStyle";
+import { ListBox, ListTitle, ListWrapper } from "../../common/commonStyle";
 
 import { Post } from "../../../interface/CommonTypes";
 
@@ -13,14 +13,14 @@ interface PostListProps extends HTMLAttributes<HTMLDivElement> {
 
 const PostList = ({ posts, title, ...restProps }: PostListProps) => {
   return (
-    <PostListWrapper {...restProps}>
-      {title && <PostListTitle>{title}</PostListTitle>}
-      <PostListBox>
+    <ListWrapper {...restProps}>
+      {title && <ListTitle>{title}</ListTitle>}
+      <ListBox>
         {posts.map((post) => (
           <PostItem key={post.id} {...post} />
         ))}
-      </PostListBox>
-    </PostListWrapper>
+      </ListBox>
+    </ListWrapper>
   );
 };
 

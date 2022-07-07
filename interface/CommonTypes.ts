@@ -6,3 +6,23 @@ export interface Post {
   tags: string;
   thumbnail: string;
 }
+
+export interface Category {
+  title: string;
+  thumbnail: string;
+  postIdList: string[];
+  infoBackground:
+    | "black"
+    | "white"
+    | "gray_blue"
+    | "blue"
+    | "orange"
+    | "purple"
+    | "red"
+    | "yellow"
+    | "green"
+    | "teal_blue"
+    | "pink"
+    | "bronze"
+    | "tiffany";
+}

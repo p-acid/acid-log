@@ -1,11 +1,12 @@
 import { Post } from "../../../interface/CommonTypes";
-import { getFilterdPosts } from "../../../utils/post";
+import { getCategoryPosts, getRecommendedPosts } from "../../../utils/post";
 import { RECOMMEND_POST_LIST } from "../../../lib/config/postConfig";
 
 const useHomeMain = (posts: Post[]) => {
-  const recommendPosts = getFilterdPosts(posts, RECOMMEND_POST_LIST);
+  const recommendPosts = getRecommendedPosts(posts, RECOMMEND_POST_LIST);
+  const categoryList = getCategoryPosts(posts);
 
-  return { recommendPosts };
+  return { recommendPosts, categoryList };
 };
 
 export default useHomeMain;

@@ -1,3 +1,3 @@
 export const URL = {
-  IMAGE: "/images/posts",
+  IMAGE: { POSTS: "/images/posts", CATEGORY: "/images/category" },
 };

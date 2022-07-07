@@ -4,18 +4,19 @@ import { StickyWrapper } from "./HomeMainStyle";
 
 import PostList from "../../../components/Post/PostList/PostList";
 import useHomeMain from "./useHomeMain";
+import CategoryList from "../../../components/Category/CategoryList/CategoryList";
 
 export interface HomeMainProps {
   posts: Post[];
 }
 
 const HomeMain = ({ posts }: HomeMainProps) => {
-  const { recommendPosts } = useHomeMain(posts);
+  const { recommendPosts, categoryList } = useHomeMain(posts);
 
   return (
     <>
       <StickyWrapper>
-        <PostList posts={posts} title="카테고리 별" />
+        <CategoryList categoryList={categoryList} />
       </StickyWrapper>
       <PostList posts={posts} />
       <StickyWrapper>
