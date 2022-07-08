@@ -17,15 +17,18 @@ const CategoryItem = ({
   thumbnail,
   postIdList,
   infoBackground,
+  ...restProps
 }: Category) => {
   const { goCategory } = useCategoryItem(tag);
 
   return (
-    <CatergoryCardWrapper onClick={goCategory}>
+    <CatergoryCardWrapper onClick={goCategory} {...restProps}>
       <img src={`${URL.IMAGE.CATEGORY}/${thumbnail}`} alt={thumbnail} />
       <CategoryInfo $infoBackground={infoBackground}>
         <CategoryTitle>{title}</CategoryTitle>
-        <CategoryCount>포스팅 {postIdList.length}개</CategoryCount>
+        {postIdList && (
+          <CategoryCount>포스팅 {postIdList.length}개</CategoryCount>
+        )}
       </CategoryInfo>
     </CatergoryCardWrapper>
   );

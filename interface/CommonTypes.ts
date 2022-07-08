@@ -3,7 +3,7 @@ export interface Post {
   title: string;
   description: string;
   date: string;
-  tags: string;
+  tags: string[];
   thumbnail: string;
 }
 
@@ -11,6 +11,7 @@ export interface Category {
   tag: string;
   title: string;
   thumbnail: string;
+  description: string;
   postIdList: string[];
   infoBackground:
     | "black"

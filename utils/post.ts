@@ -20,6 +20,8 @@ export const getCategoryPosts = (posts: Post[]): Category[] => {
   );
 };
 
+export const getCategoryData = () => {};
+
 // export const getPostIdList = (route: string) => {
 //   const fileNames = fs.readdirSync(getPath(route));
 
