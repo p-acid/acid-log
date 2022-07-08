@@ -5,7 +5,7 @@ export const RECOMMEND_POST_LIST = [
   "storybook-docs",
 ];
 
-export const CATEGORY_LIST = {
+export const CATEGORIES = {
   svelte: {
     tag: "svelte",
     title: "스벨트 시리즈",
