@@ -1,6 +1,6 @@
-import CategoryBanner from "../../../components/Category/CategoryBanner/CategoryBanner";
+import CategoryBanner from "../../../Category/CategoryBanner/CategoryBanner";
 
-import { Category, Post } from "../../../interface/CommonTypes";
+import { Category, Post } from "../../../../interface/CommonTypes";
 import { CategoryMainWrapper } from "./CategoryMainStyle";
 
 interface CategoryMainProps {

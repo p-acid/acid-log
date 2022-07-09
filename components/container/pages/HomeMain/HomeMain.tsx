@@ -1,10 +1,10 @@
-import { Post } from "../../../interface/CommonTypes";
+import { Post } from "../../../../interface/CommonTypes";
 
 import { StickyWrapper } from "./HomeMainStyle";
 
-import PostList from "../../../components/Post/PostList/PostList";
+import PostList from "../../../Post/PostList/PostList";
 import useHomeMain from "./useHomeMain";
-import CategoryList from "../../../components/Category/CategoryList/CategoryList";
+import CategoryList from "../../../Category/CategoryList/CategoryList";
 
 export interface HomeMainProps {
   posts: Post[];

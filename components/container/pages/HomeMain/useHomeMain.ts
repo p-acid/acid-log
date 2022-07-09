@@ -1,6 +1,6 @@
-import { Post } from "../../../interface/CommonTypes";
-import { getCategoryPosts, getRecommendedPosts } from "../../../utils/post";
-import { RECOMMEND_POST_LIST } from "../../../lib/config/postConfig";
+import { Post } from "../../../../interface/CommonTypes";
+import { getCategoryPosts, getRecommendedPosts } from "../../../../utils/post";
+import { RECOMMEND_POST_LIST } from "../../../../lib/config/postConfig";
 
 const useHomeMain = (posts: Post[]) => {
   const recommendPosts = getRecommendedPosts(posts, RECOMMEND_POST_LIST);

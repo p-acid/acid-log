@@ -1,4 +1,4 @@
-import CategoryMain from "../../container/pages/CategoryMain/CategoryMain";
+import CategoryMain from "../../components/container/pages/CategoryMain/CategoryMain";
 
 import { Post } from "../../interface/CommonTypes";
 import { CATEGORIES } from "../../lib/config/postConfig";
