@@ -11,7 +11,7 @@ export interface Category {
   tag: string;
   title: string;
   thumbnail: string;
-  description: string;
+  description?: string;
   postIdList: string[];
   infoBackground:
     | "black"

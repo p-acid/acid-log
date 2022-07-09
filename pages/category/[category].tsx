@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 
   return {
     paths: categoryList,
-    fallback: true,
+    fallback: false,
   };
 }
 

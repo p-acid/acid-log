@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-import Date from "./Date";
-import Tags from "./Tags";
-import Bio from "./Bio";
-
 export default function Post({ postData }) {
   const { id, title, date, contentHtml, tags, thumbnail } = postData;
 

@@ -20,20 +20,6 @@ export const getCategoryPosts = (posts: Post[]): Category[] => {
   );
 };
 
-export const getCategoryData = () => {};
-
-// export const getPostIdList = (route: string) => {
-//   const fileNames = fs.readdirSync(getPath(route));
-
-//   return fileNames.map((fileName) => {
-//     return {
-//       params: {
-//         id: fileName.replace(/\.md$/, ""),
-//       },
-//     };
-//   });
-// };
-
 export const getCategoryList = () => {
   return Object.keys(CATEGORIES).map((category) => ({
     params: {
