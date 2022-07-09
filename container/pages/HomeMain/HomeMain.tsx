@@ -5,6 +5,7 @@ import { StickyWrapper } from "./HomeMainStyle";
 import PostList from "../../../components/Post/PostList/PostList";
 import useHomeMain from "./useHomeMain";
 import CategoryList from "../../../components/Category/CategoryList/CategoryList";
+import CategoryCard from "../../../components/Category/CategoryCard/CategoryCard";
 
 export interface HomeMainProps {
   posts: Post[];
@@ -16,9 +17,13 @@ const HomeMain = ({ posts }: HomeMainProps) => {
   return (
     <>
       <StickyWrapper>
-        <CategoryList categoryList={categoryList} />
+        <CategoryList
+          title="카테고리 별"
+          list={categoryList}
+          ItemComponent={CategoryCard}
+        />
       </StickyWrapper>
-      <PostList posts={posts} />
+      <PostList posts={posts} title="전체 포스팅" />
       <StickyWrapper>
         <PostList posts={recommendPosts} title="추천 포스팅" />
       </StickyWrapper>

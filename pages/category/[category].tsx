@@ -1,3 +1,5 @@
+import Head from "next/head";
+
 import CategoryMain from "../../container/pages/CategoryMain/CategoryMain";
 
 import { Post } from "../../interface/CommonTypes";
@@ -7,8 +9,16 @@ import { getSortedPostsData } from "../../lib/posts";
 
 import { getCategoryList } from "../../utils/post";
 
-const Category = (props) => {
-  return <CategoryMain {...props} />;
+const Category = (props: any) => {
+  return (
+    <>
+      <Head>
+        <title>Acidlog | Category</title>
+        <link rel="icon" href="/favicon.png" />
+      </Head>
+      <CategoryMain {...props} />
+    </>
+  );
 };
 
 export default Category;

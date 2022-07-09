@@ -5,13 +5,13 @@ import {
   CategoryCardWrapper,
 } from "./CatergoryCardStyle";
 
-import useCategoryItem from "./useCategoryItem";
+import useCategoryCard from "./useCategoryCard";
 
 import { Category } from "../../../interface/CommonTypes";
 
 import { URL } from "../../../lib/config/urlConfig";
 
-const CategoryItem = ({
+const CategoryCard = ({
   tag,
   title,
   thumbnail,
@@ -19,7 +19,7 @@ const CategoryItem = ({
   infoBackground,
   ...restProps
 }: Category) => {
-  const { goCategory } = useCategoryItem(tag);
+  const { goCategory } = useCategoryCard(tag);
 
   return (
     <CategoryCardWrapper onClick={goCategory} {...restProps}>
@@ -34,4 +34,4 @@ const CategoryItem = ({
   );
 };
 
-export default CategoryItem;
+export default CategoryCard;
