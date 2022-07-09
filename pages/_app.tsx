@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { ThemeProvider } from "@emotion/react";
 
-import theme from "../styles/theme";
+import theme from "../styles/Theme";
 import globalStyle from "../styles/GlobalStyle";
 
 import Layout from "../container/layout/LayoutMain/LayoutMain";

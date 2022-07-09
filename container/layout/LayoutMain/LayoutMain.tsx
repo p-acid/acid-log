@@ -2,7 +2,6 @@ import { FC } from "react";
 import { useRouter } from "next/router";
 
 import Navigation from "../Navigation/Navigation";
-import Footer from "../../../components/Footer";
 
 import { MainContent } from "./LayoutMainStyle";
 
@@ -15,7 +14,6 @@ const LayoutMain: FC<LayoutMainProps> = ({ children }) => {
     <>
       <Navigation />
       <MainContent path={router.pathname}>{children}</MainContent>
-      <Footer />
     </>
   );
 };
