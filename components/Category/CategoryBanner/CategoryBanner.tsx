@@ -1,10 +1,37 @@
-import { Category } from "../../../interface/CommonTypes";
+import {
+  CategoryBannerDescription,
+  CategoryBannerInfo,
+  CategoryBannerSubWrapper,
+  CategoryBannerThumbnail,
+  CategoryBannerTitle,
+  CategoryBannerWrapper,
+} from "./CategoryBannerStyle";
+import { CategoryCount } from "../CategoryCard/CatergoryCardStyle";
 
-const CategoryBanner = (categoryData: Category) => {
+import { Category } from "../../../interface/CommonTypes";
+import { URL } from "../../../lib/config/urlConfig";
+
+type CategoryBannerProps = Category & { postCount: number };
+
+const CategoryBanner = ({
+  title,
+  thumbnail,
+  description,
+  infoBackground,
+  postCount,
+}: CategoryBannerProps) => {
   return (
-    <div>
-      <span>CategoryBanner</span>
-    </div>
+    <CategoryBannerWrapper>
+      <CategoryBannerThumbnail src={`${URL.IMAGE.CATEGORY}/${thumbnail}`} />
+
+      <CategoryBannerInfo $infoBackground={infoBackground}>
+        <CategoryBannerTitle>{title}</CategoryBannerTitle>
+        <CategoryBannerSubWrapper>
+          <CategoryBannerDescription>{description}</CategoryBannerDescription>
+          <CategoryCount>포스팅 {postCount}개</CategoryCount>
+        </CategoryBannerSubWrapper>
+      </CategoryBannerInfo>
+    </CategoryBannerWrapper>
   );
 };
 

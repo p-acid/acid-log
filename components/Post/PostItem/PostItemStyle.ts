@@ -9,6 +9,10 @@ export const PostItemWrapper = styled.li`
     transform: translateY(-4px);
     box-shadow: 0 10px 8px ${({ theme }) => theme.colors.black_10};
   }
+
+  &:hover > div > p {
+    color: ${({ theme }) => theme.colors.teal_blue_dark_2};
+  }
 `;
 
 export const PostThumbnail = styled.img`
@@ -29,11 +33,12 @@ export const PostTitle = styled.p`
   font-weight: 700;
   word-break: keep-all;
   white-space: pre-line;
+  transition: 0.3s;
 
   ${({ theme }) => theme.typography.display_sm}
 `;
 
-export const PostDescription = styled.p`
+export const PostDescription = styled.span`
   color: ${({ theme }) => theme.colors.black_50};
   font-weight: 400;
   word-break: keep-all;
@@ -42,7 +47,7 @@ export const PostDescription = styled.p`
   ${({ theme }) => theme.typography.text_md}
 `;
 
-export const PostDate = styled.p`
+export const PostDate = styled.span`
   color: ${({ theme }) => theme.colors.black_40};
   font-weight: 300;
 

@@ -10,7 +10,7 @@ export const CATEGORIES = {
     tag: "svelte",
     title: "스벨트 시리즈",
     description:
-      "핫하디 핫한 스벨트를 공식 홈페이지 튜토리얼과 함께 진행합니다.",
+      "아직도 스벨트 맛을 못 봤다구요? \n리액트와는 다른 매력이 있는 스벨트를 공식 홈페이지 튜토리얼과 함께 진행해봅시다!",
     thumbnail: "svelte_logo.png",
     infoBackground: "orange",
   },

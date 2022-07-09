@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const CatergoryCardWrapper = styled.li`
+export const CategoryCardWrapper = styled.li`
   display: flex;
   flex-direction: column;
   border-radius: ${({ theme }) => theme.figure * 4}px;

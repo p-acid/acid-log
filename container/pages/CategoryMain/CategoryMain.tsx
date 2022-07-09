@@ -1,6 +1,7 @@
 import CategoryBanner from "../../../components/Category/CategoryBanner/CategoryBanner";
 
 import { Category, Post } from "../../../interface/CommonTypes";
+import { CategoryMainWrapper } from "./CategoryMainStyle";
 
 interface CategoryMainProps {
   filteredPostList: Post[];
@@ -11,7 +12,11 @@ const CategoryMain = ({
   filteredPostList,
   categoryData,
 }: CategoryMainProps) => {
-  return <CategoryBanner {...categoryData} />;
+  return (
+    <CategoryMainWrapper>
+      <CategoryBanner {...categoryData} postCount={filteredPostList.length} />
+    </CategoryMainWrapper>
+  );
 };
 
 export default CategoryMain;
