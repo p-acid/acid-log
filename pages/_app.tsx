@@ -4,7 +4,7 @@ import { ThemeProvider } from "@emotion/react";
 import theme from "../styles/Theme";
 import globalStyle from "../styles/GlobalStyle";
 
-import Layout from "../components/container/layout/LayoutMain/LayoutMain";
+import Layout from "../container/layout/LayoutMain/LayoutMain";
 
 const myApp = ({ Component, pageProps }) => {
   return (

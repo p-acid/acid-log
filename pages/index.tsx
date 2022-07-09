@@ -2,7 +2,7 @@ import Head from "next/head";
 
 import { getSortedPostsData } from "../lib/posts";
 
-import HomeMain from "../components/container/pages/HomeMain/HomeMain";
+import HomeMain from "../container/pages/HomeMain/HomeMain";
 
 export default function Home({ allPostsData }) {
   return (

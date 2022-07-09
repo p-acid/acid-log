@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ROUTES } from "../../../../lib/config/routeConfig";
+import { ROUTES } from "../../../lib/config/routeConfig";
 import {
   NavigationSubWrapper,
   NavigationWrapper,

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import Anchor from "../../../common/Link/Anchor";
+import Anchor from "../../../components/common/Link/Anchor";
 
 export const NavigationWrapper = styled.nav`
   display: flex;
