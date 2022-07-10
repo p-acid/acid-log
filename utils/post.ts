@@ -21,9 +21,9 @@ export const getCategoryPosts = (posts: Post[]): Category[] => {
 };
 
 export const getCategoryList = () => {
-  return Object.keys(CATEGORIES).map((category) => ({
+  return Object.keys(CATEGORIES).map((categoryId) => ({
     params: {
-      category,
+      categoryId,
     },
   }));
 };
