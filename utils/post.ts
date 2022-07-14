@@ -77,7 +77,7 @@ export async function getPostData(postId) {
   const matterResult = matter(fileContents);
 
   const processedContent = await remark()
-    .use(remarkHtml)
+    .use(remarkHtml as any)
     .process(matterResult.content);
 
   const processedToc = await remark()
