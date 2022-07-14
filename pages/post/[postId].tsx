@@ -1,9 +1,28 @@
-const Post = () => {
-  return (
-    <div>
-      <span>Post</span>
-    </div>
-  );
+import PostMain from "../../container/pages/PostMain/PostMain";
+import { getPostData } from "../../utils/post";
+import { getAllPostPaths, getAllPosts } from "../../utils/post";
+
+const Post = (props: any) => {
+  return <PostMain {...props} />;
 };
 
 export default Post;
+
+export async function getStaticPaths() {
+  const allPostsList = getAllPostPaths();
+
+  return {
+    paths: allPostsList,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const postData = await getPostData(params.postId);
+
+  return {
+    props: {
+      postData,
+    },
+  };
+}

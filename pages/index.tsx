@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import { getSortedPostsData } from "../lib/posts";
+import { getAllPosts } from "../utils/post";
 
 import HomeMain from "../container/pages/HomeMain/HomeMain";
 
@@ -17,7 +17,7 @@ export default function Home({ allPostsData }) {
 }
 
 export async function getServerSideProps() {
-  const allPostsData = getSortedPostsData();
+  const allPostsData = getAllPosts();
   return {
     props: {
       allPostsData,

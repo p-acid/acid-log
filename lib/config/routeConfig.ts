@@ -1,6 +1,6 @@
 export const ROUTES = {
   MAIN: "/",
-  POSTS: "/posts",
+  POSTS: "/post",
   LOG: "/log",
   ABOUT: "/about",
   CATEGORY: "/category",

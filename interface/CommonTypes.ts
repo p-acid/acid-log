@@ -28,3 +28,14 @@ export interface Category {
     | "bronze"
     | "tiffany";
 }
+
+export interface PostMeta {
+  contentHtml: string;
+  date: string;
+  description: string;
+  postId: string;
+  tags: string[];
+  thumbnail: string;
+  title: string;
+  tocHtml: string;
+}

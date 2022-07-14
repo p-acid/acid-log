@@ -1,0 +1,53 @@
+import styled from "@emotion/styled";
+
+export const PostThumbnailWrapper = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+export const PostThumbnailMask = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+`;
+
+export const PostThumbnail = styled.img`
+  padding-top: ${({ theme }) => theme.figure * 8}px;
+  width: 100%;
+  max-height: ${({ theme }) => theme.figure * 80}px;
+  object-fit: cover;
+`;
+
+export const PostInfoWrapper = styled.div`
+  position: absolute;
+  bottom: 7%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${({ theme }) => theme.figure / 2}px;
+  transform: translateX(-50%);
+  width: fit-content;
+`;
+
+export const PostTitle = styled.h1`
+  padding-bottom: ${({ theme }) => theme.figure * 3}px;
+  color: ${({ theme }) => theme.colors.white};
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
+
+  ${({ theme }) => theme.typography.display_md}
+`;
+
+export const PostDescription = styled.p`
+  color: ${({ theme }) => theme.colors.white_90};
+  font-weight: ${({ theme }) => theme.typography.weight.regular};
+
+  ${({ theme }) => theme.typography.text_md}
+`;
+export const PostDate = styled.p`
+  color: ${({ theme }) => theme.colors.white_80};
+  font-weight: ${({ theme }) => theme.typography.weight.regular};
+
+  ${({ theme }) => theme.typography.text_xs}
+`;

@@ -7,9 +7,7 @@ import useHomeMain from "./useHomeMain";
 import CategoryList from "../../../components/Category/CategoryList/CategoryList";
 import CategoryCard from "../../../components/Category/CategoryCard/CategoryCard";
 
-export interface HomeMainProps {
-  posts: Post[];
-}
+import { HomeMainProps } from "../../containerType";
 
 const HomeMain = ({ posts }: HomeMainProps) => {
   const { recommendPosts, categoryList } = useHomeMain(posts);
