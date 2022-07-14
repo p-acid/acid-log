@@ -5,9 +5,7 @@ import CategoryMain from "../../container/pages/CategoryMain/CategoryMain";
 import { Post } from "../../interface/CommonTypes";
 import { CATEGORIES } from "../../lib/config/postConfig";
 
-import { getSortedPostsData } from "../../lib/posts";
-
-import { getCategoryPaths } from "../../utils/post";
+import { getAllPosts, getCategoryPaths } from "../../utils/post";
 
 const Category = (props: any) => {
   return (
@@ -33,7 +31,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const allPostsData = getSortedPostsData();
+  const allPostsData = getAllPosts();
   const filteredPostList = allPostsData.filter((post: Post) =>
     post.tags.includes(params.categoryId)
   );
