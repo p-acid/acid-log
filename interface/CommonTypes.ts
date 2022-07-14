@@ -30,12 +30,12 @@ export interface Category {
 }
 
 export interface PostMeta {
-  contentHtml: string;
   date: string;
   description: string;
   postId: string;
   tags: string[];
   thumbnail: string;
   title: string;
+  contentHtml: string;
   tocHtml: string;
 }

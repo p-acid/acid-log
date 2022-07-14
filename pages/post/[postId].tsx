@@ -1,6 +1,6 @@
 import PostMain from "../../container/pages/PostMain/PostMain";
 import { getPostData } from "../../utils/post";
-import { getAllPostPaths, getAllPosts } from "../../utils/post";
+import { getAllPostPaths } from "../../utils/post";
 
 const Post = (props: any) => {
   return <PostMain {...props} />;
