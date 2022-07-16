@@ -3,9 +3,8 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import * as remarkHtml from "remark-html";
-import remarkNormalizeHeadings from "remark-normalize-headings";
 
-import { Category, Post, PostMeta } from "../interface/CommonTypes";
+import { Category, Post } from "../interface/CommonTypes";
 
 import { CATEGORIES } from "../lib/config/postConfig";
 
@@ -70,7 +69,7 @@ export const getCategoryPaths = () => {
   }));
 };
 
-export async function getPostData(postId) {
+export async function getPostData(postId: string) {
   const fullPath = path.join(postRoute, `${postId}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
@@ -80,21 +79,11 @@ export async function getPostData(postId) {
     .use(remarkHtml as any)
     .process(matterResult.content);
 
-  const processedToc = await remark()
-    .use(remarkNormalizeHeadings)
-    .process(matterResult.content);
-
   const contentHtml = processedContent.toString();
-  const tocHtml = processedToc.toString();
 
   return {
     postId,
     contentHtml,
-    tocHtml,
     ...matterResult.data,
   };
-}
-
-function html(html: any) {
-  throw new Error("Function not implemented.");
 }

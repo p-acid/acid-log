@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Post, PostMeta } from "../interface/CommonTypes";
+import { Log, Post, PostMeta } from "../interface/CommonTypes";
 
 export interface HomeMainProps {
   posts: Post[];
@@ -11,4 +11,8 @@ export interface LayoutMainProps {
 
 export interface PostMainProps {
   postData: PostMeta;
+}
+
+export interface LogMainProps {
+  allLogs: Log[];
 }

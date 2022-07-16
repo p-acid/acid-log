@@ -21,7 +21,7 @@ import { getEachDate } from "../../../utils/date";
 
 const PostMain = ({ postData }: PostMainProps) => {
   const { query } = useRouter();
-  const { title, thumbnail, date, description, tocHtml } = postData;
+  const { title, thumbnail, date, description, contentHtml } = postData;
 
   const [year, month, day] = getEachDate(new Date(date));
 
@@ -40,7 +40,10 @@ const PostMain = ({ postData }: PostMainProps) => {
       </PostThumbnailWrapper>
       <PostMainContentWrapper>
         <PostMainContent>
-          <ReactMarkdown children={tocHtml} components={SyntaxStyler as any} />
+          <ReactMarkdown
+            children={contentHtml}
+            components={SyntaxStyler as any}
+          />
         </PostMainContent>
       </PostMainContentWrapper>
     </div>

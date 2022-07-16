@@ -29,13 +29,15 @@ export interface Category {
     | "tiffany";
 }
 
-export interface PostMeta {
-  date: string;
-  description: string;
+export interface PostMeta extends Post {
   postId: string;
-  tags: string[];
-  thumbnail: string;
-  title: string;
   contentHtml: string;
   tocHtml: string;
+}
+
+export interface Log {
+  id: string;
+  title: string;
+  date: string;
+  contentHtml: string;
 }
