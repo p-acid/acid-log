@@ -120,6 +120,11 @@ export const UnorderedList = styled.ul`
   list-style: inside;
 
   ${({ theme }) => theme.typography.text_lg}
+
+  ul, ol {
+    margin-top: ${({ theme }) => theme.figure}px;
+    margin-left: ${({ theme }) => theme.figure * 2}px;
+  }
 `;
 
 export const OrderedList = styled.ol`
@@ -131,4 +136,9 @@ export const OrderedList = styled.ol`
   list-style: inside;
 
   ${({ theme }) => theme.typography.text_lg}
+
+  ul, ol {
+    margin-top: ${({ theme }) => theme.figure}px;
+    margin-left: ${({ theme }) => theme.figure * 2}px;
+  }
 `;
