@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import ReactMarkdown from "react-markdown";
 
 import {
   PostDate,
@@ -11,9 +12,15 @@ import {
 } from "./PostMainStyle";
 
 import { PostMainProps } from "../../containerType";
+import SyntaxStyler from "./SyntaxStyler/SyntaxStyler";
 
 import { URL } from "../../../lib/config/urlConfig";
 import { getEachDate } from "../../../utils/date";
+
+import {
+  PostMainContent,
+  PostMainContentWrapper,
+} from "./SyntaxStyler/SyntaxStylerStyle";
 
 const PostMain = ({ postData }: PostMainProps) => {
   const { query } = useRouter();
@@ -34,7 +41,11 @@ const PostMain = ({ postData }: PostMainProps) => {
           <PostDate>{`${year}년 ${month}월 ${day}일`}</PostDate>
         </PostInfoWrapper>
       </PostThumbnailWrapper>
-      <div>{tocHtml}</div>
+      <PostMainContentWrapper>
+        <PostMainContent>
+          <ReactMarkdown children={tocHtml} components={SyntaxStyler as any} />
+        </PostMainContent>
+      </PostMainContentWrapper>
     </div>
   );
 };

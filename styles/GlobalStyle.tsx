@@ -140,6 +140,9 @@ const globalStyle = (
         border: 0;
         outline: none;
       }
+      code {
+        font-family: Fira Code, monospace;
+      }
     `}
   />
 );

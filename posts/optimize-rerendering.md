@@ -20,8 +20,6 @@ thumbnail: "thumbnail.png"
 
 그간 TIL에 간단히 작성한 **최적화**와 관련된 내용들이 있는데요, 아직 한참 멀었겠지만 리액트 사용에 익숙해지는 과정에서 자연스럽게 최적화라는 부분을 신경쓰게 되었던 것 같습니다. 이렇게 말했지만 그리 거창한 내용도 아니고, 단지 **리렌더링 한 번 더 줄이기**라는 하나의 주제를 갖고 몇 가지 기본적인 내용에 대해 한 번 정리해보고자 합니다.
 
-<br/>
-
 # 리액트 성능 최적화 ⚙️
 
 ---
@@ -43,8 +41,6 @@ thumbnail: "thumbnail.png"
 > 리액트 Hook에 대한 내용은 리액트 공식 문서에서 제공하는 [Hook API Reference](https://ko.reactjs.org/docs/hooks-reference.html)에서 확인하실 수 있습니다.
 
 몇 가지 예제를 통해 이를 확인해보겠습니다.
-
-<br/>
 
 # React.memo를 통해 컴포넌트 상태 기억하기 🗒️
 
@@ -81,8 +77,6 @@ const OptimizedInput = memo(({ inputValue, name }: InputProps) => {
 ### 메모이징 후
 
 ![comment_rerender_before](/images/posts/optimize-rerendering/after_memorize.gif)
-
-<br/>
 
 # useRef를 통해 값 핸들링 하기 ✔️
 
@@ -182,8 +176,6 @@ InputField.displayName = "InputField";
 export default memo(InputField);
 ```
 
-<br/>
-
 # useMemo와 useCallback 활용하기 🖊️
 
 ---
@@ -211,8 +203,6 @@ const handleInputValue = useCallback(
 앞의 `React.memo` 예시에서 `OptimizedForm` 의 경우, 위와 같이 `useCallback` 으로 감싸져 있으며 첫 번째 인자로 **메모이징 할 함수**를, 두 번째 인자로는 **의존성 배열**을 받습니다. 그리고 해당 의존성 배열에 추가된 요소들이 변경될 때마다 **변화를 감지하여 함수를 재생성**합니다.
 
 위 경우 함수 내에 **`setState` 함수**를 포함하는데, 이때 `state` 값을 직접 가져와 변경 값을 할당하는 것보다 `setState` 함수를 콜백 형식으로 작성하여 받는 인자인 **`prev` 를 통해 변경된 값을 전달**하면 의존성 배열로 빈 배열을 전달하여 `useCallback` 을 더 효과적으로 사용할 수 있습니다.
-
-<br/>
 
 # 마치며
 

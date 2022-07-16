@@ -1,7 +1,13 @@
 import styled from "@emotion/styled";
 
+import { ROUTES } from "../../../lib/config/routeConfig";
+
 export const MainContent = styled.div<{ path: string }>`
-  display: flex;
-  justify-content: center;
-  gap: ${({ theme }) => theme.figure * 10}px;
+  ${({ theme, path }) =>
+    !path.includes(ROUTES.POSTS) &&
+    `
+    display: flex;
+    justify-content: center;
+    gap: ${theme.figure * 10}px;
+  `}
 `;

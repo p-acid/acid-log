@@ -12,8 +12,6 @@ thumbnail: "nextjs_logo.png"
 
 **Next.js**는 Node.js 기반으로 구축된 오픈 소스 개발 프레임워크로, 공식 문서에서는 짧게 프로덕션을 위한 리액트 프레임워크라고 정의되어있다. Next.js와 관련된 개념 중 <strong>SSR(Server-Side Rendering)</strong>에 대한 내용이 자주 나오는데, 이에 대한 내용을 간단히 알아보자.
 
-</br>
-
 ## SSR(Server-Side Rendering)
 
 ---
@@ -21,8 +19,6 @@ thumbnail: "nextjs_logo.png"
 **서버 측 렌더링**은 말 그대로 **서버 측에서 렌더링을 진행하는 것**이다. 렌더링은 간단하게 말해 서버에서 받은 내용을 브라우저 화면에 반영하는 것이라고 할 수 있는데 SSR의 경우 이를 서버 측에서 진행하는 것이고 반대 의미를 갖는 <strong>CSR(Client-Side Rendering)</strong>은 클라이언트 측에서 진행하는 것을 의미한다.
 
 리액트에 SSR을 적용하면 <strong>검색엔진 최적화(SEO)</strong>와 초기 렌더링 성능 개선을 이점으로 가질 수 있다.
-
-</br>
 
 # 공식 문서 따라가기
 
@@ -50,13 +46,9 @@ npm run dev
 
 ![](https://user-images.githubusercontent.com/87939521/146668038-1b119b34-2a61-4bdd-a7d0-1bec869cf681.png)
 
-</br>
-
 다음과 같은 화면이 렌더링 되면 정상으로 작동하는 것이다.
 
 간단히 헤더 텍스트를 수정하고 저장하면 새로고침을 진행하지 않아도 편집 사항에 대해 즉각적인 반영이 이루어진다. 해당 기능은 Next.js의 **[Fast Refresh](https://nextjs.org/docs/basic-features/fast-refresh)** 기능을 통해 가능하다고 한다.
-
-</br>
 
 ## 라우팅
 
@@ -84,8 +76,6 @@ export default firstPost;
 이후 해당 루트로 진입하면 다음과 같은 화면이 반영되며 라우팅이 정상적으로 작동하는 것을 확인할 수 있다.
 
 ![](https://user-images.githubusercontent.com/87939521/146669033-60541bf1-257a-4ace-8e68-aca0ef46cb01.png)
-
-</br>
 
 ### 링크 컴포넌트
 
@@ -118,8 +108,6 @@ import Link from "next/link";
 
 ![](https://user-images.githubusercontent.com/87939521/146669980-e0762ce5-70e1-4ae4-af45-7fe56c873461.gif)
 
-</br>
-
 Next.js에서 `Link` 컴포넌트는 <strong>client-side navigation</strong>을 가능하게 한다. client-side navigation에 대해 이해하고자 공식 문서와 블로그를 참고하여 이해한 내용은 다음과 같다.
 
 - Next.js는 <strong>코드 스플리팅(code splitting)</strong>을 진행하여 각 페이지에서 필요한 내용만 로드하기 때문에, 홈페이지가 렌더링될 때 다른 페이지의 코드를 요청하지 않는다.
@@ -129,8 +117,6 @@ Next.js에서 `Link` 컴포넌트는 <strong>client-side navigation</strong>을 
   - prefetching에 대한 여부를 `prefetch: false` 를 통해 비활성화 할 수도 있다.
 
 결론적으로, 이러한 기능을 통해 애플리케이션을 자동으로 최적화한다는 것이 결론이며 별도의 라우팅 라이브러리를 필요로 하지 않는다.
-
-</br>
 
 ## 정적 데이터와 메타데이터 및 CSS
 
@@ -150,8 +136,6 @@ Next.js에서 정적 데이터는 `public` 디렉토리를 통해 접근 가능�
 
 이러한 부분을 Next.js에서는 `Image` 컴포넌트를 통해 해결할 수 있다.
 
-</br>
-
 ### `Image` 컴포넌트
 
 ---
@@ -170,8 +154,6 @@ const YourComponent = () => (
   />
 );
 ```
-
-</br>
 
 ## 메타데이터 변경
 
@@ -206,8 +188,6 @@ export default function FirstPost() {
 }
 ```
 
-</br>
-
 ## CSS 스타일링
 
 ---
@@ -216,15 +196,11 @@ Next.js에는 [styled-jsx](https://github.com/vercel/styled-jsx)라는 라이브
 
 본인은 **styled-component**를 활용할 예정이라 [CSS-in-CSS](https://nextjs.org/learn/basics/assets-metadata-css/layout-component)을 활용할 경우 다음 링크를 참조하자.
 
-</br>
-
 ## 사전 렌더링 및 데이터 요청
 
 ---
 
 Next.js는 모든 페이지를 <strong>사전 렌더링(pre-rendering)</strong>을 진행하는데, 이러한 사전 렌더링은 **더 나은 성능**과 **SEO**를 적용할 수 있는 장점이 있다. 여기서 말하는 사전 렌더링에 대해 간단히 알아보자.
-
-</br>
 
 ### 사전 렌더링
 
@@ -234,14 +210,11 @@ Next.js는 모든 페이지를 <strong>사전 렌더링(pre-rendering)</strong>�
 
 ![](https://nextjs.org/static/images/learn/data-fetching/no-pre-rendering.png)
 ![](https://nextjs.org/static/images/learn/data-fetching/pre-rendering.png)
-</br>
 
 기존 리액트의 CSR 방식은 번들링 된 자바스크립트를 클라이언트 단에서 렌더링을 담당하여 진행하기에 애플리케이션은 초기에 아무 것도 렌더링 하지 않는다. 하지만 Next.js의 경우 기존에 사전 렌더링을 진행하여 HTML을 미리 생성해놓고, 상호 작용을 위한 부분이 존재한다면 자바스크립트를 별도로 로드한다. 그리고 Next.js에는 **Static-Generation**과 **Server-Side Rendering**의 두 가지 사전 렌더링 형식이 있다.
 
 ![](https://nextjs.org/static/images/learn/data-fetching/static-generation.png)
 ![](https://nextjs.org/static/images/learn/data-fetching/server-side-rendering.png)
-
-</br>
 
 - Static-Generation(권장): HTML은 **빌드 시**에 생성되고 요청마다 재사용된다.
 - Server-Side Rendering: HTML은 **각 요청**에 대해 생성된다.
@@ -260,16 +233,12 @@ Next.js를 활용하면 각 페이지마다 <strong>렌더링 방식을 선택�
 
 이어서 데이터 유무에 따른 Static-Generation에 대해 알아보자.
 
-</br>
-
 ### Static-Generation(정적 생성)
 
 ---
 
 ![](https://nextjs.org/static/images/learn/data-fetching/static-generation-without-data.png)
 ![](https://nextjs.org/static/images/learn/data-fetching/static-generation-with-data.png)
-
-</br>
 
 **외부 데이터가 필요 없는 경우**엔 앱이 **빌드될 때** 자동으로 **정적 생성**을 한다. 그러나 외부 데이터 없이 HTML 렌더링을 진행할 수 없는 경우가 있는데, 이때 Next.js는 **데이터를 사용한 정적 생성**을 지원한다.
 
@@ -324,8 +293,6 @@ slug: home
 ```
 
 이제 해당 마크다운 데이터를 `getStaticProps()` 를 통해 불러와 `title` , `date` , 파일 이름에 대한 내용을 가져오고 데이터를 나열하면 된다. 그러기 위해 파일 시스템에서 데이터를 가져오기 위한 라이브러리를 생성한다.
-
-</br>
 
 ```javascript
 import fs from "fs"; // 자바스크립트의 파일 시스템 라이브러리
@@ -383,8 +350,6 @@ export function getSortedPostsData() {
     - `process` 는 `node` 전역 객체이며 `cwd()` 는 노드가 실행 중인 위치를 반환한다.
     - `__dirname` 은 현재 스크립트의 디렉토리 이름이다.
 
-</br>
-
 코드 흐름에 따른 전체적인 프로세스는 다음과 같다.
 
 - `posts` 디렉토리의 경로를 탐색하여 **디렉토리 내 파일 이름 리스트 받아오기**
@@ -408,13 +373,9 @@ export async function getStaticProps() {
 
 ![](https://user-images.githubusercontent.com/87939521/147207056-6b4f562e-0383-46ec-acdd-3d8c4e1e1f0d.png)
 
-</br>
-
 이렇게 반환된 리스트를 활용하여 뷰포트에 게시물 목록을 렌더링 할 수 있다.
 
 그리고 앞에서 언급했듯이 요청에 대응하여 데이터를 가져오는 경우 정적 생성은 좋은 방안이 아니기에 **서버 측 렌더링**을 시도하는 것이 좋을 수 있다. 그렇다면 서버 측 렌더링을 시도하는 방법에 대해 알아보자.
-
-</br>
 
 ### Server-Side Rendering(서버 측 렌더링)
 
@@ -438,8 +399,6 @@ export async function getServerSideProps(context) {
 
 - 이에 대한 이유를 번역하자면, 서버가 모든 요청에 대해 결과를 계산하고, 추가 구성 없이 CDN에서 결과를 캐시할 수 없기 때문에 TTFB(Time to First byte)는 `getStaticProps` 보다 느리다고 한다.
 
-</br>
-
 ### Client-Side Rendering(클라이언트 측 렌더링)
 
 ---
@@ -447,8 +406,6 @@ export async function getServerSideProps(context) {
 사전 렌더링이 필요 없는 경우, **클라이언트 측 렌더링**을 고려해 볼 수도 있다. 이때 정적 생성과 클라이언트 측 데이터 요청이 함께 사용된다.
 
 ![](https://nextjs.org/static/images/learn/data-fetching/client-side-rendering.png)
-
-</br>
 
 - **외부 데이터가 필요 없는 부분**을 정적 생성(사전 렌더링)한다.
 - 페이지가 로드되면 **클라이언트 측**에서 **자바스크립트**를 통해 외부 데이터를 가져와 나머지 부분을 채운다.
@@ -458,8 +415,6 @@ export async function getServerSideProps(context) {
 - 사용자 별로 나타나는 비공개 페이지(Private page)
 - SEO 적용이 필요 없는 페이지
 - 사전 렌더링이 필요 없는 페이지
-
-</br>
 
 ### SWR
 
@@ -481,8 +436,6 @@ function Profile() {
 
 SWR Hook은 위와 같이 활용할 수 있다.
 
-</br>
-
 ## 동적 라우팅
 
 ---
@@ -490,8 +443,6 @@ SWR Hook은 위와 같이 활용할 수 있다.
 이제 블로그 내 개별 페이지를 만들기 위한 **동적 라우팅**에 대한 내용을 알아보자. 페이지 URL을 통해 블로그 내 각 게시물들의 데이터를 불러올 것이다.
 
 ![](https://nextjs.org/static/images/learn/dynamic-routes/page-path-external-data.png)
-
-</br>
 
 블로그에서 각 포스팅에 대한 페이지를 렌더링한다면 다음과 같이 구현할 수 있다.
 
@@ -571,9 +522,9 @@ export default function Post({ postData }) {
   return (
     <Layout>
       {postData.title}
-      <br />
+
       {postData.id}
-      <br />
+
       {postData.date}
     </Layout>
   );
@@ -583,8 +534,6 @@ export default function Post({ postData }) {
 이렇게 진행하면 동적 라우팅 성공적으로 생성될 것이다. 위 과정을 **다이어그램**으로 표현한 이미지를 보면서 다시 한 번 되짚자.
 
 ![](https://nextjs.org/static/images/learn/dynamic-routes/how-to-dynamic-routes.png)
-
-</br>
 
 ### 마크다운 렌더링
 
@@ -647,18 +596,16 @@ export default function Post({ postData }) {
   return (
     <Layout>
       {postData.title}
-      <br />
+
       {postData.id}
-      <br />
+
       {postData.date}
-      <br />
+
       <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
     </Layout>
   );
 }
 ```
-
-</br>
 
 ### 페이지 다듬기
 
@@ -727,8 +674,6 @@ export default function Post({ postData }) {
 ```
 
 위 진행 과정을 마찬가지로 `index.js` 페이지도 적용한다면 어느 정도 괜찮은 블로그의 구색을 갖춘다.
-
-</br>
 
 # 마무리
 
