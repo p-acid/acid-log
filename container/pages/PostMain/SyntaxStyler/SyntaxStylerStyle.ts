@@ -15,12 +15,12 @@ export const HeadingRow = styled.hr`
   margin: ${({ theme }) => theme.figure}px 0
     ${({ theme }) => theme.figure * 3}px;
   border: none;
-  border-top: 1px solid ${({ theme }) => theme.colors.black_50};
+  border-top: 1px solid ${({ theme }) => theme.colors.black_30};
 `;
 export const HeadingFirst = styled.h1`
   color: ${({ theme }) => theme.colors.gray_blue_40};
   font-weight: ${({ theme }) => theme.typography.weight.medium};
-  margin: ${({ theme }) => theme.figure * 2}px 0;
+  margin: ${({ theme }) => theme.figure * 3}px 0;
 
   ${({ theme }) => theme.typography.display_md};
 `;
@@ -28,14 +28,14 @@ export const HeadingFirst = styled.h1`
 export const HeadingSecond = styled.h2`
   color: ${({ theme }) => theme.colors.gray_blue_40};
   font-weight: ${({ theme }) => theme.typography.weight.medium};
-  margin: ${({ theme }) => theme.figure * 2}px 0;
+  margin: ${({ theme }) => theme.figure * 3}px 0;
 
   ${({ theme }) => theme.typography.display_sm}
 `;
 export const HeadingThird = styled.h3`
   color: ${({ theme }) => theme.colors.gray_blue_40};
   font-weight: ${({ theme }) => theme.typography.weight.medium};
-  margin: ${({ theme }) => theme.figure * 2}px 0;
+  margin: ${({ theme }) => theme.figure * 3}px 0;
 
   ${({ theme }) => theme.typography.display_xs}
 `;
@@ -43,7 +43,7 @@ export const HeadingThird = styled.h3`
 export const HeadingFourth = styled.h4`
   color: ${({ theme }) => theme.colors.gray_blue_40};
   font-weight: ${({ theme }) => theme.typography.weight.medium};
-  margin: ${({ theme }) => theme.figure * 2}px 0;
+  margin: ${({ theme }) => theme.figure * 3}px 0;
 
   ${({ theme }) => theme.typography.text_xl}
 `;
