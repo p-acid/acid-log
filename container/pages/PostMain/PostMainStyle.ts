@@ -45,9 +45,21 @@ export const PostDescription = styled.p`
 
   ${({ theme }) => theme.typography.text_md}
 `;
+
 export const PostDate = styled.p`
   color: ${({ theme }) => theme.colors.white_80};
   font-weight: ${({ theme }) => theme.typography.weight.regular};
 
   ${({ theme }) => theme.typography.text_xs}
+`;
+
+export const PostMainContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: ${({ theme }) => theme.figure * 10}px 0;
+`;
+
+export const PostMainContent = styled.article`
+  max-width: ${({ theme }) => theme.figure * 100}px;
 `;

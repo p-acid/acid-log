@@ -9,6 +9,8 @@ import {
   PostThumbnailMask,
   PostThumbnailWrapper,
   PostTitle,
+  PostMainContent,
+  PostMainContentWrapper,
 } from "./PostMainStyle";
 
 import { PostMainProps } from "../../containerType";
@@ -16,11 +18,6 @@ import SyntaxStyler from "./SyntaxStyler/SyntaxStyler";
 
 import { URL } from "../../../lib/config/urlConfig";
 import { getEachDate } from "../../../utils/date";
-
-import {
-  PostMainContent,
-  PostMainContentWrapper,
-} from "./SyntaxStyler/SyntaxStylerStyle";
 
 const PostMain = ({ postData }: PostMainProps) => {
   const { query } = useRouter();

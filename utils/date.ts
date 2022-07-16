@@ -3,5 +3,5 @@ export const getEachDate = (date: Date) => {
   const month = date.getMonth();
   const year = date.getFullYear();
 
-  return [year, month, day];
+  return [year, month + 1, day];
 };

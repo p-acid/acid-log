@@ -1,16 +1,5 @@
 import styled from "@emotion/styled";
 
-export const PostMainContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: ${({ theme }) => theme.figure * 10}px;
-`;
-
-export const PostMainContent = styled.article`
-  max-width: ${({ theme }) => theme.figure * 100}px;
-`;
-
 export const HeadingRow = styled.hr`
   margin: ${({ theme }) => theme.figure}px 0
     ${({ theme }) => theme.figure * 3}px;
