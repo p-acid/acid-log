@@ -22,6 +22,6 @@ export const LogMainDescription = styled.h1`
 export const LogItemWrapper = styled.main`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.figure * 3}px;
+  gap: ${({ theme }) => theme.figure * 5}px;
   width: 100%;
 `;

@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import * as remarkHtml from "remark-html";
+import { Log } from "../interface/CommonTypes";
 
 const logRoute = path.join(process.cwd(), "logs");
 
@@ -33,5 +34,9 @@ export const getAllLogs = async () => {
     })
   );
 
-  return allLogsData;
+  const sortedLogList = allLogsData.sort(
+    (a: Log, b: Log) => Number(b.id) - Number(a.id)
+  );
+
+  return sortedLogList;
 };
