@@ -1,8 +1,15 @@
 import Head from "next/head";
+import dynamic from "next/dynamic";
 
-import PostMain from "../../container/pages/PostMain/PostMain";
 import { getPostData } from "../../utils/post";
 import { getAllPostPaths } from "../../utils/post";
+
+const DynamicPostMain = dynamic(
+  () => import("../../container/pages/PostMain/PostMain"),
+  {
+    ssr: false,
+  }
+);
 
 const Post = (props: any) => {
   return (
@@ -11,7 +18,7 @@ const Post = (props: any) => {
         <title>Acidlog | {props.postData.title}</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <PostMain {...props} />
+      <DynamicPostMain {...props} />
     </>
   );
 };

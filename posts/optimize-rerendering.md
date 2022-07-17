@@ -3,7 +3,7 @@ title: 리액트 최적화의 기본은 무엇인가
 date: "2022-06-27"
 description: "완벽한 최적화를 위한 코자강의 길"
 tags: ["Optimization", "Re-rendering", "useMemo", "useCallback"]
-thumbnail: "thumbnail.png"
+thumbnail: "thumbnail.gif"
 ---
 
 # 들어가며 🏃

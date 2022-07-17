@@ -18,6 +18,7 @@ export const PostItemWrapper = styled.li`
 export const PostThumbnail = styled.img`
   border-radius: ${({ theme }) => theme.figure * 3}px;
   aspect-ratio: 1/1;
+  object-fit: cover;
   transition: 0.3s;
 `;
 

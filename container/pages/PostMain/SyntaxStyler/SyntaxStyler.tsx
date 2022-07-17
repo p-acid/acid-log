@@ -2,8 +2,8 @@ import { Prism as ReactSyntaxHighlighter } from "react-syntax-highlighter";
 import {
   HeadingFirst,
   Paragraph,
-  ImageWrapper,
   Image,
+  ImageWrapper,
   ImageText,
   HeadingRow,
   BlockQuote,
@@ -68,7 +68,7 @@ const SyntaxStyler = {
   ),
   img: ({ className, alt, ...props }) => (
     <ImageWrapper>
-      <Image className={className} alt={alt} {...props} />
+      <Image className={className} {...props} alt={alt} />
       {alt && <ImageText>{alt}</ImageText>}
     </ImageWrapper>
   ),
