@@ -14,6 +14,7 @@ import {
   Preformatted,
   UnorderedList,
   OrderedList,
+  Strong,
 } from "./SyntaxStylerStyle";
 
 const SyntaxStyler = {
@@ -59,6 +60,11 @@ const SyntaxStyler = {
     <Paragraph className={className} {...props}>
       {children}
     </Paragraph>
+  ),
+  strong: ({ className, children, ...props }) => (
+    <Strong className={className} {...props}>
+      {children}
+    </Strong>
   ),
   img: ({ className, alt, ...props }) => (
     <ImageWrapper>

@@ -45,6 +45,10 @@ export const Paragraph = styled.p`
   ${({ theme }) => theme.typography.text_lg}
 `;
 
+export const Strong = styled.strong`
+  font-weight: ${({ theme }) => theme.typography.weight.medium};
+`;
+
 export const ImageWrapper = styled.div`
   display: flex;
   justify-content: center;

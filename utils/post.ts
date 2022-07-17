@@ -4,9 +4,10 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import * as remarkHtml from "remark-html";
 
-import { Category, Post } from "../interface/CommonTypes";
+import { Category, Post, PostMeta } from "../interface/CommonTypes";
 
 import { CATEGORIES } from "../lib/config/postConfig";
+import { differenceInDays } from "date-fns";
 
 const postRoute = path.join(process.cwd(), "posts");
 
@@ -28,7 +29,11 @@ export const getAllPosts = () => {
     };
   });
 
-  return allPostsData;
+  const sortedPostList = allPostsData.sort((a: PostMeta, b: PostMeta) =>
+    differenceInDays(new Date(b.date), new Date(a.date))
+  );
+
+  return sortedPostList;
 };
 
 export const getRecommendedPosts = (posts: Post[], filterList: string[]) => {
