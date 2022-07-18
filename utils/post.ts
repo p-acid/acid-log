@@ -42,14 +42,13 @@ export const getRecommendedPosts = (posts: Post[], filterList: string[]) => {
 
 export const getCategoryPosts = (posts: Post[]): Category[] => {
   return Object.values(CATEGORIES).map(
-    ({ tag, title, thumbnail, infoBackground }) => ({
-      tag,
-      title,
-      thumbnail,
+    ({ tag, infoBackground, ...restProps }) => ({
+      tag: tag,
       infoBackground: infoBackground as Category["infoBackground"],
       postIdList: posts
         .filter(({ tags }) => tags.includes(tag))
         .map((post) => post.id),
+      ...restProps,
     })
   );
 };

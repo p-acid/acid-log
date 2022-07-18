@@ -1,3 +1,4 @@
+import { differenceInDays } from "date-fns";
 import Head from "next/head";
 
 import CategoryMain from "../../container/pages/CategoryMain/CategoryMain";
@@ -32,9 +33,11 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const allPostsData = getAllPosts();
-  const filteredPostList = allPostsData.filter((post: Post) =>
-    post.tags.includes(params.categoryId)
-  );
+  const filteredPostList = allPostsData
+    .filter((post: Post) => post.tags.includes(params.categoryId))
+    .sort((a: Post, b: Post) =>
+      differenceInDays(new Date(a.date), new Date(b.date))
+    );
   const categoryData = CATEGORIES[params.categoryId];
 
   return {

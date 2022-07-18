@@ -14,7 +14,7 @@ const LogMain = ({ allLogs }: LogMainProps) => {
       <LogMainDescription>말 그대로 짧은 기록들을 담습니다</LogMainDescription>
       <LogItemWrapper>
         {allLogs?.map((log) => (
-          <LogItem {...log} />
+          <LogItem key={log.id} {...log} />
         ))}
       </LogItemWrapper>
     </LogMainWrapper>

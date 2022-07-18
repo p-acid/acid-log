@@ -15,9 +15,9 @@ import {
   UnorderedList,
   OrderedList,
   Strong,
-} from "./SyntaxStylerStyle";
+} from "./postSyntaxStylerStyle";
 
-const SyntaxStyler = {
+const postSyntaxStyler = {
   code({ node, inline, className, children, ...props }) {
     const match = /language-(\w+)/.exec(className || "");
     return !inline && match ? (
@@ -99,4 +99,4 @@ const SyntaxStyler = {
   ),
 };
 
-export default SyntaxStyler;
+export default postSyntaxStyler;

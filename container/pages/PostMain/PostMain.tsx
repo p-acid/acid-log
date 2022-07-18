@@ -14,7 +14,7 @@ import {
 } from "./PostMainStyle";
 
 import { PostMainProps } from "../../containerType";
-import SyntaxStyler from "./SyntaxStyler/SyntaxStyler";
+import postSyntaxStyler from "../../../components/Post/postSyntaxStyler/postSyntaxStyler";
 
 import { URL } from "../../../lib/config/urlConfig";
 import { getEachDate } from "../../../utils/date";
@@ -42,7 +42,7 @@ const PostMain = ({ postData }: PostMainProps) => {
         <PostMainContent>
           <ReactMarkdown
             children={contentHtml}
-            components={SyntaxStyler as any}
+            components={postSyntaxStyler as any}
           />
         </PostMainContent>
       </PostMainContentWrapper>
