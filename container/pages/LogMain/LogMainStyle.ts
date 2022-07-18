@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 
+import { SlideUp } from "../../../lib/animation";
+
 export const LogMainWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -15,6 +17,7 @@ export const LogMainDescription = styled.h1`
   margin-bottom: ${({ theme }) => theme.figure / 2}px;
   font-weight: ${({ theme }) => theme.typography.weight.light};
   color: ${({ theme }) => theme.colors.black_70};
+  animation: ${SlideUp} 2s;
 
   ${({ theme }) => theme.typography.text_xl};
 `;

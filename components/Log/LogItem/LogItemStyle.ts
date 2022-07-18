@@ -1,9 +1,12 @@
 import styled from "@emotion/styled";
 
+import { SlideUp } from "../../../lib/animation";
+
 export const LogItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.figure * 2}px;
+  animation: ${SlideUp} 2s;
 `;
 
 export const LogItemTitle = styled.span`
