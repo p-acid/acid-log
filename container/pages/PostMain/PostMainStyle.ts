@@ -35,6 +35,7 @@ export const PostTitle = styled.h1`
   padding-bottom: ${({ theme }) => theme.figure * 3}px;
   color: ${({ theme }) => theme.colors.white};
   font-weight: ${({ theme }) => theme.typography.weight.medium};
+  text-align: center;
 
   ${({ theme }) => theme.typography.display_md}
 `;
@@ -57,7 +58,8 @@ export const PostMainContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: ${({ theme }) => theme.figure * 10}px 0;
+  padding: ${({ theme }) => theme.figure * 10}px
+    ${({ theme }) => theme.figure * 4}px;
 `;
 
 export const PostMainContent = styled.article`
