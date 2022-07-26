@@ -1,20 +1,27 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
+import Helmet from "../../components/Helmet/Helmet";
 import LogMain from "../../container/pages/LogMain/LogMain";
 
 import { getAllLogs } from "../../utils/log";
 
-const Log = (props: any) => (
-  <>
-    <Head>
-      <title>Acidlog | Log</title>
-      <link rel="icon" href="/favicon.png" />
-      <meta property="og:title" content="Acidlog | Log" />
-      <meta property="og:description" content="짧은 기록 모음" />
-      <meta property="og:image" content="/images/og_image.png" />
-    </Head>
-    <LogMain {...props} />
-  </>
-);
+import { DOMAIN, URL } from "../../lib/config/urlConfig";
+
+const Log = (props: any) => {
+  const { asPath } = useRouter();
+
+  return (
+    <>
+      <Helmet
+        title="Acidlog | Log"
+        description="짧은 기록 모음"
+        image={`${URL.IMAGE.BASE}/og_image.png`}
+        url={asPath ? `${DOMAIN}${asPath}` : DOMAIN}
+      />
+      <LogMain {...props} />
+    </>
+  );
+};
 
 export default Log;
 

@@ -1,34 +1,32 @@
+import { useRouter } from "next/router";
 import { differenceInDays } from "date-fns";
-import Head from "next/head";
 
+import Helmet from "../../components/Helmet/Helmet";
 import CategoryMain from "../../container/pages/CategoryMain/CategoryMain";
 
 import { Post } from "../../interface/CommonTypes";
 
-import { URL } from "../../lib/config/urlConfig";
+import { DOMAIN, URL } from "../../lib/config/urlConfig";
 import { CATEGORIES } from "../../lib/config/postConfig";
 
 import { getAllPosts, getCategoryPaths } from "../../utils/post";
+import { checkGif } from "../../utils/image";
 
 const Category = (props: any) => {
+  const { asPath } = useRouter();
+
   return (
     <>
-      <Head>
-        <title>Acidlog | Category</title>
-        <link rel="icon" href="/favicon.png" />
-        <meta
-          property="og:title"
-          content={`Acidlog | ${props.categoryData.title}`}
-        />
-        <meta
-          property="og:description"
-          content={props.categoryData.description}
-        />
-        <meta
-          property="og:image"
-          content={`${URL.IMAGE.CATEGORY}/${props.categoryData.thumbnail}`}
-        />
-      </Head>
+      <Helmet
+        title={`Acidlog | ${props.categoryData.title}`}
+        description={props.categoryData.description}
+        image={
+          checkGif(props.categoryData.thumbnail)
+            ? `${URL.IMAGE.BASE}/og_image.png`
+            : `${URL.IMAGE.CATEGORY}/${props.categoryData.thumbnail}`
+        }
+        url={asPath ? `${DOMAIN}${asPath}` : DOMAIN}
+      />
       <CategoryMain {...props} />
     </>
   );

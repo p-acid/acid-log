@@ -1,11 +1,12 @@
-import Head from "next/head";
 import dynamic from "next/dynamic";
 
 import { getPostData } from "../../utils/post";
 import { getAllPostPaths } from "../../utils/post";
 
-import { URL } from "../../lib/config/urlConfig";
+import { DOMAIN, URL } from "../../lib/config/urlConfig";
 import { useRouter } from "next/router";
+import Helmet from "../../components/Helmet/Helmet";
+import { checkGif } from "../../utils/image";
 
 const DynamicPostMain = dynamic(
   () => import("../../container/pages/PostMain/PostMain"),
@@ -15,23 +16,20 @@ const DynamicPostMain = dynamic(
 );
 
 const Post = (props: any) => {
-  const { query } = useRouter();
+  const { query, asPath } = useRouter();
 
   return (
     <>
-      <Head>
-        <title>Acidlog | {props.postData.title}</title>
-        <link rel="icon" href="/favicon.png" />
-        <meta
-          property="og:title"
-          content={`Acidlog | ${props.postData.title}`}
-        />
-        <meta property="og:description" content={props.postData.description} />
-        <meta
-          property="og:image"
-          content={`${URL.IMAGE.POSTS}/${query.postId}/${props.postData.thumbnail}`}
-        />
-      </Head>
+      <Helmet
+        title={`Acidlog | ${props.postData.title}`}
+        description={props.postData.description}
+        image={
+          checkGif(props.postData.thumbnail)
+            ? `${URL.IMAGE.BASE}/og_image.png`
+            : `${URL.IMAGE.POSTS}/${query.postId}/${props.postData.thumbnail}`
+        }
+        url={asPath ? `${DOMAIN}${asPath}` : DOMAIN}
+      />
       <DynamicPostMain {...props} />
     </>
   );

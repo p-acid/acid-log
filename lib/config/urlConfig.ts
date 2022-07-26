@@ -1,3 +1,9 @@
+export const DOMAIN = "https://www.acidlog.today";
+
 export const URL = {
-  IMAGE: { POSTS: "/images/posts", CATEGORY: "/images/category" },
+  IMAGE: {
+    BASE: "/images",
+    POSTS: "/images/posts",
+    CATEGORY: "/images/category",
+  },
 };
