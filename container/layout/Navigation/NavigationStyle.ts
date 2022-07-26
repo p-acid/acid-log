@@ -13,6 +13,7 @@ export const NavigationWrapper = styled.nav`
   width: 100%;
   z-index: 1000;
   background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: ${({ theme }) => theme.shadow.gray_blue_10_30b};
 `;
 
 export const NavigationSubWrapper = styled.div`
@@ -21,10 +22,16 @@ export const NavigationSubWrapper = styled.div`
 `;
 
 export const NavigationLogo = styled(Anchor)`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.figure}px;
+  letter-spacing: -1px;
+
   em {
     font-weight: 900;
-    color: ${({ theme }) => theme.colors.gray_blue_50};
+    color: ${({ theme }) => theme.colors.black_90};
     font-style: normal;
+    letter-spacing: -1px;
   }
 
   ${({ theme }) => theme.typography.display_sm}
