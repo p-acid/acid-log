@@ -5,6 +5,7 @@ import { getPostData } from "../../utils/post";
 import { getAllPostPaths } from "../../utils/post";
 
 import { URL } from "../../lib/config/urlConfig";
+import { useRouter } from "next/router";
 
 const DynamicPostMain = dynamic(
   () => import("../../container/pages/PostMain/PostMain"),
@@ -14,6 +15,8 @@ const DynamicPostMain = dynamic(
 );
 
 const Post = (props: any) => {
+  const { query } = useRouter();
+
   return (
     <>
       <Head>
@@ -26,7 +29,7 @@ const Post = (props: any) => {
         <meta property="og:description" content={props.postData.description} />
         <meta
           property="og:image"
-          content={`${URL.IMAGE.POSTS}/${props.postData.thumbnail}`}
+          content={`${URL.IMAGE.POSTS}/${query.postId}/${props.postData.thumbnail}`}
         />
       </Head>
       <DynamicPostMain {...props} />
