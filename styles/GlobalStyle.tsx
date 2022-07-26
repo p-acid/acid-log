@@ -91,7 +91,8 @@ const globalStyle = (
         padding: 0;
         border: 0;
         font-size: 100%;
-        font-family: IBM Plex Sans KR, sans-serif;
+        font-family: Gothic A1, sans-serif;
+        letter-spacing: -1px;
         vertical-align: baseline;
       }
       /* HTML5 display-role reset for older browsers */

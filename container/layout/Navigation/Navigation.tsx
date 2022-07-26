@@ -14,10 +14,10 @@ const Navigation = () => {
   return (
     <NavigationWrapper>
       <NavigationLogo href={ROUTES.MAIN}>
-        <Image src={`${URL.IMAGE.BASE}/main_logo.png`} width={25} height={25} />
         <span>
-          <em>ACID</em>LOG
+          <em>애시드.</em>로그
         </span>
+        <Image src={`${URL.IMAGE.BASE}/main_logo.png`} width={32} height={32} />
       </NavigationLogo>
       <NavigationSubWrapper>
         <NavigationAnchor href={ROUTES.LOG}>짧은 기록</NavigationAnchor>

@@ -11,7 +11,7 @@ export const PostItemWrapper = styled.li`
   }
 
   &:hover > div > p {
-    color: ${({ theme }) => theme.colors.teal_blue_dark_2};
+    color: ${({ theme }) => theme.colors.gray_blue_50};
   }
 `;
 

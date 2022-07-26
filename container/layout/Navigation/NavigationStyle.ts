@@ -25,13 +25,11 @@ export const NavigationLogo = styled(Anchor)`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.figure}px;
-  letter-spacing: -1px;
 
   em {
-    font-weight: 900;
+    font-weight: 700;
     color: ${({ theme }) => theme.colors.black_90};
     font-style: normal;
-    letter-spacing: -1px;
   }
 
   ${({ theme }) => theme.typography.display_sm}
