@@ -91,7 +91,7 @@ const globalStyle = (
         padding: 0;
         border: 0;
         font-size: 100%;
-        font-family: Gothic A1, sans-serif;
+        font-family: Noto Sans KR, sans-serif;
         letter-spacing: -1px;
         vertical-align: baseline;
       }

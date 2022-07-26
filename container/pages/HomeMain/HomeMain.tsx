@@ -14,7 +14,7 @@ const HomeMain = ({ posts }: HomeMainProps) => {
 
   return (
     <>
-      <StickyWrapper>
+      <StickyWrapper $type="category">
         <CategoryList
           title="카테고리 별"
           list={categoryList}
@@ -22,7 +22,7 @@ const HomeMain = ({ posts }: HomeMainProps) => {
         />
       </StickyWrapper>
       <PostList posts={posts} title="전체 포스팅" />
-      <StickyWrapper>
+      <StickyWrapper $type="recommend">
         <PostList posts={recommendPosts} title="추천 포스팅" />
       </StickyWrapper>
     </>

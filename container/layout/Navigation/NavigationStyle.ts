@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 import Anchor from "../../../components/common/Link/Anchor";
+import { MAIN_RESPONSIVE } from "../../../lib/config/responsiveConfig";
 
 export const NavigationWrapper = styled.nav`
   display: flex;
@@ -33,8 +34,16 @@ export const NavigationLogo = styled(Anchor)`
   }
 
   ${({ theme }) => theme.typography.display_sm}
+
+  @media screen and (max-width: ${MAIN_RESPONSIVE.XS}px) {
+    ${({ theme }) => theme.typography.text_xl}
+  }
 `;
 
 export const NavigationAnchor = styled(Anchor)`
   ${({ theme }) => theme.typography.text_xl}
+
+  @media screen and (max-width: ${MAIN_RESPONSIVE.XS}px) {
+    ${({ theme }) => theme.typography.text_lg}
+  }
 `;

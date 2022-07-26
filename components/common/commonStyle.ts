@@ -1,11 +1,20 @@
 import styled from "@emotion/styled";
 
+import { MAIN_RESPONSIVE } from "../../lib/config/responsiveConfig";
+
 export const ListWrapper = styled.section`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.figure * 3}px;
   padding: ${({ theme }) => theme.figure * 20}px 0;
-  max-width: ${({ theme }) => theme.figure * 50}px;
+  max-width: ${({ theme }) => theme.figure * 60}px;
+
+  @media screen and (max-width: ${MAIN_RESPONSIVE.SM}px) {
+    padding: ${({ theme }) => theme.figure * 12}px
+      ${({ theme }) => theme.figure * 2}px;
+    width: 100%;
+    max-width: none;
+  }
 `;
 
 export const ListTitle = styled.h2`
