@@ -8,6 +8,9 @@ const Log = (props: any) => (
     <Head>
       <title>Acidlog | Log</title>
       <link rel="icon" href="/favicon.png" />
+      <meta property="og:title" content="Acidlog | Log" />
+      <meta property="og:description" content="짧은 기록 모음" />
+      <meta property="og:image" content="/images/og_image.png" />
     </Head>
     <LogMain {...props} />
   </>

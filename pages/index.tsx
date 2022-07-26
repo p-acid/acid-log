@@ -9,7 +9,9 @@ export default function Home({ allPostsData }) {
     <>
       <Head>
         <title>Acidlog | Main</title>
-        <link rel="icon" href="/favicon.png" />
+        <meta property="og:title" content="Acidlog | Main" />
+        <meta property="og:description" content="개발자 성장 일기" />
+        <meta property="og:image" content="/images/og_image.png" />
       </Head>
       <HomeMain posts={allPostsData} />
     </>
