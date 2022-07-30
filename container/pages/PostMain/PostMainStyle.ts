@@ -64,4 +64,5 @@ export const PostMainContentWrapper = styled.div`
 
 export const PostMainContent = styled.article`
   max-width: ${({ theme }) => theme.figure * 100}px;
+  width: 100%;
 `;

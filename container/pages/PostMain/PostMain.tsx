@@ -26,7 +26,7 @@ const PostMain = ({ postData }: PostMainProps) => {
   const [year, month, day] = getEachDate(new Date(date));
 
   return (
-    <div>
+    <main>
       <PostThumbnailWrapper>
         <PostThumbnailMask />
         <PostThumbnail
@@ -46,7 +46,7 @@ const PostMain = ({ postData }: PostMainProps) => {
           />
         </PostMainContent>
       </PostMainContentWrapper>
-    </div>
+    </main>
   );
 };
 
