@@ -27,4 +27,6 @@ export const LogItemWrapper = styled.main`
   flex-direction: column;
   gap: ${({ theme }) => theme.figure * 5}px;
   width: 100%;
+
+  word-break: keep-all;
 `;
