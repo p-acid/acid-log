@@ -80,7 +80,7 @@ export const ImageWrapper = styled.div`
 
 export const Image = styled.img`
   width: 100%;
-  max-width: ${({ theme }) => theme.figure * 100}px;
+  max-width: ${({ theme }) => theme.figure * 70}px;
 `;
 
 export const ImageText = styled.span`
