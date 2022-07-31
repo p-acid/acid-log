@@ -95,6 +95,12 @@ const globalStyle = (
         letter-spacing: -1px;
         vertical-align: baseline;
       }
+      pre {
+        span {
+          font-family: Fira Code;
+          letter-spacing: 0px;
+        }
+      }
       /* HTML5 display-role reset for older browsers */
       article,
       aside,

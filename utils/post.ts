@@ -91,3 +91,7 @@ export async function getPostData(postId: string) {
     ...matterResult.data,
   };
 }
+
+export const getPostHeadLinkId = (children: string[]) => {
+  return children[0].replace(" ", "-");
+};

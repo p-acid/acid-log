@@ -1,4 +1,7 @@
+import Link from "next/link";
 import { Prism as ReactSyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 import {
   HeadingFirst,
   Paragraph,
@@ -15,7 +18,10 @@ import {
   UnorderedList,
   OrderedList,
   Strong,
+  ListItem,
 } from "./postSyntaxStylerStyle";
+
+import { getPostHeadLinkId } from "../../../utils/post";
 
 const postSyntaxStyler = {
   code({ node, inline, className, children, ...props }) {
@@ -24,7 +30,8 @@ const postSyntaxStyler = {
       <ReactSyntaxHighlighter
         children={String(children).replace(/\n$/, "")}
         language={match[1]}
-        PreTag="div"
+        PreTag="pre"
+        style={oneDark}
         {...props}
       />
     ) : (
@@ -33,70 +40,57 @@ const postSyntaxStyler = {
       </code>
     );
   },
-  hr: ({ className, ...props }) => (
-    <HeadingRow className={className} {...props} />
+  hr: ({ ...props }) => <HeadingRow {...props} />,
+  h1: ({ children, ...props }) => (
+    <Link href={`#${getPostHeadLinkId(children)}`}>
+      <HeadingFirst {...props} id={getPostHeadLinkId(children)}>
+        {children}
+      </HeadingFirst>
+    </Link>
   ),
-  h1: ({ className, children, ...props }) => (
-    <HeadingFirst className={className} {...props}>
-      {children}
-    </HeadingFirst>
+  h2: ({ children, ...props }) => (
+    <Link href={`#${getPostHeadLinkId(children)}`}>
+      <HeadingSecond {...props} id={getPostHeadLinkId(children)}>
+        {children}
+      </HeadingSecond>
+    </Link>
   ),
-  h2: ({ className, children, ...props }) => (
-    <HeadingSecond className={className} {...props}>
-      {children}
-    </HeadingSecond>
+  h3: ({ children, ...props }) => (
+    <Link href={`#${getPostHeadLinkId(children)}`}>
+      <HeadingThird {...props} id={getPostHeadLinkId(children)}>
+        {children}
+      </HeadingThird>
+    </Link>
   ),
-  h3: ({ className, children, ...props }) => (
-    <HeadingThird className={className} {...props}>
-      {children}
-    </HeadingThird>
+  h4: ({ children, ...props }) => (
+    <Link href={`#${getPostHeadLinkId(children)}`}>
+      <HeadingFourth {...props} id={getPostHeadLinkId(children)}>
+        {children}
+      </HeadingFourth>
+    </Link>
   ),
-  h4: ({ className, children, ...props }) => (
-    <HeadingFourth className={className} {...props}>
-      {children}
-    </HeadingFourth>
-  ),
-  p: ({ className, children, ...props }) => (
-    <Paragraph className={className} {...props}>
-      {children}
-    </Paragraph>
-  ),
-  strong: ({ className, children, ...props }) => (
-    <Strong className={className} {...props}>
-      {children}
-    </Strong>
-  ),
-  img: ({ className, alt, ...props }) => (
+  p: ({ children, ...props }) => <Paragraph {...props}>{children}</Paragraph>,
+  strong: ({ children, ...props }) => <Strong {...props}>{children}</Strong>,
+  img: ({ alt, ...props }) => (
     <ImageWrapper>
-      <Image className={className} {...props} alt={alt} />
+      <Image {...props} alt={alt} />
       {alt && <ImageText>{alt}</ImageText>}
     </ImageWrapper>
   ),
-  blockquote: ({ className, children, ...props }) => (
-    <BlockQuote className={className} {...props}>
-      {children}
-    </BlockQuote>
+  blockquote: ({ children, ...props }) => (
+    <BlockQuote {...props}>{children}</BlockQuote>
   ),
-  a: ({ className, children, ...props }) => (
-    <Anchor className={className} {...props}>
-      {children}
-    </Anchor>
+  a: ({ children, ...props }) => <Anchor {...props}>{children}</Anchor>,
+  pre: ({ children, ...props }) => (
+    <Preformatted {...props}>{children}</Preformatted>
   ),
-  pre: ({ className, children, ...props }) => (
-    <Preformatted className={className} {...props}>
-      {children}
-    </Preformatted>
+  ul: ({ children, ...props }) => (
+    <UnorderedList {...props}>{children}</UnorderedList>
   ),
-  ul: ({ className, children, ...props }) => (
-    <UnorderedList className={className} {...props}>
-      {children}
-    </UnorderedList>
+  ol: ({ children, ...props }) => (
+    <OrderedList {...props}>{children}</OrderedList>
   ),
-  ol: ({ className, children, ...props }) => (
-    <OrderedList className={className} {...props}>
-      {children}
-    </OrderedList>
-  ),
+  li: ({ children, ...props }) => <ListItem {...props}>{children}</ListItem>,
 };
 
 export default postSyntaxStyler;
