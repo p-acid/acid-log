@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface Post {
   id: string;
   title: string;
@@ -40,4 +42,9 @@ export interface Log {
   title: string;
   date: string;
   contentHtml: string;
+}
+
+export interface Option {
+  label: ReactNode;
+  value: string | number;
 }

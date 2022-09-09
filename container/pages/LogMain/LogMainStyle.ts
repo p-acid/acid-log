@@ -11,13 +11,13 @@ export const LogMainWrapper = styled.div`
   padding: 0 ${({ theme }) => theme.figure * 5}px;
   width: ${({ theme }) => theme.figure * 100}px;
   max-width: ${({ theme }) => theme.figure * 100}px;
+  animation: ${SlideUp} 2s;
 `;
 
 export const LogMainDescription = styled.h1`
   margin-bottom: ${({ theme }) => theme.figure / 2}px;
   font-weight: ${({ theme }) => theme.typography.weight.light};
   color: ${({ theme }) => theme.colors.black_70};
-  animation: ${SlideUp} 2s;
 
   ${({ theme }) => theme.typography.text_xl};
 `;
