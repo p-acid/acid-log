@@ -1,5 +1,5 @@
 import { Option as OptionType } from "../../../../interface/CommonTypes";
-import { OptionProps } from "../../commonType";
+import { OptionProps } from "../../tommonType";
 import {
   OptionCategory,
   OptionCategoryItem,
