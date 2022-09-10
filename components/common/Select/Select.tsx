@@ -5,7 +5,7 @@ import Option from "./Option/Option";
 
 import { OptionsItem, OptionsWrapper, SelectWrapper } from "./SelectStyle";
 
-import { SelectProps } from "../tommonType";
+import { SelectProps } from "../commonType";
 
 const Select = ({
   options,

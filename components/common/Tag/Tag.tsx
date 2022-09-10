@@ -1,5 +1,5 @@
 import { MouseEvent, useCallback, useMemo } from "react";
-import { TagProps } from "../tommonType";
+import { TagProps } from "../commonType";
 import { TagRemoveButton, TagText, TagWrapper } from "./TagStyle";
 
 const Tag = ({
