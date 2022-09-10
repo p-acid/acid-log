@@ -5,6 +5,8 @@ export const TagWrapper = styled(Button)<{
   $isSelected: boolean;
   $canSelect: boolean;
 }>`
+  word-break: keep-all;
+
   ${({ $canSelect, theme }) =>
     !$canSelect &&
     `
@@ -22,7 +24,16 @@ export const TagWrapper = styled(Button)<{
   ${({ $isSelected, theme }) =>
     $isSelected &&
     `
-      background-color: ${theme.colors.black_5};
+      border-color: ${theme.colors.gray_blue_80};
+      background-color: ${theme.colors.gray_blue_90};
+
+      &:hover {
+        background-color: ${theme.colors.gray_blue_80};
+      }
+
+      &:active {
+        background-color: ${theme.colors.gray_blue_85};
+      }
     `}
 
   ${({ $canSelect }) =>

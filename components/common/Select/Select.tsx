@@ -1,16 +1,18 @@
-import { ReactNode, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 
-import { Option } from "../../../interface/CommonTypes";
 import Button from "../Button/Button";
+import Option from "./Option/Option";
 
-interface SelectProps {
-  /**
-   * 선택할 수 있는 옵션 리스트 배열
-   */
-  options: ({ label: ReactNode; value: Option[] } | Option)[];
-}
+import { OptionsItem, OptionsWrapper, SelectWrapper } from "./SelectStyle";
 
-const Select = ({ options }: SelectProps) => {
+import { SelectProps } from "../commonType";
+
+const Select = ({
+  options,
+  selectedList,
+  triggerLabel,
+  onSelect,
+}: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleIsOpen = useCallback(() => {
@@ -18,9 +20,24 @@ const Select = ({ options }: SelectProps) => {
   }, []);
 
   return (
-    <div>
-      <Button>추가</Button>
-    </div>
+    <SelectWrapper className="select-wrapper">
+      <Button className="trigger" onClick={handleIsOpen}>
+        {triggerLabel}
+      </Button>
+      {isOpen && (
+        <OptionsWrapper className="options-wrapper">
+          {options.map((option) => (
+            <OptionsItem key={`select-option-${option.value}-${option.label}`}>
+              <Option
+                {...option}
+                selectedList={selectedList}
+                onSelect={onSelect}
+              />
+            </OptionsItem>
+          ))}
+        </OptionsWrapper>
+      )}
+    </SelectWrapper>
   );
 };
 
