@@ -1,7 +1,7 @@
 export const RECOMMEND_POST_LIST = [
+  "react-patterns",
   "optimize-rerendering",
   "yarn-berry",
-  "tree-shaking",
   "storybook-docs",
 ];
 

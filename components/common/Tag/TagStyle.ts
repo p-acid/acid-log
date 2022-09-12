@@ -6,6 +6,7 @@ export const TagWrapper = styled(Button)<{
   $canSelect: boolean;
 }>`
   word-break: keep-all;
+  white-space: nowrap;
 
   ${({ $canSelect, theme }) =>
     !$canSelect &&

@@ -46,5 +46,5 @@ export interface Log {
 
 export interface Option {
   label: ReactNode;
-  value: string | number;
+  value: string & number;
 }

@@ -1,3 +1,4 @@
+import { parseTerm } from "../../../utils/date";
 import Select from "../../common/Select/Select";
 import Tag from "../../common/Tag/Tag";
 import { LogCategoryList, LogCategoryWrapper } from "./LogCategoryStyle";
@@ -20,14 +21,14 @@ const LogCategory = ({
           options={options}
           onSelect={handleTerms}
         />
-        {terms.map((term) => (
+        {terms.map((term: string) => (
           <Tag
             key={`term-tag-${term}`}
             onSelect={() => handleFilter(term)}
             onRemove={() => removeTerms(term)}
             isSelected={filter.includes(term)}
           >
-            {term}
+            {parseTerm(term)}
           </Tag>
         ))}
       </LogCategoryList>

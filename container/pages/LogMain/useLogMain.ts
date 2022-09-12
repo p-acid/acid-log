@@ -4,7 +4,7 @@ import { Log, Option } from "../../../interface/CommonTypes";
 import { getLogTerm } from "../../../utils/date";
 
 const useLogMain = ({ allLogs }: { allLogs: Log[] }) => {
-  const [terms, setTerms] = useState([]);
+  const [terms, setTerms] = useState<string[]>([]);
   const [filter, setFilter] = useState([]);
 
   const options = useMemo(() => {
