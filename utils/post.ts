@@ -6,7 +6,7 @@ import * as remarkHtml from "remark-html";
 
 import { Category, Post, PostMeta } from "../interface/CommonTypes";
 
-import { CATEGORIES } from "../lib/config/postConfig";
+import { CATEGORIES } from "../lib/config/blogConfig";
 import { differenceInDays } from "date-fns";
 
 const postRoute = path.join(process.cwd(), "posts");

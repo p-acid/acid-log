@@ -7,7 +7,7 @@ import CategoryMain from "../../container/pages/CategoryMain/CategoryMain";
 import { Post } from "../../interface/CommonTypes";
 
 import { DOMAIN, URL } from "../../lib/config/urlConfig";
-import { CATEGORIES } from "../../lib/config/postConfig";
+import { CATEGORIES } from "../../lib/config/blogConfig";
 
 import { getAllPosts, getCategoryPaths } from "../../utils/post";
 import { checkGif } from "../../utils/image";

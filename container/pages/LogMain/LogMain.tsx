@@ -9,13 +9,14 @@ import {
 import { LogMainProps } from "../../containerType";
 import LogCategory from "../../../components/Log/LogCategory/LogCategory";
 import useLogMain from "./useLogMain";
+import { LOG } from "../../../lib/config/blogConfig";
 
 const LogMain = ({ allLogs }: LogMainProps) => {
   const { componentProps, filteredLogs } = useLogMain({ allLogs });
 
   return (
     <LogMainWrapper>
-      <LogMainDescription>말 그대로 짧은 기록들을 담습니다</LogMainDescription>
+      <LogMainDescription>{LOG.DESCRIPTION}</LogMainDescription>
       <LogCategory {...componentProps.category} />
       <LogItemWrapper>
         {filteredLogs?.map((log) => (

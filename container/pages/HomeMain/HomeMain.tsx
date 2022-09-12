@@ -8,6 +8,7 @@ import CategoryList from "../../../components/Category/CategoryList/CategoryList
 import CategoryCard from "../../../components/Category/CategoryCard/CategoryCard";
 
 import { HomeMainProps } from "../../containerType";
+import { HOME } from "../../../lib/config/blogConfig";
 
 const HomeMain = ({ posts }: HomeMainProps) => {
   const { recommendPosts, categoryList } = useHomeMain(posts);
@@ -16,14 +17,14 @@ const HomeMain = ({ posts }: HomeMainProps) => {
     <>
       <StickyWrapper $type="category">
         <CategoryList
-          title="카테고리 별"
+          title={HOME.CATEGORY}
           list={categoryList}
           ItemComponent={CategoryCard}
         />
       </StickyWrapper>
-      <PostList posts={posts} title="전체 포스팅" />
+      <PostList posts={posts} title={HOME.ALL_POST} />
       <StickyWrapper $type="recommend">
-        <PostList posts={recommendPosts} title="추천 포스팅" />
+        <PostList posts={recommendPosts} title={HOME.RECOMMEND_POST} />
       </StickyWrapper>
     </>
   );
