@@ -2,7 +2,7 @@
 title: 스터디를 공동 문서화와 함께! 도큐사우루스
 date: "2022-03-27"
 description: "깃허브를 통해 공동으로 사용할 수 있는 도큐사우루스 프로젝트를 만들어봅시다."
-tags: ["Docusaurus", "Docs", "Study", "Vercel"]
+tags: ["Docusaurus", "Docs", "Study", "Vercel", "blog"]
 thumbnail: "docusaurus-docs-thumbnail.png"
 ---
 

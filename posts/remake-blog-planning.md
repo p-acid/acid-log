@@ -2,7 +2,7 @@
 title: 새로운 블로그, 리메이크
 date: "2022-03-26"
 description: 어디서 도화지 찢어지는 소리 안 들려요? 그거 제 큰 그림이에요
-tags: ["Remake", "Blog", "Design", "Planning"]
+tags: ["Remake", "blog", "Design", "Planning"]
 thumbnail: "remake-blog-thumbnail.png"
 ---
 

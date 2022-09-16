@@ -34,6 +34,14 @@ export const RECOMMEND_POST_LIST: RecommendPost[] = [
  * 포스팅을 카테고리 별로 구분지어 묶는 기준을 의미합니다.
  */
 export const CATEGORIES: { [key: string]: Category } = {
+  blog: {
+    tag: "blog",
+    title: "커스텀 블로그",
+    description:
+      "아직도 개인 블로그가 없으시다구요? \n블로그를 직접 만들어보세요!",
+    thumbnail: "blog_making.png",
+    infoBackground: "blue",
+  },
   svelte: {
     tag: "svelte",
     title: "스벨트 시리즈",
