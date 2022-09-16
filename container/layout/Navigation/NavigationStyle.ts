@@ -36,7 +36,9 @@ export const NavigationLogo = styled(Anchor)`
   ${({ theme }) => theme.typography.display_sm}
 
   @media screen and (max-width: ${MAIN_RESPONSIVE.XS}px) {
-    ${({ theme }) => theme.typography.text_xl}
+    span {
+      display: none;
+    }
   }
 `;
 

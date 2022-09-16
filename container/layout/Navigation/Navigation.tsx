@@ -15,7 +15,7 @@ const Navigation = () => {
   return (
     <NavigationWrapper>
       <NavigationLogo href={ROUTES.MAIN}>
-        {NAVIGATION.TITLE.TEXT}
+        <span>{NAVIGATION.TITLE.TEXT}</span>
         <Image
           src={`${URL.IMAGE.BASE}/${NAVIGATION.TITLE.IMAGE}`}
           width={32}

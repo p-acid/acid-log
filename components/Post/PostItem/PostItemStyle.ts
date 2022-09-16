@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { MAIN_RESPONSIVE } from "../../../lib/config/responsiveConfig";
 
 export const PostItemWrapper = styled.li`
   display: flex;
@@ -20,6 +21,10 @@ export const PostThumbnail = styled.img`
   aspect-ratio: 1/1;
   object-fit: cover;
   transition: 0.3s;
+
+  @media screen and (max-width: ${MAIN_RESPONSIVE.MD}px) {
+    aspect-ratio: 2/1;
+  }
 `;
 
 export const PostInfo = styled.div`

@@ -8,6 +8,6 @@ export const MainContent = styled.div<{ path: string }>`
     `
     display: flex;
     justify-content: center;
-    gap: ${theme.figure * 10}px;
+    gap: ${theme.figure * 8}px;
   `}
 `;

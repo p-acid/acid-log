@@ -6,7 +6,8 @@ export const ListWrapper = styled.section`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.figure * 3}px;
-  padding: ${({ theme }) => theme.figure * 20}px 0;
+  padding: ${({ theme }) => theme.figure * 20}px
+    ${({ theme }) => theme.figure * 2}px;
   max-width: ${({ theme }) => theme.figure * 60}px;
 
   @media screen and (max-width: ${MAIN_RESPONSIVE.SM}px) {
@@ -14,6 +15,10 @@ export const ListWrapper = styled.section`
       ${({ theme }) => theme.figure * 2}px;
     width: 100%;
     max-width: none;
+  }
+
+  @media screen and (max-width: ${MAIN_RESPONSIVE.MD}px) {
+    max-width: 100%;
   }
 `;
 
