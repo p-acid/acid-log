@@ -1,4 +1,5 @@
 import { Category, RecommendPost } from "../../interface/CommonTypes";
+import { ROUTES } from "./routeConfig";
 
 export const NAVIGATION = {
   TITLE: {
@@ -9,8 +10,11 @@ export const NAVIGATION = {
     ),
     IMAGE: "main_logo.png",
   },
-  LOG: "짧은 기록",
-  ABOUT: "소개",
+  MENU_LIST: [
+    { label: "짧은 기록", url: ROUTES.LOG },
+    { label: "아카이브", url: ROUTES.ARCHIVE },
+    { label: "소개", url: ROUTES.ABOUT },
+  ],
 };
 
 export const HOME = {

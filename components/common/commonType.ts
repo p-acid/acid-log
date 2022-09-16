@@ -1,5 +1,25 @@
-import { ReactNode } from "react";
+import { ButtonHTMLAttributes, ReactNode } from "react";
 import { Option } from "../../interface/CommonTypes";
+
+export interface IconProps {
+  /**
+   * 아이콘 가로 세로 사이즈
+   */
+  size: number;
+  /**
+   * 구글 아이콘 이름
+   * @link https://fonts.google.com/icons
+   */
+  iconName: string;
+}
+
+export interface IconButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * 아이콘 사이즈 : 텍스트 사이즈 기준으로 변경
+   */
+  size: "xs" | "sm" | "md" | "lg" | "xl";
+}
 
 export interface TagProps {
   children: ReactNode;
