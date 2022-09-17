@@ -1,4 +1,6 @@
 import { FC, HTMLAttributes } from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import { ListWrapper, ListTitle, ListBox } from "../../common/commonStyle";
 
 interface CategoryListProps extends HTMLAttributes<HTMLSelectElement> {
@@ -18,7 +20,7 @@ const CategoryList = ({
       <ListTitle>{title}</ListTitle>
       <ListBox style={{ gap: "40px" }}>
         {list.map((itemProps) => (
-          <ItemComponent {...itemProps} />
+          <ItemComponent key={uuidv4()} {...itemProps} />
         ))}
       </ListBox>
     </ListWrapper>

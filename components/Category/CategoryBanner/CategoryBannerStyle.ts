@@ -26,6 +26,7 @@ export const CategoryBannerInfo = styled(CategoryInfo)`
   justify-content: space-between;
   padding: ${({ theme }) => theme.figure * 5}px
     ${({ theme }) => theme.figure * 6}px;
+  width: 100%;
   border-top-right-radius: ${({ theme }) => theme.figure * 3}px;
   border-bottom-right-radius: ${({ theme }) => theme.figure * 3}px;
 `;

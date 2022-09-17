@@ -13,7 +13,7 @@ interface PostListProps extends HTMLAttributes<HTMLDivElement> {
 
 const PostList = ({ posts, title, ...restProps }: PostListProps) => {
   return (
-    <ListWrapper {...restProps}>
+    <ListWrapper id="main-posts" {...restProps}>
       {title && <ListTitle>{title}</ListTitle>}
       <ListBox>
         {posts.map((post) => (

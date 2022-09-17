@@ -7,6 +7,10 @@ export interface IconProps {
    */
   size: number;
   /**
+   * 아이콘 색
+   */
+  color: string;
+  /**
    * 구글 아이콘 이름
    * @link https://fonts.google.com/icons
    */

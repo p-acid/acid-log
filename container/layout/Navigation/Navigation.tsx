@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { useMediaQuery } from "react-responsive";
+import { useRecoilState } from "recoil";
 import IconButton from "../../../components/common/Button/IconButton/IconButton";
 import { NAVIGATION } from "../../../lib/config/blogConfig";
 import { MAIN_RESPONSIVE } from "../../../lib/config/responsiveConfig";
 
 import { ROUTES } from "../../../lib/config/routeConfig";
 import { URL } from "../../../lib/config/urlConfig";
+import { navMenu } from "../../../state/navMenu";
 
 import {
   NavigationSubWrapper,
@@ -15,6 +17,8 @@ import {
 } from "./NavigationStyle";
 
 const Navigation = () => {
+  const [{ isOpen }, setNavMenu] = useRecoilState(navMenu);
+
   const matchDownMd = useMediaQuery({
     query: `(max-width: ${MAIN_RESPONSIVE.MD}px)`,
   });
@@ -32,11 +36,20 @@ const Navigation = () => {
       {!matchDownMd && (
         <NavigationSubWrapper>
           {NAVIGATION.MENU_LIST.map(({ label, url }) => (
-            <NavigationAnchor href={url}>{label}</NavigationAnchor>
+            <NavigationAnchor key={`nav-item-${label}`} href={url}>
+              {label}
+            </NavigationAnchor>
           ))}
         </NavigationSubWrapper>
       )}
-      {matchDownMd && <IconButton size="xl">menu</IconButton>}
+      {matchDownMd && (
+        <IconButton
+          size="xl"
+          onClick={() => setNavMenu((prev) => ({ ...prev, isOpen: true }))}
+        >
+          menu
+        </IconButton>
+      )}
     </NavigationWrapper>
   );
 };

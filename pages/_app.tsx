@@ -5,6 +5,8 @@ import theme from "../styles/Theme";
 import globalStyle from "../styles/GlobalStyle";
 
 import Layout from "../container/layout/LayoutMain/LayoutMain";
+import { RecoilRoot } from "recoil";
+import NavMenu from "../components/common/Menu/NavMenu/NavMenu";
 
 const myApp = ({ Component, pageProps }) => {
   return (
@@ -26,12 +28,15 @@ const myApp = ({ Component, pageProps }) => {
           rel="stylesheet"
         />
       </Head>
-      <ThemeProvider theme={theme}>
-        {globalStyle}
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
+      <RecoilRoot>
+        <ThemeProvider theme={theme}>
+          {globalStyle}
+          <Layout>
+            <Component {...pageProps} />
+            <NavMenu />
+          </Layout>
+        </ThemeProvider>
+      </RecoilRoot>
     </>
   );
 };
