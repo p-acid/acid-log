@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 
 import { navMenu } from "../../../../state/navMenu";
 import { NavMenuButton, NavMenuContainer } from "./NavMenuStyle";
-import IconButton from "../../Button/IconButton/IconButton";
 import { NAVIGATION } from "../../../../lib/config/blogConfig";
 
 const NavMenu = () => {
