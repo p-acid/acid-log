@@ -97,3 +97,14 @@ export const getPostHeadLinkId = (children: string[]) => {
 
   return children[0].replace(" ", "-");
 };
+
+/**
+ * 파일 확장자를 반환하는 함수
+ * @param src 확장자를 포함하는 파일 경로
+ */
+export const getFileExtension = (src: string) => {
+  const fileName = src.slice(src.lastIndexOf("/"));
+  const lastDotIndex = fileName.lastIndexOf(".");
+
+  return fileName.slice(lastDotIndex + 1);
+};

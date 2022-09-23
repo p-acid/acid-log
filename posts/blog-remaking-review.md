@@ -3,7 +3,7 @@ title: 블로그 리메이킹 후기
 date: "2022-07-17"
 description: "기존 블로그 부수고 새 블로그 다시 짓기"
 tags: ["typescript", "remake", "blog"]
-thumbnail: "thumbnail.gif"
+thumbnail: "thumbnail.mp4"
 ---
 
 # 들어가며

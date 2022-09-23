@@ -1,6 +1,7 @@
 import { Post } from "../../../interface/CommonTypes";
 
 import { URL } from "../../../lib/config/urlConfig";
+import Thumbnail from "../../common/Thumbnail/Thumbnail";
 
 import {
   PostDate,
@@ -12,7 +13,7 @@ import {
 } from "./PostItemStyle";
 import usePostItem from "./usePostItem";
 
-const PostItem = ({ id, title, description, date, tags, thumbnail }: Post) => {
+const PostItem = ({ id, title, description, date, thumbnail }: Post) => {
   const { goPost, combinedDate } = usePostItem(new Date(date));
 
   return (

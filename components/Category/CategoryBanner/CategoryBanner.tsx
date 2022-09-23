@@ -23,7 +23,6 @@ const CategoryBanner = ({
   return (
     <CategoryBannerWrapper>
       <CategoryBannerThumbnail src={`${URL.IMAGE.CATEGORY}/${thumbnail}`} />
-
       <CategoryBannerInfo $infoBackground={infoBackground}>
         <CategoryBannerTitle>{title}</CategoryBannerTitle>
         <CategoryBannerSubWrapper>
