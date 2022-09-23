@@ -109,7 +109,7 @@ export default Component;
 
 그리고 위 형태의 데이터를 그대로 리액트 쿼리를 통해 저장했다고 가정하면 우리는 캐싱 데이터를 수정하기 위해 해당 참조를 계속해서 참조해야 하는 것입니다. 그렇기에 `useQuery` 혹은 `useMutation` 등으로 저장되는 값들이 나중에 캐싱을 진행한다는 가정 하에 최종 값이 저장되어야 한다는 사실을 명심해두면 좋을 것 같습니다.
 
-![정말 돌아가고 싶습니다.](/images/posts/react-query-basic/stop_please.gif)
+![정말 돌아가고 싶습니다.](/images/posts/react-query-basic/stop_please.mp4)
 
 # 마무리
 

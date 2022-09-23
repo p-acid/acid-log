@@ -104,10 +104,6 @@ import Link from "next/link";
 </>
 ```
 
-그렇다면 다음과 같이 정상 작동하는 것을 확인할 수 있다.
-
-![](https://user-images.githubusercontent.com/87939521/146669980-e0762ce5-70e1-4ae4-af45-7fe56c873461.gif)
-
 Next.js에서 `Link` 컴포넌트는 <strong>client-side navigation</strong>을 가능하게 한다. client-side navigation에 대해 이해하고자 공식 문서와 블로그를 참고하여 이해한 내용은 다음과 같다.
 
 - Next.js는 <strong>코드 스플리팅(code splitting)</strong>을 진행하여 각 페이지에서 필요한 내용만 로드하기 때문에, 홈페이지가 렌더링될 때 다른 페이지의 코드를 요청하지 않는다.

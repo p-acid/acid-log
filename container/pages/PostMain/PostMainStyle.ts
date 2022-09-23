@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Thumbnail from "../../../components/common/Thumbnail/Thumbnail";
 
 export const PostThumbnailWrapper = styled.div`
   position: relative;
@@ -12,7 +13,7 @@ export const PostThumbnailMask = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export const PostThumbnail = styled.img`
+export const PostThumbnail = styled(Thumbnail)`
   padding-top: ${({ theme }) => theme.figure * 8}px;
   width: 100%;
   max-height: ${({ theme }) => theme.figure * 80}px;

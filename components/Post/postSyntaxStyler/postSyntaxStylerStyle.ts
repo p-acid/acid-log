@@ -68,7 +68,7 @@ export const Strong = styled.strong`
   font-weight: ${({ theme }) => theme.typography.weight.medium};
 `;
 
-export const ImageWrapper = styled.div`
+export const MediaWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,6 +79,11 @@ export const ImageWrapper = styled.div`
 `;
 
 export const Image = styled.img`
+  width: 100%;
+  max-width: ${({ theme }) => theme.figure * 70}px;
+`;
+
+export const Video = styled.video`
   width: 100%;
   max-width: ${({ theme }) => theme.figure * 70}px;
 `;

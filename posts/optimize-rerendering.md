@@ -48,7 +48,7 @@ thumbnail: "thumbnail.mp4"
 
 유효성 검사와 관련된 라이브러리를 찾다보면 다양한 라이브러리가 존재하는데 그 중 [React Hook Form](https://react-hook-form.com/)이라는 라이브러리를 확인해보셨을 겁니다. **React Hook Form**의 장점 중 하나는 **리렌더링을 고립시키는 것**인데 예시를 확인하면 `input` 의 변화가 다른 컴포넌트에 영향을 끼치지 않는 것을 확인할 수 있습니다. 위와 같은 상태 변화를 `React.memo` 를 통해 적용할 수 있습니다.
 
-![input_리렌더링](/images/posts/optimize-rerendering/input_rerender.gif)
+![input_리렌더링](/images/posts/optimize-rerendering/input_rerender.mp4)
 
 > [레포지토리 링크 🔗](https://github.com/p-acid/rerender-optimization)
 
@@ -72,11 +72,11 @@ const OptimizedInput = memo(({ inputValue, name }: InputProps) => {
 
 ### 메모이징 전
 
-![comment_rerender_before](/images/posts/optimize-rerendering/before_memorize.gif)
+![comment_rerender_before](/images/posts/optimize-rerendering/before_memorize.mp4)
 
 ### 메모이징 후
 
-![comment_rerender_before](/images/posts/optimize-rerendering/after_memorize.gif)
+![comment_rerender_before](/images/posts/optimize-rerendering/after_memorize.mp4)
 
 # useRef를 통해 값 핸들링 하기 ✔️
 
@@ -115,7 +115,7 @@ const CommonForm = () => {
 
 이러한 부분을 **`useRef` 훅**을 통해 개선할 수 있습니다.
 
-![input value 최적화](/images/posts/optimize-rerendering/optimization.gif)
+![input value 최적화](/images/posts/optimize-rerendering/optimization.mp4)
 
 > [레포지토리 링크 🔗](https://github.com/p-acid/pre-assignment/blob/main/src/components/common/Form.jsx)
 >

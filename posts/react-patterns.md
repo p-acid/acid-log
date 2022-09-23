@@ -20,7 +20,7 @@ thumbnail: "thumbnail.mp4"
 
 ---
 
-![아 컴포넌트 디자인 그렇게 하는거 아닌데](/images/posts/react-patterns/make_component.gif)
+![아 컴포넌트 디자인 그렇게 하는거 아닌데](/images/posts/react-patterns/make_component.mp4)
 
 우선 간단히 **디자인 패턴의 정의**에 대해 알아보도록 하겠습니다.
 
@@ -79,7 +79,7 @@ export default function withLoader(Element, url) {
 
 리액트가 [**단방향 데이터 흐름**](https://ko.reactjs.org/docs/thinking-in-react.html)을 갖고 있다는 것은 다들 아시는 사실일 것입니다. 그렇기에 종종 컴포넌트 트리 내에서 최종 컴포넌트에 데이터가 도달하기 위해 다음과 같이 **중간 컴포넌트에서 불필요한 prop 전달이 발생**하기도 합니다.
 
-![출처 : Patterns](/images/posts/react-patterns/prop_drilling.gif)
+![출처 : Patterns](/images/posts/react-patterns/prop_drilling.mp4)
 
 이러한 문제를 **_prop drilling_** 이라고 하며, 이 문제를 해결하기 위해 해당 디자인 패턴을 사용할 수 있습니다. 리액트에서는 [Context API](https://ko.reactjs.org/docs/context.html)를 활용하여 Provider pattern을 구현할 수 있습니다. 다음 예시와 함께 이해해보도록 하겠습니다.
 

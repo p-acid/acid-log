@@ -6,7 +6,7 @@ import {
   HeadingFirst,
   Paragraph,
   Image,
-  ImageWrapper,
+  MediaWrapper,
   ImageText,
   HeadingRow,
   BlockQuote,
@@ -19,9 +19,10 @@ import {
   OrderedList,
   Strong,
   ListItem,
+  Video,
 } from "./postSyntaxStylerStyle";
 
-import { getPostHeadLinkId } from "../../../utils/post";
+import { getFileExtension, getPostHeadLinkId } from "../../../utils/post";
 
 const postSyntaxStyler = {
   code({ node, inline, className, children, ...props }) {
@@ -71,12 +72,22 @@ const postSyntaxStyler = {
   ),
   p: ({ children, ...props }) => <Paragraph {...props}>{children}</Paragraph>,
   strong: ({ children, ...props }) => <Strong {...props}>{children}</Strong>,
-  img: ({ alt, ...props }) => (
-    <ImageWrapper>
-      <Image {...props} alt={alt} />
-      {alt && <ImageText>{alt}</ImageText>}
-    </ImageWrapper>
-  ),
+  img: ({ src, alt, ...props }) => {
+    const isMp4 = getFileExtension(src) === "mp4";
+
+    return (
+      <MediaWrapper>
+        {isMp4 ? (
+          <Video autoPlay loop muted playsInline>
+            <source src={src} type="video/mp4" />
+          </Video>
+        ) : (
+          <Image {...props} src={src} alt={alt} />
+        )}
+        {alt && <ImageText>{alt}</ImageText>}
+      </MediaWrapper>
+    );
+  },
   blockquote: ({ children, ...props }) => (
     <BlockQuote {...props}>{children}</BlockQuote>
   ),

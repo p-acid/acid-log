@@ -110,7 +110,7 @@ Small.args = {
 
 이렇게 스토리 문서를 작성하고 스토리북을 실행하면 다음과 같은 결과를 확인할 수 있습니다.
 
-![storybook_example](/images/posts/storybook-docs/storybook_example.gif)
+![storybook_example](/images/posts/storybook-docs/storybook_example.mp4)
 
 이에 대한 자세한 내용은 [**`DocsPage` Reference**](https://github.com/storybookjs/storybook/blob/next/addons/docs/docs/docspage.md)를 참조하시면 될 것 같습니다.
 
@@ -283,7 +283,7 @@ export const goodStory = () => (
 
 ---
 
-![docs-example-shopify](/images/posts/storybook-docs/docs-example-shopify.gif)
+![docs-example-shopify](/images/posts/storybook-docs/docs-example-shopify.mp4)
 
 다른 디자인 시스템의 예시를 확인하고 싶어서 좋은 사례라고 평가되는 [**Shopify Polaris**](https://polaris.shopify.com/)를 찾아봤습니다.
 

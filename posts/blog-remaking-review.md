@@ -46,7 +46,7 @@ thumbnail: "thumbnail.mp4"
 
 빌드 에러를 해결하고 난 뒤 정상적으로 자동 배포가 진행되는 것을 확인한 후, 각 페이지 작업을 시작했습니다. 우선 메인 페이지는 토스 피드와 마찬가지로 **3분할로 영역을 분리**하여 스크롤을 각 영역에서 가능하도록 만들었습니다.
 
-![주인장의 오마카세까지 즐겨보세요](/images/posts/blog-remaking-review/main_page.gif)
+![주인장의 오마카세까지 즐겨보세요](/images/posts/blog-remaking-review/main_page.mp4)
 
 메인 페이지는 왼쪽부터 **카테고리 별 포스팅, 전체 포스팅, 추천 포스팅**으로 구성되어있습니다. **카테고리 별 포스팅**은 기존에 사용하던 **`tags` 데이터**를 활용하여 **동일한 태그를 갖는 포스팅들을 필터링**하여 보여줍니다.
 
@@ -110,7 +110,7 @@ export const getRecommendedPosts = (posts: Post[], filterList: string[]) => {
 
 그렇게 메인 페이지를 얼추 마무리하고 나서 새롭게 추가되는 **카테고리 상세 페이지** 작업을 시작했습니다. 카테고리 상세 페이지는 기존 포스팅 상세 페이지와 유사하게 구성했으며, `categoryId` 를 통해 필터링 된 포스팅 목록을 받아오도록 구성하였습니다.
 
-![카테고리에 해당하는 포스팅으로 바로 접근 가능](/images/posts/blog-remaking-review/category_detail.gif)
+![카테고리에 해당하는 포스팅으로 바로 접근 가능](/images/posts/blog-remaking-review/category_detail.mp4)
 
 이후 [Sanity](https://www.sanity.io/)도 붙여 볼까 싶어 이런 저런 수정을 거치다, 새로운 빌드 에러를 마주하게됩니다.
 

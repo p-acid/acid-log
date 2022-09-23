@@ -222,10 +222,6 @@ console.log(currentValue);
   - 해당하는 **UI 컴포넌트는 상태 변경을 확인**합니다.
   - 데이터 변경이 이루어진 컴포넌트는 **새롭게 렌더링되어 화면에 반영**됩니다.
 
-위와 같은 과정을 아래와 같이 표현할 수 있습니다.
-
-![redux_data_flow](https://ko.redux.js.org/assets/images/ReduxDataFlowDiagram-49fa8c3968371d9ef6f2a1486bd40a26.gif)
-
 금일 학습한 내용을 요약하면 다음과 같습니다.
 
 - **리덕스는 애플리케이션의 전역 상태를 관리하기 위한 라이브러리입니다.**
