@@ -7,20 +7,20 @@ interface ThumbnailProps {
   alt?: string;
 }
 
-const Thumbnail = ({ src, alt }: ThumbnailProps) => {
-  const isGif = useMemo(
-    () => getFileExtension(src) === "gif",
+const Thumbnail = ({ src, alt, ...restProps }: ThumbnailProps) => {
+  const isMp4 = useMemo(
+    () => getFileExtension(src) === "mp4",
     [getFileExtension, src]
   );
 
-  if (isGif)
+  if (isMp4)
     return (
-      <ThumbnailVideo autoPlay loop muted playsInline>
+      <ThumbnailVideo autoPlay loop muted playsInline {...restProps}>
         <source src={src} type="video/mp4" />
       </ThumbnailVideo>
     );
 
-  return <ThumbnailImage src={src} alt={alt} />;
+  return <ThumbnailImage src={src} alt={alt} {...restProps} />;
 };
 
 export default Thumbnail;

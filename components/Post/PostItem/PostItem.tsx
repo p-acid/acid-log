@@ -1,7 +1,6 @@
 import { Post } from "../../../interface/CommonTypes";
 
 import { URL } from "../../../lib/config/urlConfig";
-import Thumbnail from "../../common/Thumbnail/Thumbnail";
 
 import {
   PostDate,

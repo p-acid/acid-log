@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Thumbnail from "../../common/Thumbnail/Thumbnail";
 
 import { CategoryInfo } from "../CategoryCard/CatergoryCardStyle";
 
@@ -17,9 +18,8 @@ export const CategoryBannerSubWrapper = styled.div`
   gap: ${({ theme }) => theme.figure * 2}px;
 `;
 
-export const CategoryBannerThumbnail = styled.img`
+export const CategoryBannerThumbnail = styled(Thumbnail)`
   text-align: center;
-  object-fit: cover;
 `;
 
 export const CategoryBannerInfo = styled(CategoryInfo)`

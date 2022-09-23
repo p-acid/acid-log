@@ -3,7 +3,7 @@ title: 리액트 개발자의 컴포넌트 설계법
 date: "2022-07-31"
 description: "리액트 디자인 패턴으로 컴포넌트를 더 어썸하게 설계하기"
 tags: ["react", "pattern"]
-thumbnail: "thumbnail.gif"
+thumbnail: "thumbnail.mp4"
 ---
 
 # 들어가며

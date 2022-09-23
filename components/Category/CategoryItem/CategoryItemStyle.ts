@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Thumbnail from "../../common/Thumbnail/Thumbnail";
 
 export const CategoryItemWrapper = styled.li`
   display: flex;
@@ -11,12 +12,9 @@ export const CategoryItemWrapper = styled.li`
   }
 `;
 
-export const CategoryItemThumbnail = styled.img`
+export const CategoryItemThumbnail = styled(Thumbnail)`
   max-width: ${({ theme }) => theme.figure * 20}px;
   border-radius: ${({ theme }) => theme.figure * 2}px;
-  overflow: hidden;
-  aspect-ratio: 1 / 1;
-  transition: 0.3s;
 `;
 
 export const CategoryItemInfo = styled.div`

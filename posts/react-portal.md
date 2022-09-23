@@ -3,7 +3,7 @@ title: 리액트 포탈 간단하게 활용하기
 date: "2022-09-17"
 description: "리액트 포탈을 이용하여 다른 차원에서 돔을 생성해봅시다."
 tags: ["portal", "react", "recoil"]
-thumbnail: "thumbnail.gif"
+thumbnail: "thumbnail.mp4"
 ---
 
 # 들어가며

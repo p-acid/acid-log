@@ -10,6 +10,7 @@ import useCategoryCard from "./useCategoryCard";
 import { Category } from "../../../interface/CommonTypes";
 
 import { URL } from "../../../lib/config/urlConfig";
+import Thumbnail from "../../common/Thumbnail/Thumbnail";
 
 const CategoryCard = ({
   tag,
@@ -23,7 +24,7 @@ const CategoryCard = ({
 
   return (
     <CategoryCardWrapper onClick={goCategory} {...restProps}>
-      <img src={`${URL.IMAGE.CATEGORY}/${thumbnail}`} alt={thumbnail} />
+      <Thumbnail src={`${URL.IMAGE.CATEGORY}/${thumbnail}`} alt={thumbnail} />
       <CategoryInfo $infoBackground={infoBackground}>
         <CategoryTitle>{title}</CategoryTitle>
         {postIdList && (
