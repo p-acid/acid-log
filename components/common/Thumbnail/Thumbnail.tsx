@@ -23,7 +23,7 @@ const Thumbnail = ({ src, alt, ...restProps }: ThumbnailProps) => {
       </ThumbnailVideo>
     );
 
-  return <ThumbnailImage src={src} alt={alt} {...restProps} />;
+  return <ThumbnailImage src={src} alt={alt} loading="eager" {...restProps} />;
 };
 
 export default Thumbnail;

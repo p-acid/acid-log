@@ -18,6 +18,8 @@ export const PostItemWrapper = styled.li`
 `;
 
 export const PostThumbnail = styled(Thumbnail)`
+  width: 100%;
+  height: 100%;
   border-radius: ${({ theme }) => theme.figure * 3}px;
 
   @media screen and (max-width: ${MAIN_RESPONSIVE.MD}px) {

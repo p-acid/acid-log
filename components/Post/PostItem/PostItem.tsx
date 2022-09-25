@@ -18,6 +18,8 @@ const PostItem = ({ id, title, description, date, thumbnail }: Post) => {
   return (
     <PostItemWrapper onClick={() => goPost(id)}>
       <PostThumbnail
+        width={300}
+        height={300}
         src={`${URL.IMAGE.POSTS}/${id}/${thumbnail}`}
         alt={`thumbnail-image-${title}`}
       />

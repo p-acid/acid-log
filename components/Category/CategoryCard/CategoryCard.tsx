@@ -24,7 +24,12 @@ const CategoryCard = ({
 
   return (
     <CategoryCardWrapper onClick={goCategory} {...restProps}>
-      <Thumbnail src={`${URL.IMAGE.CATEGORY}/${thumbnail}`} alt={thumbnail} />
+      <Thumbnail
+        src={`${URL.IMAGE.CATEGORY}/${thumbnail}`}
+        alt={thumbnail}
+        width={248}
+        height={248}
+      />
       <CategoryInfo $infoBackground={infoBackground}>
         <CategoryTitle>{title}</CategoryTitle>
         {postIdList && (
