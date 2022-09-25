@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { Prism as ReactSyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 import {
   HeadingFirst,
   Paragraph,
-  Image,
   MediaWrapper,
+  NextImage,
   ImageText,
   HeadingRow,
   BlockQuote,
@@ -32,7 +32,7 @@ const postSyntaxStyler = {
         children={String(children).replace(/\n$/, "")}
         language={match[1]}
         PreTag="pre"
-        style={oneDark}
+        style={vscDarkPlus}
         {...props}
       />
     ) : (
@@ -82,7 +82,7 @@ const postSyntaxStyler = {
             <source src={src} type="video/mp4" />
           </Video>
         ) : (
-          <Image {...props} src={src} alt={alt} />
+          <NextImage {...props} src={src} alt={alt} width={560} height={350} />
         )}
         {alt && <ImageText>{alt}</ImageText>}
       </MediaWrapper>

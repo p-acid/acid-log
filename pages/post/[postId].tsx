@@ -1,5 +1,3 @@
-import dynamic from "next/dynamic";
-
 import { getPostData } from "../../utils/post";
 import { getAllPostPaths } from "../../utils/post";
 
@@ -7,13 +5,7 @@ import { DOMAIN, URL } from "../../lib/config/urlConfig";
 import { useRouter } from "next/router";
 import Helmet from "../../components/Helmet/Helmet";
 import { checkGif } from "../../utils/image";
-
-const DynamicPostMain = dynamic(
-  () => import("../../container/pages/PostMain/PostMain"),
-  {
-    ssr: false,
-  }
-);
+import PostMain from "../../container/pages/PostMain/PostMain";
 
 const Post = (props: any) => {
   const { query, asPath } = useRouter();
@@ -30,7 +22,7 @@ const Post = (props: any) => {
         }
         url={asPath ? `${DOMAIN}${asPath}` : DOMAIN}
       />
-      <DynamicPostMain {...props} />
+      <PostMain {...props} />
     </>
   );
 };

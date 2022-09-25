@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/future/image";
 import { useMediaQuery } from "react-responsive";
 import { useSetRecoilState } from "recoil";
 import IconButton from "../../../components/common/Button/IconButton/IconButton";

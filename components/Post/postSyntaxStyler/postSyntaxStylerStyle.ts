@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Image, { ImageProps } from "next/future/image";
 
 export const HeadingRow = styled.hr`
   margin: ${({ theme }) => theme.figure}px 0
@@ -78,9 +79,11 @@ export const MediaWrapper = styled.div`
   margin-bottom: ${({ theme }) => theme.figure * 3}px;
 `;
 
-export const Image = styled.img`
+export const NextImage = styled(Image)`
   width: 100%;
+  height: 100%;
   max-width: ${({ theme }) => theme.figure * 70}px;
+  object-fit: cover;
 `;
 
 export const Video = styled.video`
