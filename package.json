@@ -7,6 +7,7 @@
     "vercel-deploy": "next build && next export"
   },
   "dependencies": {
+    "@emotion/cache": "^11.10.3",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "babel-plugin-styled-components": "^2.0.2",

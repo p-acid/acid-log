@@ -1,11 +1,11 @@
 import Head from "next/head";
+import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "@emotion/react";
 
 import theme from "../styles/Theme";
 import globalStyle from "../styles/GlobalStyle";
 
 import Layout from "../container/layout/LayoutMain/LayoutMain";
-import { RecoilRoot } from "recoil";
 import NavMenu from "../components/common/Menu/NavMenu/NavMenu";
 
 const myApp = ({ Component, pageProps }) => {
