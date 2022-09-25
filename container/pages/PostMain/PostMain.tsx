@@ -31,6 +31,7 @@ const PostMain = ({ postData }: PostMainProps) => {
         <PostThumbnailMask />
         <PostThumbnail
           src={`${URL.IMAGE.POSTS}/${query.postId}/${thumbnail}`}
+          alt={thumbnail}
         />
         <PostInfoWrapper>
           <PostTitle>{title}</PostTitle>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useMediaQuery } from "react-responsive";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import IconButton from "../../../components/common/Button/IconButton/IconButton";
 import { NAVIGATION } from "../../../lib/config/blogConfig";
 import { MAIN_RESPONSIVE } from "../../../lib/config/responsiveConfig";
@@ -17,7 +17,7 @@ import {
 } from "./NavigationStyle";
 
 const Navigation = () => {
-  const [{ isOpen }, setNavMenu] = useRecoilState(navMenu);
+  const setNavMenu = useSetRecoilState(navMenu);
 
   const matchDownMd = useMediaQuery({
     query: `(max-width: ${MAIN_RESPONSIVE.MD}px)`,
@@ -29,6 +29,7 @@ const Navigation = () => {
         <span>{NAVIGATION.TITLE.TEXT}</span>
         <Image
           src={`${URL.IMAGE.BASE}/${NAVIGATION.TITLE.IMAGE}`}
+          alt={NAVIGATION.TITLE.IMAGE}
           width={32}
           height={32}
         />
