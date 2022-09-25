@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 
-export const ThumbnailImage = styled.img`
+import Image from "next/future/image";
+
+export const ThumbnailImage = styled(Image)`
   aspect-ratio: 1/1;
   object-fit: cover;
   transition: 0.3s;

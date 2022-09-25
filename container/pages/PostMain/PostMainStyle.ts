@@ -11,6 +11,7 @@ export const PostThumbnailMask = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 `;
 
 export const PostThumbnail = styled(Thumbnail)`
@@ -28,8 +29,12 @@ export const PostInfoWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: ${({ theme }) => theme.figure / 2}px;
+  padding: ${({ theme }) => theme.figure * 3}px;
   transform: translateX(-50%);
   width: fit-content;
+  z-index: 2;
+  word-break: keep-all;
+  text-align: center;
 `;
 
 export const PostTitle = styled.h1`

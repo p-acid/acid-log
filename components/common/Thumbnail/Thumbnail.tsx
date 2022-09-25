@@ -1,8 +1,11 @@
-import { useMemo } from "react";
+import { ImageProps } from "next/image";
+import { HTMLAttributes, useMemo } from "react";
 import { getFileExtension } from "../../../utils/post";
 import { ThumbnailImage, ThumbnailVideo } from "./ThumbnailStyle";
 
-interface ThumbnailProps {
+type ThumbnailExtendTypes = ImageProps & HTMLAttributes<HTMLVideoElement>;
+
+interface ThumbnailProps extends ThumbnailExtendTypes {
   src: string;
   alt?: string;
 }
