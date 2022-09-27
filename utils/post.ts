@@ -108,3 +108,16 @@ export const getFileExtension = (src: string) => {
 
   return fileName.slice(lastDotIndex + 1);
 };
+
+/**
+ * 파일 확장자를 매칭하는 함수
+ * @param src 확장자를 포함하는 파일 경로
+ * @param compareExtension 비교하고자 하는 확장자명
+ */
+export const validFileExtension = (src: string, compareExtension: string) => {
+  const fileName = src.slice(src.lastIndexOf("/"));
+  const lastDotIndex = fileName.lastIndexOf(".");
+  const fileExtension = fileName.slice(lastDotIndex + 1);
+
+  return fileExtension === compareExtension;
+};

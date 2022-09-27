@@ -1,6 +1,7 @@
 import { ImageProps } from "next/image";
 import { HTMLAttributes, useMemo } from "react";
-import { getFileExtension } from "../../../utils/post";
+import { EXTENSION } from "../../../lib/config/extensionConfig";
+import { validFileExtension } from "../../../utils/post";
 import { ThumbnailImage, ThumbnailVideo } from "./ThumbnailStyle";
 
 type ThumbnailExtendTypes = ImageProps & HTMLAttributes<HTMLVideoElement>;
@@ -12,8 +13,8 @@ interface ThumbnailProps extends ThumbnailExtendTypes {
 
 const Thumbnail = ({ src, alt, ...restProps }: ThumbnailProps) => {
   const isMp4 = useMemo(
-    () => getFileExtension(src) === "mp4",
-    [getFileExtension, src]
+    () => validFileExtension(src, EXTENSION.MP4),
+    [validFileExtension, src]
   );
 
   if (isMp4)

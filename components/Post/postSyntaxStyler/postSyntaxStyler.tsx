@@ -22,7 +22,8 @@ import {
   Video,
 } from "./postSyntaxStylerStyle";
 
-import { getFileExtension, getPostHeadLinkId } from "../../../utils/post";
+import { validFileExtension, getPostHeadLinkId } from "../../../utils/post";
+import { EXTENSION } from "../../../lib/config/extensionConfig";
 
 const postSyntaxStyler = {
   code({ node, inline, className, children, ...props }) {
@@ -73,7 +74,7 @@ const postSyntaxStyler = {
   p: ({ children, ...props }) => <Paragraph {...props}>{children}</Paragraph>,
   strong: ({ children, ...props }) => <Strong {...props}>{children}</Strong>,
   img: ({ src, alt, ...props }) => {
-    const isMp4 = getFileExtension(src) === "mp4";
+    const isMp4 = validFileExtension(src, EXTENSION.MP4);
 
     return (
       <MediaWrapper>

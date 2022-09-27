@@ -103,7 +103,7 @@ export const BlockQuote = styled.blockquote`
   padding: ${({ theme }) => theme.figure * 4}px
     ${({ theme }) => theme.figure * 5}px;
   border-radius: ${({ theme }) => theme.figure * 2}px;
-  background-color: ${({ theme }) => theme.colors.gray_blue_35};
+  background-color: ${({ theme }) => theme.colors.gray_blue_15};
 
   p {
     margin-bottom: ${({ theme }) => theme.figure * 2}px;
