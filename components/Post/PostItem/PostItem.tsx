@@ -12,8 +12,10 @@ import {
 } from "./PostItemStyle";
 import usePostItem from "./usePostItem";
 
-const PostItem = ({ id, title, description, date, thumbnail }: Post) => {
+const PostItem = ({ id, title, description, date, thumbnail, index }: Post) => {
   const { goPost, combinedDate } = usePostItem(new Date(date));
+
+  const isLazyload = index >= 2;
 
   return (
     <PostItemWrapper onClick={() => goPost(id)}>
@@ -22,6 +24,7 @@ const PostItem = ({ id, title, description, date, thumbnail }: Post) => {
         height={300}
         src={`${URL.IMAGE.POSTS}/${id}/${thumbnail}`}
         alt={`thumbnail-image-${title}`}
+        loading={isLazyload ? "lazy" : "eager"}
       />
       <PostInfo>
         <PostTitle>{title}</PostTitle>

@@ -1,5 +1,3 @@
-import { Post } from "../../../interface/CommonTypes";
-
 import { StickyWrapper } from "./HomeMainStyle";
 
 import PostList from "../../../components/Post/PostList/PostList";

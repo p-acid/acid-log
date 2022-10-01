@@ -115,9 +115,7 @@ export const getFileExtension = (src: string) => {
  * @param compareExtension 비교하고자 하는 확장자명
  */
 export const validFileExtension = (src: string, compareExtension: string) => {
-  const fileName = src.slice(src.lastIndexOf("/"));
-  const lastDotIndex = fileName.lastIndexOf(".");
-  const fileExtension = fileName.slice(lastDotIndex + 1);
+  const fileExtension = getFileExtension(src);
 
   return fileExtension === compareExtension;
 };

@@ -1,6 +1,7 @@
 import { ImageProps } from "next/image";
 import { HTMLAttributes, useMemo } from "react";
 import { EXTENSION } from "../../../lib/config/extensionConfig";
+import { URL } from "../../../lib/config/urlConfig";
 import { validFileExtension } from "../../../utils/post";
 import { ThumbnailImage, ThumbnailVideo } from "./ThumbnailStyle";
 
@@ -11,7 +12,7 @@ interface ThumbnailProps extends ThumbnailExtendTypes {
   alt?: string;
 }
 
-const Thumbnail = ({ src, alt, ...restProps }: ThumbnailProps) => {
+const Thumbnail = ({ src, alt, loading, ...restProps }: ThumbnailProps) => {
   const isMp4 = useMemo(
     () => validFileExtension(src, EXTENSION.MP4),
     [validFileExtension, src]
@@ -24,7 +25,9 @@ const Thumbnail = ({ src, alt, ...restProps }: ThumbnailProps) => {
       </ThumbnailVideo>
     );
 
-  return <ThumbnailImage src={src} alt={alt} loading="eager" {...restProps} />;
+  return (
+    <ThumbnailImage src={src} alt={alt} loading={loading} {...restProps} />
+  );
 };
 
 export default Thumbnail;

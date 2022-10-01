@@ -7,6 +7,7 @@ export interface Post {
   date: string;
   tags: string[];
   thumbnail: string;
+  index: number;
 }
 
 export interface Category {

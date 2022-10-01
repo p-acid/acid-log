@@ -22,7 +22,11 @@ const CategoryBanner = ({
 }: CategoryBannerProps) => {
   return (
     <CategoryBannerWrapper>
-      <CategoryBannerThumbnail src={`${URL.IMAGE.CATEGORY}/${thumbnail}`} />
+      <CategoryBannerThumbnail
+        src={`${URL.IMAGE.CATEGORY}/${thumbnail}`}
+        alt={thumbnail}
+        loading="eager"
+      />
       <CategoryBannerInfo $infoBackground={infoBackground}>
         <CategoryBannerTitle>{title}</CategoryBannerTitle>
         <CategoryBannerSubWrapper>

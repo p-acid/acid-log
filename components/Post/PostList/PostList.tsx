@@ -16,8 +16,8 @@ const PostList = ({ posts, title, ...restProps }: PostListProps) => {
     <ListWrapper id="main-posts" {...restProps}>
       {title && <ListTitle>{title}</ListTitle>}
       <ListBox>
-        {posts.map((post) => (
-          <PostItem key={post.id} {...post} />
+        {posts.map((post, index) => (
+          <PostItem key={post.id} index={index} {...post} />
         ))}
       </ListBox>
     </ListWrapper>

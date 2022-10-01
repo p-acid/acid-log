@@ -31,7 +31,12 @@ const NavMenu = () => {
     ? createPortal(
         <NavMenuContainer>
           {NAVIGATION.MENU_LIST.map(({ url, label }) => (
-            <NavMenuButton onClick={() => goPage(url)}>{label}</NavMenuButton>
+            <NavMenuButton
+              key={`nav-menu-${label}`}
+              onClick={() => goPage(url)}
+            >
+              {label}
+            </NavMenuButton>
           ))}
           <NavMenuButton onClick={closeNavMenu}>나가기</NavMenuButton>
         </NavMenuContainer>,
