@@ -24,7 +24,7 @@ const Option = ({ label, value, selectedList, onSelect }: OptionProps) => {
                     id={link}
                     type="checkbox"
                     checked={selectedList.includes(option.value)}
-                    onChange={() => onSelect(option)}
+                    onChange={() => onSelect && onSelect(option)}
                   />
                   {option.label}
                 </OptionLabel>
@@ -44,7 +44,7 @@ const Option = ({ label, value, selectedList, onSelect }: OptionProps) => {
           id={link}
           type="checkbox"
           checked={selectedList.includes(value)}
-          onChange={() => onSelect({ label, value })}
+          onChange={() => onSelect && onSelect({ label, value })}
         />
         {label}
       </OptionLabel>

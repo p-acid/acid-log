@@ -10,4 +10,10 @@ export const MainContent = styled.div<{ path: string }>`
     justify-content: center;
     gap: ${theme.figure * 8}px;
   `}
+
+  ${({ theme, path }) =>
+    path !== ROUTES.MAIN &&
+    `
+    margin-top: ${theme.figure * 15}px;
+  `}
 `;
