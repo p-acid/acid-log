@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import Image, { ImageProps } from "next/future/image";
+import Image from "next/future/image";
 
 export const HeadingRow = styled.hr`
   margin: ${({ theme }) => theme.figure}px 0
@@ -7,6 +7,7 @@ export const HeadingRow = styled.hr`
   border: none;
   border-top: 1px solid ${({ theme }) => theme.colors.black_30};
 `;
+
 export const HeadingFirst = styled.h1`
   position: relative;
   color: ${({ theme }) => theme.colors.gray_blue_20};
@@ -136,15 +137,15 @@ export const UnorderedList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.figure / 2}px;
-  margin-bottom: ${({ theme }) => theme.figure / 2}px;
+  margin-bottom: ${({ theme }) => theme.figure * 4}px;
   color: ${({ theme }) => theme.colors.black_70};
   list-style: inside;
 
   ${({ theme }) => theme.typography.text_lg}
 
   ul, ol {
-    margin-top: ${({ theme }) => theme.figure}px;
-    margin-left: ${({ theme }) => theme.figure * 2}px;
+    margin: ${({ theme }) =>
+      `${theme.figure}px 0 ${theme.figure}px ${theme.figure * 2}px`};
   }
 `;
 
@@ -152,15 +153,15 @@ export const OrderedList = styled.ol`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.figure / 2}px;
-  margin-bottom: ${({ theme }) => theme.figure / 2}px;
+  margin-bottom: ${({ theme }) => theme.figure * 4}px;
   color: ${({ theme }) => theme.colors.black_70};
   list-style: inside;
 
   ${({ theme }) => theme.typography.text_lg}
 
   ul, ol {
-    margin-top: ${({ theme }) => theme.figure}px;
-    margin-left: ${({ theme }) => theme.figure * 2}px;
+    margin: ${({ theme }) =>
+      `${theme.figure}px 0 ${theme.figure}px ${theme.figure * 2}px`};
   }
 `;
 
