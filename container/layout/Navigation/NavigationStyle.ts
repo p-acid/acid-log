@@ -7,7 +7,7 @@ export const NavigationWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: sticky;
   top: 0;
   padding: ${({ theme }) => theme.figure / 2}px
     ${({ theme }) => theme.figure * 2}px;

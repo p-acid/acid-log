@@ -62,3 +62,10 @@ export const CATEGORIES: { [key: string]: Category } = {
     infoBackground: "purple",
   },
 };
+
+/**
+ * 아카이브 내 정의사항들입니다.
+ */
+export const ARCHIVE = {
+  category: {},
+};
