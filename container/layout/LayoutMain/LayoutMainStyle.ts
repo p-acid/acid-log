@@ -2,7 +2,11 @@ import styled from "@emotion/styled";
 
 import { ROUTES } from "../../../lib/config/routeConfig";
 
+const NOT_MARGIN_ROUTES = [ROUTES.MAIN, ROUTES.ARCHIVE];
+
 export const MainContent = styled.div<{ path: string }>`
+  margin-top: ${({ theme }) => theme.figure * 10}px;
+
   ${({ theme, path }) =>
     !path.includes(ROUTES.POSTS) &&
     `
@@ -11,9 +15,9 @@ export const MainContent = styled.div<{ path: string }>`
     gap: ${theme.figure * 8}px;
   `}
 
-  ${({ theme, path }) =>
-    path !== ROUTES.MAIN &&
+  ${({ path }) =>
+    NOT_MARGIN_ROUTES.includes(path) &&
     `
-    margin-top: ${theme.figure * 15}px;
+      margin: 0;
   `}
 `;

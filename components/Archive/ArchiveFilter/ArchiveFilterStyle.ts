@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const ArchiveFilterWrapper = styled.section`
   position: sticky;
-  top: 0;
+  top: ${({ theme }) => theme.figure * 14}px;
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.figure * 2}px;

@@ -7,7 +7,7 @@ const ArchiveFilter = () => {
   return (
     <ArchiveFilterWrapper>
       <Input iconName="search" />
-      <ArchiveItem selected={true} />
+      <ArchiveItem selected />
     </ArchiveFilterWrapper>
   );
 };

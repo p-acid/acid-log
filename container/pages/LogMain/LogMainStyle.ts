@@ -7,7 +7,6 @@ export const LogMainWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: ${({ theme }) => theme.figure * 7}px;
-  margin-top: ${({ theme }) => theme.figure * 15}px;
   padding: 0 ${({ theme }) => theme.figure * 5}px;
   width: ${({ theme }) => theme.figure * 100}px;
   max-width: ${({ theme }) => theme.figure * 100}px;
