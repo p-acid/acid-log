@@ -28,7 +28,7 @@ export const getAllArchives = async () => {
       return {
         id,
         contentHtml,
-        ...matterResult.data,
+        ...(matterResult.data as { title: string }),
       };
     })
   );

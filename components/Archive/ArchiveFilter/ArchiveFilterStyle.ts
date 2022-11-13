@@ -11,3 +11,14 @@ export const ArchiveFilterWrapper = styled.section`
   border-radius: ${({ theme }) => theme.figure * 2}px;
   box-shadow: ${({ theme }) => theme.shadow.gray_blue_10_15b};
 `;
+
+export const FormWrapper = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.figure / 2}px;
+`;
+
+export const FilterList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.figure * 2}px;
+`;

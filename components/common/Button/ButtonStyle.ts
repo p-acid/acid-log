@@ -10,6 +10,7 @@ export const ButtonWrapper = styled.button`
   background-color: ${({ theme }) => theme.colors.white};
   font-weight: ${({ theme }) => theme.typography.weight.light};
   cursor: pointer;
+  word-break: keep-all;
 
   ${({ theme }) => theme.typography.text_sm}
 
