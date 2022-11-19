@@ -4,6 +4,7 @@ import ArchiveItem from "./ArchiveItem/ArchiveItem";
 import {
   ArchiveFilterWrapper,
   FilterList,
+  Form,
   FormWrapper,
 } from "./ArchiveFilterStyle";
 import { FormEvent, useCallback, useMemo, useRef, useState } from "react";
@@ -52,9 +53,9 @@ const ArchiveFilter = ({ archiveFilters, selected, setSelected }) => {
   return (
     <ArchiveFilterWrapper>
       <FormWrapper>
-        <form onSubmit={submitKeyword}>
+        <Form onSubmit={submitKeyword}>
           <Input ref={inputRef} iconName="search" />
-        </form>
+        </Form>
         <Button onClick={resetKeyword}>
           <Icon size={16} color="black_50" iconName="restart_alt" />
         </Button>
