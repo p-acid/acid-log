@@ -48,16 +48,18 @@ const useLogMain = ({ allLogs }: { allLogs: Log[] }) => {
 
   const handleTerms = useCallback(
     (option: Option) => {
+      const value = option.value as string;
+
       setTerms((prev) => {
-        if (prev.includes(option.value)) {
-          const filteredList = prev.filter((term) => term !== option.value);
+        if (prev.includes(value)) {
+          const filteredList = prev.filter((term) => term !== value);
           return filteredList;
         }
 
-        return [...prev, option.value];
+        return [...prev, value];
       });
 
-      setFilter((prev) => [...prev, option.value]);
+      setFilter((prev) => [...prev, value]);
     },
     [setTerms]
   );

@@ -26,6 +26,7 @@ export const OptionCategoryList = styled.ul`
 
 export const OptionCategoryItem = styled.li`
   padding: ${({ theme }) => theme.figure * 2}px;
+  list-style: none;
 `;
 
 export const OptionLabel = styled.label`

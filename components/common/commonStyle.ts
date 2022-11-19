@@ -6,7 +6,7 @@ export const ListWrapper = styled.section`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.figure * 3}px;
-  padding: ${({ theme }) => theme.figure * 20}px
+  padding: ${({ theme }) => theme.figure * 10}px
     ${({ theme }) => theme.figure * 2}px;
   max-width: ${({ theme }) => theme.figure * 60}px;
 
