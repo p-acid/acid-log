@@ -12,16 +12,20 @@ export const HeadingFirst = styled.h1`
   position: relative;
   color: ${({ theme }) => theme.colors.gray_blue_20};
   font-weight: ${({ theme }) => theme.typography.weight.medium};
-  margin: ${({ theme }) => (theme.figure / 2) * 5}px 0
+  margin: ${({ theme }) => theme.figure * 5}px 0
     ${({ theme }) => theme.figure * 2}px;
 
   ${({ theme }) => theme.typography.display_sm};
+
+  &:first-of-type {
+    margin-top: ${({ theme }) => theme.figure * 3}px;
+  }
 `;
 
 export const HeadingSecond = styled.h2`
   color: ${({ theme }) => theme.colors.gray_blue_20};
   font-weight: ${({ theme }) => theme.typography.weight.medium};
-  margin: ${({ theme }) => (theme.figure / 2) * 5}px 0
+  margin: ${({ theme }) => theme.figure * 5}px 0
     ${({ theme }) => theme.figure * 2}px;
 
   ${({ theme }) => theme.typography.display_xs}
@@ -29,7 +33,7 @@ export const HeadingSecond = styled.h2`
 export const HeadingThird = styled.h3`
   color: ${({ theme }) => theme.colors.gray_blue_20};
   font-weight: ${({ theme }) => theme.typography.weight.medium};
-  margin: ${({ theme }) => (theme.figure / 2) * 5}px 0
+  margin: ${({ theme }) => theme.figure * 5}px 0
     ${({ theme }) => theme.figure * 2}px;
 
   ${({ theme }) => theme.typography.text_xl}
@@ -38,7 +42,7 @@ export const HeadingThird = styled.h3`
 export const HeadingFourth = styled.h4`
   color: ${({ theme }) => theme.colors.gray_blue_20};
   font-weight: ${({ theme }) => theme.typography.weight.medium};
-  margin: ${({ theme }) => (theme.figure / 2) * 5}px 0
+  margin: ${({ theme }) => theme.figure * 5}px 0
     ${({ theme }) => theme.figure * 2}px;
 
   ${({ theme }) => theme.typography.text_lg}
@@ -123,7 +127,7 @@ export const UnorderedList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.figure / 2}px;
-  margin-bottom: ${({ theme }) => theme.figure / 2}px;
+  margin-bottom: ${({ theme }) => theme.figure * 2}px;
   color: ${({ theme }) => theme.colors.black_70};
   list-style: inside;
 

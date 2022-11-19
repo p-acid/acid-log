@@ -3,13 +3,7 @@ title: "Warp : 커스텀 테마 설정 방법"
 date: "2022-11-19"
 ---
 
----
-
-> 원본 링크 : [Custom Themes](https://docs.warp.dev/features/themes/custom-themes)
-
 # 1. Config 폴더 생성
-
----
 
 ```bash
 # 루트 디렉토리에 .warp/themes 디렉토리 생성
@@ -20,8 +14,6 @@ mkdir -p ~/.warp/themes/
 - 경우에 따라, 배경을 이미지로 하기 위해서 해당 폴더에 이미지를 추가할 수도 있습니다.
 
 # 2. 테마 파일 생성
-
----
 
 ```bash
 # 1. 원하는 경로에 yaml 파일을 생성하여 내용을 작성하고 .warp/themes 경로에 해당 파일 복사
@@ -36,8 +28,6 @@ touch custom.yaml
 - 커스텀 파일 명칭은 자유롭게 해도 됩니다.
 
 # 3. 테마 파일 내용 작성
-
----
 
 ```yaml
 accent: "#268bd2" # Warp UI의 강조 컬러
@@ -72,8 +62,6 @@ terminal_colors:
 
 # 4. 이미지 파일 추가
 
----
-
 ```yaml
 # 다운로드 경로에 이미지 복사해서 추가
 cp ~/Downloads/image.jpg ~/.warp/themes/
@@ -84,3 +72,5 @@ cp ~/Downloads/image.jpg ~/.warp/themes/
   - `.jpeg`
   - `.jpg`
   - `.JPEG`
+
+> 원본 링크 : [Custom Themes](https://docs.warp.dev/features/themes/custom-themes)

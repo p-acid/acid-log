@@ -15,7 +15,6 @@ export const PostThumbnailMask = styled.div`
 `;
 
 export const PostThumbnail = styled(Thumbnail)`
-  padding-top: ${({ theme }) => theme.figure * 8}px;
   width: 100%;
   max-height: ${({ theme }) => theme.figure * 80}px;
   object-fit: cover;
