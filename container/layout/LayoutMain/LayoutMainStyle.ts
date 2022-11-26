@@ -14,7 +14,7 @@ export const MainContent = styled.div<{ path: string }>`
   `}
 
   ${({ theme, path }) =>
-    MARGIN_ROUTES.includes(path) &&
+    MARGIN_ROUTES.find((route) => path.includes(route)) &&
     `
       margin-top: ${theme.figure * 10}px;
   `}
